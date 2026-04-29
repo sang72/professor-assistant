@@ -138,75 +138,123 @@ Write preview of next session. Write any announcements.
 ═══════════════════════════════════════════════════
 
 After completing SECTION 1 and SECTION 2, output this slide deck block at the end of the file.
-The `scripts/generate_ppt.py` script will read this block and produce a `.pptx` file automatically.
+`scripts/generate_ppt.py` will read this block and produce a 4:3 standard `.pptx` automatically.
 
-### Slide Types Available
-- `TITLE` — Title slide (course name + subtitle). Use once at the start.
-- `SECTION` — Section divider (bold white text on blue). Use to separate major topics.
-- `CONTENT` — Standard slide with title + bullet points.
-- `QUOTE` — Dark background with a large quote. Use for impactful statements.
-- `CLOSING` — Q&A / closing slide. Use once at the end.
+### Fixed Slide Structure (ALWAYS follow this order)
 
-### Required Format (follow exactly — the parser depends on it)
+| Position | Type | Content |
+|----------|------|---------|
+| Slide 1 | `TITLE` | Course name + Week N · Session N + Topic + Professor name |
+| Slide 2 | `TOC` | Today's agenda — numbered list of main topics (3–5 items) |
+| Slides 3 to N-2 | `IMAGE` or `KEY_POINT` or `SECTION` | Main content (image-first approach) |
+| Slide N-1 | `QA` | Q&A slide (auto-styled — no content needed) |
+| Slide N | `END` | Exact repeat of Slide 1 (auto-generated — just add notes) |
 
-Each slide block starts with: `[SLIDE N | TYPE]`
-Fields allowed: `Title:`, `Subtitle:` (TITLE only), `Quote:`, `Source:` (QUOTE only), bullet lines starting with `- `, `Notes:` (everything after Notes: becomes the speaker note / script for that slide).
+### Slide Types and When to Use Each
+
+**`IMAGE`** ← USE THIS FOR MOST CONTENT SLIDES (image-first design)
+- Title = short key phrase (max 8 words)
+- Image = describe what real-world photo/diagram/chart should appear here
+- Caption = one bold sentence summarising the core insight
+- Notes = full script explaining the image and concept
+
+**`KEY_POINT`** — Use ONLY when a concept requires a text list (definitions, steps, comparisons)
+- Title = topic name
+- Bullets = 3–5 short points (one line each)
+- Notes = full script for every bullet
+
+**`SECTION`** — Use as a divider between major topic shifts
+- Title = section heading only
+- Notes = transition sentence the professor speaks
+
+**`TOC`** — Slide 2 only. List items as `- item` bullets (they become the numbered agenda).
+
+**`QA`** — Slide N-1. Leave title and bullets empty. Only add Notes (Q&A script).
+
+**`END`** — Last slide. Leave title/topic/professor empty (copied from TITLE). Add Notes (closing words).
+
+### Required Format (parser-critical — follow exactly)
+
+Each slide: `[SLIDE N | TYPE]`
+Fields: `Title:`, `WeekSession:`, `Topic:`, `Professor:` (TITLE/END only),
+        `Image:`, `Caption:` (IMAGE only),
+        `- bullet` lines (TOC / KEY_POINT),
+        `Notes:` (all remaining lines after Notes: are the speaker script)
 
 ### Slide Count Guide
-A 50-minute session = approximately 15–20 slides total.
-- Opening (slides 1–2): TITLE + objectives
-- Review (slide 3): CONTENT
-- Main content (slides 4–14): alternate SECTION + CONTENT per sub-topic
-- Activity (slide 15): CONTENT
-- Summary + Closing (slides 16–17): CONTENT + CLOSING
+A 50-minute session → 14–18 slides total.
+- Slide 1: TITLE
+- Slide 2: TOC
+- Slides 3–4: SECTION + IMAGE (opening/review topic)
+- Slides 5–12: alternate IMAGE / KEY_POINT for main content (2–3 slides per sub-topic)
+- Slide 13: KEY_POINT or IMAGE (student activity or summary)
+- Slide 14–15: IMAGE (summary visual + key takeaways)
+- Slide 16: QA
+- Slide 17: END
 
 ### Example Output
 
 ```
 [SLIDE 1 | TITLE]
 Title: Introduction to Academic Writing
-Subtitle: Week 1 · Session 1 — Course Overview
-Notes: Good morning, everyone. Welcome to Introduction to Academic Writing. My name is Professor [Name], and I'll be guiding you through this course for the next 15 weeks. Today we start from the very beginning — what academic writing is, why it matters, and what you can expect from this course.
+WeekSession: Week 1 · Session 1
+Topic: What Is Academic Writing?
+Professor: Prof. Kim Sang-ho
+Notes: 안녕하세요, 여러분. 반갑습니다. / Good morning, everyone. Welcome to Introduction to Academic Writing. I'm Professor Kim. Today we begin the journey — let's get started.
 
-[SLIDE 2 | CONTENT]
-Title: Today's Learning Objectives
-- By the end of today, you will understand the purpose of this course
-- You will be able to identify the key features of academic writing
-- You will know how this course is assessed
-Notes: Let's look at what we'll cover today. I want you to walk out of this room with three clear things in mind. First — what this course is about. Second — what makes writing "academic." Third — how you will be graded. Let me take you through each of these.
+[SLIDE 2 | TOC]
+- What is academic writing?
+- Key features of academic texts
+- How this course is structured
+- Assessment overview
+Notes: Let me walk you through what we'll cover today. Four topics. By the end of this session you'll have a clear picture of what this course is about and what's expected of you.
 
 [SLIDE 3 | SECTION]
 Title: What Is Academic Writing?
-Notes: Now let's get into the first topic. I want to ask you a question before I explain anything. [ASK STUDENTS: When you hear the phrase "academic writing," what comes to mind? Turn to your neighbor and share one word.] [PAUSE — wait for student responses] Great. You said things like "formal," "boring," "essays." Let's unpack that.
+Notes: Let's start with the most fundamental question. [ASK STUDENTS: Before I explain, tell me — what words come to mind when you hear "academic writing"?] [PAUSE — wait for student responses] Great answers. Let's see how your instincts match the formal definition.
 
-[SLIDE 4 | CONTENT]
-Title: Key Features of Academic Writing
-- Formal tone and precise language
-- Evidence-based arguments with citations
-- Clear structure: introduction, body, conclusion
-- Objective stance — no personal bias
-Notes: Academic writing has four hallmarks. Write these down. [WRITE ON BOARD: 1. Formal  2. Evidence  3. Structure  4. Objective] First — formal tone. This means no contractions, no slang, no "I think." Second — evidence. Every claim must be supported by a source. Third — clear structure. Academic writing is never random. Fourth — objectivity. We write to inform and argue logically, not emotionally.
+[SLIDE 4 | IMAGE]
+Title: Academic Writing in the Real World
+Image: A university library reading room with students studying at desks, books and laptops open, overhead warm lighting — conveys serious academic environment
+Caption: "Academic writing shapes how knowledge is built and shared."
+Notes: Look at this image. This is your context for the next 15 weeks. Academic writing isn't just a skill for class — it is the primary way scholars communicate. When researchers publish findings, when students submit theses, when professionals write reports — they all follow the conventions we'll learn together. [WRITE ON BOARD: Academic writing = formal + evidence-based + structured + objective]
 
-[SLIDE 5 | CLOSING]
-Notes: That's all for today's session. Thank you for your attention. Next week we'll begin Chapter 1 of the textbook. Any questions before we finish?
+[SLIDE 5 | KEY_POINT]
+Title: Four Defining Features
+- Formal tone — no contractions, no slang
+- Evidence-based — every claim needs a source
+- Clear structure — intro, body, conclusion
+- Objective stance — logic over emotion
+Notes: These four features define academic writing. Let me go through each one. First — formal tone. [SHOW SLIDE 5] This means we don't write "I think" or "it's really important." We write "This study argues" or "The evidence indicates." Second — evidence. You cannot make a claim without a citation. Third — structure. Academic writing is never random. Fourth — objective. We write to inform and persuade logically, not emotionally.
+
+[SLIDE 6 | IMAGE]
+Title: The Structure of an Academic Text
+Image: A clear diagram showing three stacked blocks labeled INTRODUCTION (top, blue), BODY PARAGRAPHS (middle, larger, teal), CONCLUSION (bottom, blue) with arrows showing flow between sections
+Caption: "Every academic text follows this three-part architecture."
+Notes: Look at this diagram. Every piece of academic writing — whether a paragraph, an essay, or a thesis — follows this shape. Introduction: tell them what you'll tell them. Body: tell them. Conclusion: tell them what you told them. [PAUSE 3s] Simple in theory. Difficult in practice. That's why we have 15 weeks.
+
+[SLIDE 7 | QA]
+Notes: We've covered the definition, the four features, and the structure of academic writing. Before we move on — does anyone have questions? Take a moment to review your notes. [PAUSE — wait for student responses] Great. Let's continue.
+
+[SLIDE 8 | END]
+Notes: That's all for today. Thank you for your attention. Next session we begin Chapter 1. Please read pages 1–20 before class. See you next time.
 ```
 
-### Rules for Slide Notes (Script)
-- Notes for TITLE slides = opening words as professor enters the room
-- Notes for CONTENT slides = the full spoken explanation of every bullet point
-- Notes for SECTION slides = transition sentence + question to ask students
-- Notes for CLOSING slides = closing remarks + preview of next session
-- Do NOT write "explain here" or "discuss this" — write the actual words
-- Minimum 3 sentences per slide. Major content slides: 8–15 sentences.
-- Include all script markers from SECTION 2 inside the notes field as well:
-  `[WRITE ON BOARD: ...]`, `[ASK STUDENTS: ...]`, `[PAUSE]`, `[SHOW SLIDE N]`, etc.
+### Script Rules for Notes Field
+- **TITLE / END:** greeting + brief context-setting (3–5 sentences)
+- **TOC:** say each item aloud with one-line preview
+- **IMAGE:** describe what's in the image → explain concept → give example or analogy (8–15 sentences)
+- **KEY_POINT:** explain every bullet fully — no "as you can see" shortcuts (8–12 sentences)
+- **SECTION:** transition sentence + question to engage students (3–5 sentences)
+- **QA:** invite questions, offer to clarify, bridge to next section
+- All script markers from SECTION 2 go inside Notes: `[WRITE ON BOARD:]`, `[ASK STUDENTS:]`, `[PAUSE]`, etc.
+- Minimum total script per session: 1,500 words (non-Korean) / 1,200 words (Korean)
 
 ## Output Files
-Save as: courses/[COURSE_FOLDER]/lectures/week[NN]/session[N].md
-(e.g., week01/session1.md, week01/session2.md, week01/session3.md)
+Save as: `courses/[COURSE_FOLDER]/lectures/week[NN]/session[N].md`
 
-After saving, the PPT can be generated with:
+Generate the PPT with:
 ```
 python3 scripts/generate_ppt.py courses/[COURSE_FOLDER]/lectures/week[NN]/session[N].md
 ```
-This creates: `week[NN]/session[N]_slides.pptx` with speaker notes pre-filled from the script.
+Output: `week[NN]/session[N]_slides.pptx`  (4:3 standard, speaker notes = full script)
