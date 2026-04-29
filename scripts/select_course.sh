@@ -74,22 +74,15 @@ while IFS= read -r -d '' folder; do
   if [[ -f "$CONFIG" ]]; then
     # Read all JSON fields in one call with proper quoting
     read COURSE_NAME COURSE_CODE LANG SEMESTER PROF ASSIGNMENT_COUNT < <(
-      python3 << 'EOF'
+      python3 -c "
 import json
 try:
-  with open('''$CONFIG''') as f:
+  with open('$CONFIG') as f:
     d = json.load(f)
-    print(
-      d.get('course_name', 'Unknown'),
-      d.get('course_code', 'Unknown'),
-      d.get('delivery_language', 'Unknown'),
-      d.get('semester', 'Unknown'),
-      d.get('professor_name', 'Unknown'),
-      d.get('assignment_count', 0)
-    )
-except Exception as e:
+    print(d.get('course_name', 'Unknown'), d.get('course_code', 'Unknown'), d.get('delivery_language', 'Unknown'), d.get('semester', 'Unknown'), d.get('professor_name', 'Unknown'), d.get('assignment_count', 0))
+except:
   print('Unknown Unknown Unknown Unknown Unknown 0')
-EOF
+"
     )
 
     # 진행 상황 계산 - 실제 파일 확인
