@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh auth *)",
+      "PowerShell(gh *)",
+      "PowerShell(git --version 2>&1; python --version 2>&1; python3 --version 2>&1)",
+      "Bash(git -C /c/Users/Sang/Desktop/professor-assistant remote -v)",
+      "Bash(git -C /c/Users/Sang/Desktop/professor-assistant/professor-assistant remote -v)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(git pull *)",
+      "Bash(bash *)"
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "course_name": "Franchise Management",
+  "course_code": "FRM401",
+  "semester": "2026-Fall",
+  "academic_level": "Undergraduate Year 3-4",
+  "student_count": "50",
+  "professor_name": "Sangho Han",
+  "delivery_language": "English",
+  "language_code": "en",
+  "course_folder": "frm401_franchise_management_2026_fall",
+  "textbook_filename": "franchise.pdf",
+  "textbook_path": "courses/frm401_franchise_management_2026_fall/textbook/franchise.pdf",
+  "textbook_extracted_path": "courses/frm401_franchise_management_2026_fall/textbook/textbook_extracted.txt",
+  "grading_policy": {
+    "attendance": 20,
+    "midterm": 30,
+    "final": 30,
+    "assignments": 10,
+    "attitude": 10,
+    "total": 100
+  },
+  "skip_chapters": [],
+  "emphasized_chapters": [],
+  "top_3_outcomes": [],
+  "lecture_style": "",
+  "exam_question_types": "",
+  "assignment_type": "",
+  "real_world_applications": "",
+  "assignment_count": 0,
+  "script_detail_level": "",
+  "professor_language_proficiency": "",
+  "created_at": "2026-04-29T00:00:00Z",
+  "last_updated": "2026-04-29T00:00:00Z",
+  "status": {
+    "syllabus": "pending",
+    "lectures_completed": [],
+    "midterm": "pending",
+    "final": "pending",
+    "assignments_completed": []
+  }
+}
