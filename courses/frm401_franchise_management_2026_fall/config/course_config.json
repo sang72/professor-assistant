@@ -20,17 +20,25 @@
     "total": 100
   },
   "skip_chapters": [],
-  "emphasized_chapters": [],
-  "top_3_outcomes": [],
-  "lecture_style": "",
-  "exam_question_types": "",
-  "assignment_type": "",
-  "real_world_applications": "",
-  "assignment_count": 0,
-  "script_detail_level": "",
-  "professor_language_proficiency": "",
+  "emphasized_chapters": [
+    "Franchise law chapter — teach US franchise law WITH Korean franchise law comparison"
+  ],
+  "top_3_outcomes": [
+    "학생들은 수업 종료 후 프랜차이즈를 설명 할 수 있다",
+    "학생들은 수업 종료 후 가맹본부와 가맹점의 관계를 이해하고 설명 할 수 있다",
+    "학생들은 수업 종료 후 프랜차이즈 관련 기본 법률을 이해 할 수 있다"
+  ],
+  "lecture_style": "balanced",
+  "exam_question_types": "a",
+  "assignment_type": "individual",
+  "real_world_applications": "Korean franchise brand cases OR global franchise system analysis (student's choice)",
+  "assignment_count": 1,
+  "script_detail_level": "beginner",
+  "professor_language_proficiency": "beginner",
+  "pronunciation_guide": false,
+  "improvisation_tips": true,
   "created_at": "2026-04-29T00:00:00Z",
-  "last_updated": "2026-04-29T00:00:00Z",
+  "last_updated": "2026-04-29T01:00:00Z",
   "status": {
     "syllabus": "pending",
     "lectures_completed": [],

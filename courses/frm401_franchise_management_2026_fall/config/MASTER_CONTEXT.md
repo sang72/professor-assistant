@@ -1,5 +1,5 @@
 # MASTER CONTEXT — Franchise Management
-Last Updated: 2026-04-29T00:00:00Z
+Last Updated: 2026-04-29T01:00:00Z
 
 ## Course Identity
 - Name: Franchise Management
@@ -10,7 +10,23 @@ Last Updated: 2026-04-29T00:00:00Z
 - Textbook: franchise.pdf
 
 ## Agent Configuration
-See course_config.json for full COURSE_CONFIG.
+| Setting | Value |
+|---------|-------|
+| Lecture Style | Balanced (theory + practice) |
+| Exam Type | Option A — 객관식 80% + 단답형 20% |
+| Assignment Type | Individual |
+| Assignment Count | 1 |
+| Real-World Applications | Korean franchise brand cases OR global franchise system analysis (student's choice) |
+| Script Detail Level | Beginner (all sentences fully written out) |
+| Pronunciation Guide | No |
+| Improvisation Tips | Yes |
+| Skip Chapters | None |
+| Emphasized Chapters | Franchise law — teach US law WITH Korean law comparison |
+
+## Core Learning Outcomes
+1. 학생들은 수업 종료 후 프랜차이즈를 설명 할 수 있다
+2. 학생들은 수업 종료 후 가맹본부와 가맹점의 관계를 이해하고 설명 할 수 있다
+3. 학생들은 수업 종료 후 프랜차이즈 관련 기본 법률을 이해 할 수 있다
 
 ## Content Generation Status
 | Item | Status | File Path | Notes |
@@ -37,13 +53,12 @@ See course_config.json for full COURSE_CONFIG.
 | Final Exam | ⏳ Pending | exams/final_student.md | |
 | Final Answer Key | ⏳ Pending | exams/final_answer_key.md | |
 | Assignment 1 | ⏳ Pending | assignments/assignment1.md | |
-| Assignment 2 | ⏳ Pending | assignments/assignment2.md | |
-| Assignment 3 | ⏳ Pending | assignments/assignment3.md | |
 
 ## Key Decisions & Customizations
-_To be filled during Orchestrator interview_
+- Franchise law chapters: always pair US law with Korean law (가맹사업거래의 공정화에 관한 법률) for comparison
+- Assignment: students choose their own topic — Korean brand OR global system analysis
+- Script style: beginner-level English, every sentence fully written, improvisation tips included
 
 ## Next Session TODO
-1. Run Orchestrator interview (Group B, C, D questions)
-2. Generate Syllabus
-3. Begin Week 01 Lectures
+1. Generate Syllabus (Option 1)
+2. Begin Week 01 Lectures (Option 2)
