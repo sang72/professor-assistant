@@ -31,28 +31,28 @@ Last Updated: 2026-04-29T01:00:00Z
 ## Content Generation Status
 | Item | Status | File Path | Notes |
 |------|--------|-----------|-------|
-| Syllabus | ⏳ Pending | syllabus/syllabus.md | |
-| Grading Policy | ⏳ Pending | syllabus/grading_policy.md | |
-| Week 01 Lecture | ⏳ Pending | lectures/week01/ | |
-| Week 02 Lecture | ⏳ Pending | lectures/week02/ | |
-| Week 03 Lecture | ⏳ Pending | lectures/week03/ | |
-| Week 04 Lecture | ⏳ Pending | lectures/week04/ | |
-| Week 05 Lecture | ⏳ Pending | lectures/week05/ | |
-| Week 06 Lecture | ⏳ Pending | lectures/week06/ | |
-| Week 07 Midterm Review | ⏳ Pending | lectures/week07/ | |
-| Week 08 Lecture | ⏳ Pending | lectures/week08/ | |
-| Week 09 Lecture | ⏳ Pending | lectures/week09/ | |
-| Week 10 Lecture | ⏳ Pending | lectures/week10/ | |
-| Week 11 Lecture | ⏳ Pending | lectures/week11/ | |
-| Week 12 Lecture | ⏳ Pending | lectures/week12/ | |
-| Week 13 Lecture | ⏳ Pending | lectures/week13/ | |
-| Week 14 Lecture | ⏳ Pending | lectures/week14/ | |
-| Week 15 Final Review | ⏳ Pending | lectures/week15/ | |
-| Midterm Exam | ⏳ Pending | exams/midterm_student.md | |
-| Midterm Answer Key | ⏳ Pending | exams/midterm_answer_key.md | |
-| Final Exam | ⏳ Pending | exams/final_student.md | |
-| Final Answer Key | ⏳ Pending | exams/final_answer_key.md | |
-| Assignment 1 | ⏳ Pending | assignments/assignment1.md | |
+| Syllabus | ✅ Complete | syllabus/syllabus.md | 15-week course structure, all sections |
+| Grading Policy | ✅ Complete | syllabus/grading_policy.md | Attendance, exams, assignments, attitude |
+| Week 01 Lecture | ⏳ In Progress | lectures/week01/ | 2/3 sessions complete (S1, S2 done) |
+| Week 02 Lecture | ⏳ Pending | lectures/week02/ | Franchising as Entrepreneurship (Ch. 1) |
+| Week 03 Lecture | ⏳ Pending | lectures/week03/ | Franchise Relationship Model (Ch. 2) |
+| Week 04 Lecture | ⏳ Pending | lectures/week04/ | Wealth Creating Power (Ch. 3) |
+| Week 05 Lecture | ⏳ Pending | lectures/week05/ | SDS & Real Estate (Ch. 4) |
+| Week 06 Lecture | ⏳ Pending | lectures/week06/ | Selecting & Monitoring (Ch. 5) |
+| Week 07 Midterm Review | ⏳ Pending | lectures/week07/ | Review sessions + Midterm Exam |
+| Week 08 Lecture | ⏳ Pending | lectures/week08/ | SDS & Marketing (Ch. 6) |
+| Week 09 Lecture | ⏳ Pending | lectures/week09/ | Transaction Analysis (Ch. 7) |
+| Week 10 Lecture | ⏳ Pending | lectures/week10/ | Financial Analysis (Ch. 8) |
+| Week 11 Lecture | ⏳ Pending | lectures/week11/ | Franchisee-Franchisor Dynamics (Ch. 9) |
+| Week 12 Lecture | ⏳ Pending | lectures/week12/ | U.S. Franchise Laws + Korean comparison (Ch. 10) |
+| Week 13 Lecture | ⏳ Pending | lectures/week13/ | International Franchising Part 1 (Ch. 11) |
+| Week 14 Lecture | ⏳ Pending | lectures/week14/ | International Franchising Part 2 (Ch. 11) |
+| Week 15 Final Review | ⏳ Pending | lectures/week15/ | Review sessions + Final Exam |
+| Midterm Exam | ⏳ Pending | exams/midterm_student.md | Covers Weeks 1-6 (75 min) |
+| Midterm Answer Key | ⏳ Pending | exams/midterm_answer_key.md | Multiple choice + short answer + essay |
+| Final Exam | ⏳ Pending | exams/final_student.md | Covers Weeks 8-14 + 20% cumulative (90 min) |
+| Final Answer Key | ⏳ Pending | exams/final_answer_key.md | Multiple choice + short answer + essay |
+| Assignment 1 | ⏳ Pending | assignments/assignment1.md | Korean brand OR global system analysis |
 
 ## Key Decisions & Customizations
 - Franchise law chapters: always pair US law with Korean law (가맹사업거래의 공정화에 관한 법률) for comparison
