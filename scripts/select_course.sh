@@ -73,7 +73,7 @@ while IFS= read -r -d '' folder; do
 
   if [[ -f "$CONFIG" ]]; then
     # Read JSON fields with proper encoding
-    JSON_OUTPUT=$(python3 -c 'import json; d=json.load(open("'"$CONFIG"'", encoding="utf-8")); print("\n".join([d.get("course_name", "Unknown"), d.get("course_code", "Unknown"), d.get("delivery_language", "Unknown"), d.get("semester", "Unknown"), d.get("professor_name", "Unknown"), str(d.get("assignment_count", 0))]))' 2>/dev/null | tr -d '\r')
+    JSON_OUTPUT=$(python3 -c 'import json; d=json.load(open("'"$CONFIG"'", encoding="utf-8")); print("\n".join([d.get("course_name", "Unknown"), d.get("course_code", "Unknown"), d.get("delivery_language", "Unknown"), d.get("semester", "Unknown"), d.get("professor_name", "Unknown"), str(d.get("assignment_count", 0))]))' | tr -d '\r')
 
     COURSE_NAME=$(echo "$JSON_OUTPUT" | sed -n '1p')
     COURSE_CODE=$(echo "$JSON_OUTPUT" | sed -n '2p')
