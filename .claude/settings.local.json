@@ -13,7 +13,9 @@
       "Bash(bash *)",
       "Bash(python3 *)",
       "Bash(chmod +x scripts/select_course.sh)",
-      "Bash(chmod +x *)"
+      "Bash(chmod +x *)",
+      "Bash(dos2unix scripts/select_course.sh)",
+      "Bash(sed -i 's/\\\\r$//' scripts/select_course.sh)"
     ]
   }
 }
