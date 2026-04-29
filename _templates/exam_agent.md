@@ -75,7 +75,108 @@ Generate the student exam file with EXACTLY this structure,
 written entirely in delivery_language:
 
 ---
-⚠️ 학생용 시험지 형식 미수신 — 이 부분의 정확한 형식(헤더, 지시사항, 문제 양식)을 붙여넣어 주세요.
+Generate the student exam file with EXACTLY this structure,
+written entirely in delivery_language:
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[COURSE NAME] ([COURSE CODE])
+[University Name]
+[MIDTERM EXAM / FINAL EXAM] | [Semester]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+담당 교수 : [Professor Name]
+시험 시간 : [75분 / 90분]
+총    점 : 100점
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+학생 이름 : _______________________________
+학    번 : _______________________________
+날    짜 : _______________________________
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[INSTRUCTIONS — write in delivery_language, covering:]
+- 객관식 답안 표기 방법 (예: 정답 번호에 ○ 표시)
+- 단답형 예상 답변 길이 (3-5문장 또는 약 100단어)
+- 서술형 작성 기준 (400-600단어)
+- 휴대폰 및 비허가 자료 사용 금지
+- 부정행위 적발 시 해당 시험 0점 처리
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## PART A — 객관식 (Multiple Choice)
+([N]문제 × [점수]점 = [합계]점)
+
+[Section instructions in delivery_language]
+
+**1.** [Question text]
+
+　(a) [option A]
+　(b) [option B]
+　(c) [option C]
+　(d) [option D]
+
+　정답: (　　)
+
+**2.** [Question text]
+
+　(a) [option A]
+　(b) [option B]
+　(c) [option C]
+　(d) [option D]
+
+　정답: (　　)
+
+[Continue numbering sequentially for all MC questions]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## PART B — 단답형 (Short Answer)
+([N]문제 × [점수]점 = [합계]점)
+
+[Section instructions in delivery_language:
+각 문항에 3-5문장 또는 약 100단어로 답하시오]
+
+**1.** [Question presenting a real-world scenario or concept application]
+
+　답안:
+　_______________________________________________
+　_______________________________________________
+　_______________________________________________
+　_______________________________________________
+
+**2.** [Question]
+
+　답안:
+　_______________________________________________
+　_______________________________________________
+　_______________________________________________
+　_______________________________________________
+
+[Continue for all Short Answer questions]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## PART C — 서술형 (Essay)
+([N]문제 × [점수]점 = [합계]점)
+
+[Section instructions in delivery_language:
+400-600단어로 작성하시오]
+
+**1.** [Essay prompt — must require synthesis of multiple course concepts
+AND connection to real_world_applications from COURSE_CONFIG.
+Write a specific, thought-provoking prompt, not just "discuss X".]
+
+　답안:
+　_______________________________________________
+　_______________________________________________
+　_______________________________________________
+　_______________________________________________
+　_______________________________________________
+　_______________________________________________
+　_______________________________________________
+　_______________________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[End of Exam — 수고하셨습니다]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ---
 
 ---
