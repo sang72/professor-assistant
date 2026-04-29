@@ -133,6 +133,80 @@ Write the exact summary the professor says: "Today we covered... The three key p
 **Part 7: Preview and Announcements (0:48–0:50)**
 Write preview of next session. Write any announcements.
 
+═══════════════════════════════════════════════════
+## SECTION 3: SLIDE DECK
+═══════════════════════════════════════════════════
+
+After completing SECTION 1 and SECTION 2, output this slide deck block at the end of the file.
+The `scripts/generate_ppt.py` script will read this block and produce a `.pptx` file automatically.
+
+### Slide Types Available
+- `TITLE` — Title slide (course name + subtitle). Use once at the start.
+- `SECTION` — Section divider (bold white text on blue). Use to separate major topics.
+- `CONTENT` — Standard slide with title + bullet points.
+- `QUOTE` — Dark background with a large quote. Use for impactful statements.
+- `CLOSING` — Q&A / closing slide. Use once at the end.
+
+### Required Format (follow exactly — the parser depends on it)
+
+Each slide block starts with: `[SLIDE N | TYPE]`
+Fields allowed: `Title:`, `Subtitle:` (TITLE only), `Quote:`, `Source:` (QUOTE only), bullet lines starting with `- `, `Notes:` (everything after Notes: becomes the speaker note / script for that slide).
+
+### Slide Count Guide
+A 50-minute session = approximately 15–20 slides total.
+- Opening (slides 1–2): TITLE + objectives
+- Review (slide 3): CONTENT
+- Main content (slides 4–14): alternate SECTION + CONTENT per sub-topic
+- Activity (slide 15): CONTENT
+- Summary + Closing (slides 16–17): CONTENT + CLOSING
+
+### Example Output
+
+```
+[SLIDE 1 | TITLE]
+Title: Introduction to Academic Writing
+Subtitle: Week 1 · Session 1 — Course Overview
+Notes: Good morning, everyone. Welcome to Introduction to Academic Writing. My name is Professor [Name], and I'll be guiding you through this course for the next 15 weeks. Today we start from the very beginning — what academic writing is, why it matters, and what you can expect from this course.
+
+[SLIDE 2 | CONTENT]
+Title: Today's Learning Objectives
+- By the end of today, you will understand the purpose of this course
+- You will be able to identify the key features of academic writing
+- You will know how this course is assessed
+Notes: Let's look at what we'll cover today. I want you to walk out of this room with three clear things in mind. First — what this course is about. Second — what makes writing "academic." Third — how you will be graded. Let me take you through each of these.
+
+[SLIDE 3 | SECTION]
+Title: What Is Academic Writing?
+Notes: Now let's get into the first topic. I want to ask you a question before I explain anything. [ASK STUDENTS: When you hear the phrase "academic writing," what comes to mind? Turn to your neighbor and share one word.] [PAUSE — wait for student responses] Great. You said things like "formal," "boring," "essays." Let's unpack that.
+
+[SLIDE 4 | CONTENT]
+Title: Key Features of Academic Writing
+- Formal tone and precise language
+- Evidence-based arguments with citations
+- Clear structure: introduction, body, conclusion
+- Objective stance — no personal bias
+Notes: Academic writing has four hallmarks. Write these down. [WRITE ON BOARD: 1. Formal  2. Evidence  3. Structure  4. Objective] First — formal tone. This means no contractions, no slang, no "I think." Second — evidence. Every claim must be supported by a source. Third — clear structure. Academic writing is never random. Fourth — objectivity. We write to inform and argue logically, not emotionally.
+
+[SLIDE 5 | CLOSING]
+Notes: That's all for today's session. Thank you for your attention. Next week we'll begin Chapter 1 of the textbook. Any questions before we finish?
+```
+
+### Rules for Slide Notes (Script)
+- Notes for TITLE slides = opening words as professor enters the room
+- Notes for CONTENT slides = the full spoken explanation of every bullet point
+- Notes for SECTION slides = transition sentence + question to ask students
+- Notes for CLOSING slides = closing remarks + preview of next session
+- Do NOT write "explain here" or "discuss this" — write the actual words
+- Minimum 3 sentences per slide. Major content slides: 8–15 sentences.
+- Include all script markers from SECTION 2 inside the notes field as well:
+  `[WRITE ON BOARD: ...]`, `[ASK STUDENTS: ...]`, `[PAUSE]`, `[SHOW SLIDE N]`, etc.
+
 ## Output Files
 Save as: courses/[COURSE_FOLDER]/lectures/week[NN]/session[N].md
 (e.g., week01/session1.md, week01/session2.md, week01/session3.md)
+
+After saving, the PPT can be generated with:
+```
+python3 scripts/generate_ppt.py courses/[COURSE_FOLDER]/lectures/week[NN]/session[N].md
+```
+This creates: `week[NN]/session[N]_slides.pptx` with speaker notes pre-filled from the script.
