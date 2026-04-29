@@ -72,18 +72,28 @@ while IFS= read -r -d '' folder; do
   CONFIG="$folder/config/course_config.json"
 
   if [[ -f "$CONFIG" ]]; then
-    # Read all JSON fields in one call with proper encoding
-    read COURSE_NAME COURSE_CODE LANG SEMESTER PROF ASSIGNMENT_COUNT < <(
-      python3 -c "
+    # Read JSON fields with proper encoding
+    JSON_OUTPUT=$(python3 -c "
 import json
 try:
   with open('$CONFIG', encoding='utf-8') as f:
     d = json.load(f)
-    print(d.get('course_name', 'Unknown'), d.get('course_code', 'Unknown'), d.get('delivery_language', 'Unknown'), d.get('semester', 'Unknown'), d.get('professor_name', 'Unknown'), d.get('assignment_count', 0))
+    print(d.get('course_name', 'Unknown'))
+    print(d.get('course_code', 'Unknown'))
+    print(d.get('delivery_language', 'Unknown'))
+    print(d.get('semester', 'Unknown'))
+    print(d.get('professor_name', 'Unknown'))
+    print(d.get('assignment_count', 0))
 except Exception as e:
-  print('Unknown Unknown Unknown Unknown Unknown 0')
-"
-    )
+  print('Unknown\nUnknown\nUnknown\nUnknown\nUnknown\n0')
+" 2>/dev/null)
+
+    COURSE_NAME=$(echo "$JSON_OUTPUT" | sed -n '1p')
+    COURSE_CODE=$(echo "$JSON_OUTPUT" | sed -n '2p')
+    LANG=$(echo "$JSON_OUTPUT" | sed -n '3p')
+    SEMESTER=$(echo "$JSON_OUTPUT" | sed -n '4p')
+    PROF=$(echo "$JSON_OUTPUT" | sed -n '5p')
+    ASSIGNMENT_COUNT=$(echo "$JSON_OUTPUT" | sed -n '6p')
 
     # 진행 상황 계산 - 실제 파일 확인
     SYLLABUS_FILE="$folder/syllabus/syllabus.md"
