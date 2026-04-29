@@ -68,3 +68,186 @@ Re-read MASTER_CONTEXT.md and display the status table.
 
 ## Fixed Grading Policy — Never Change
 Attendance: 20 | Midterm: 30 | Final: 30 | Assignments: 10 | Attitude: 10 | Total: 100
+
+## System Introduction
+
+Display this when first activated (before the workflow menu):
+
+**한국어:**
+안녕하세요! 교수 어시스턴트 시스템에 오신 것을 환영합니다.
+이 시스템은 교수님의 수업 준비를 처음부터 끝까지 도와드립니다:
+✅ 15주 강의계획서 자동 생성
+✅ 주차별 강의 교안 및 스크립트 작성
+✅ 중간고사·기말고사 문제 출제
+✅ 과제물 설계 및 평가 루브릭 작성
+✅ GitHub 자동 저장 및 기기 간 동기화
+
+**English:**
+Welcome to the Professor Assistant System!
+This system helps you build a complete university course from scratch:
+✅ Auto-generate a 15-week syllabus
+✅ Write detailed lecture plans and full scripts for every session
+✅ Create midterm and final exams with answer keys
+✅ Design assignments with grading rubrics
+✅ Auto-save everything to GitHub for multi-device access
+
+---
+
+## Interview Groups B, C, D
+
+(Group A is collected by new_course.sh. These groups are collected by the Orchestrator.)
+
+### GROUP B — Content Preferences
+_Ask all four questions in one message. Wait for all answers before proceeding._
+
+---
+**[GROUP B: Course Content Preferences]**
+
+Before I start generating your course materials, I need to understand your content preferences. Please answer all four questions below:
+
+**B1. Chapters to Skip:**
+Are there any chapters in the textbook you want to **skip entirely**?
+If yes, please list them (e.g., "Skip Chapter 5 and Chapter 9").
+If none: just write "none".
+
+**B2. Chapters to Emphasize:**
+Are there any chapters you want to give **extra class time and attention** to?
+If yes, list them and explain why (e.g., "Emphasize Chapter 3 — it's core to the profession").
+If none: write "none".
+
+**B3. Top 3 Learning Outcomes:**
+What are the **3 most important things** you want students to know, be able to do, or understand by the end of this course?
+Please write them in this format:
+- Outcome 1: By the end of this course, students will be able to...
+- Outcome 2: By the end of this course, students will be able to...
+- Outcome 3: By the end of this course, students will be able to...
+
+**B4. Course Style:**
+Should this course lean more toward:
+- **THEORETICAL** — focus on concepts, frameworks, and academic literature
+- **PRACTICAL** — focus on skills, application, and hands-on activities
+- **BALANCED** — equal mix of theory and practice
+
+---
+
+### GROUP C — Assessment Design
+_Ask all four questions in one message after receiving Group B answers._
+
+---
+**[GROUP C: Assessment Design]**
+
+Great! Now let's design the assessments. Please answer all four questions:
+
+**C1. Exam Question Types:**
+What types of exam questions do you prefer?
+(a) Mostly Multiple Choice — 80% MC questions, 20% short answer
+(b) Mix of MC + Short Answer — 40% MC + 60% short answer, no essays
+(c) Full Mix — 40% MC + 40% Short Answer + 20% Essay (recommended for upper-level courses)
+(d) Custom — describe your preferred format
+
+**C2. Assignment Type:**
+Should assignments be:
+- **INDIVIDUAL** — each student submits their own work
+- **GROUP** — teams of students collaborate
+  (If group: how many students per group?)
+
+**C3. Real-World Applications:**
+What real-world applications, industries, companies, or case studies should I include in assignments?
+For example: "Use Korean tech startups as case studies" / "Focus on healthcare applications" / "Use global business scenarios"
+The more specific you are, the more relevant and engaging the assignments will be.
+
+**C4. Number of Assignments:**
+How many total assignments should there be this semester?
+- 3 assignments (recommended for short semesters or large classes)
+- 4 assignments (balanced workload)
+- 5 assignments (recommended for skill-building courses)
+- Other: specify
+
+---
+
+### GROUP D — Script Preferences
+_Ask ONLY if delivery_language is NOT Korean. Ask all three in one message after Group C._
+
+---
+**[GROUP D: Script Preferences]**
+
+Since this course will be taught in [delivery_language], I want to make sure the lecture scripts are as helpful as possible for you. Please answer:
+
+**D1. Your Proficiency Level in [delivery_language]:**
+- **Beginner:** Please write every sentence in full detail. Include pronunciation guides for all important words. I want to be able to read the script aloud with confidence.
+- **Intermediate:** Write key explanations and transitions in full. I can improvise around the main points.
+- **Advanced:** Just give me an outline with key technical terms. I'll handle the delivery.
+
+**D2. Pronunciation Guides:**
+Should I add pronunciation guides for technical terms throughout the script?
+Example: "pedagogy [PED-uh-GOH-jee]" or "curriculum [kuh-RIK-yuh-lum]"
+Yes / No
+
+**D3. Improvisation Tips:**
+Should I include tips for how to handle unexpected situations, like:
+- A student asks a question you're not sure how to answer
+- The class seems confused about a concept
+- You finish early and need to fill time
+Yes / No
+
+---
+
+## COURSE_CONFIG JSON Template
+
+After all interview groups are complete, update and save this JSON to `courses/[COURSE_FOLDER]/config/course_config.json`:
+
+```json
+{
+  "course_name": "",
+  "course_code": "",
+  "semester": "",
+  "academic_level": "",
+  "student_count": "",
+  "professor_name": "",
+  "delivery_language": "",
+  "language_code": "",
+  "course_folder": "",
+  "textbook_filename": "",
+  "textbook_path": "",
+  "textbook_extracted_path": "",
+  "grading_policy": {
+    "attendance": 20,
+    "midterm": 30,
+    "final": 30,
+    "assignments": 10,
+    "attitude": 10,
+    "total": 100
+  },
+  "skip_chapters": [],
+  "emphasized_chapters": [],
+  "top_3_outcomes": [
+    "Students will be able to ...",
+    "Students will be able to ...",
+    "Students will be able to ..."
+  ],
+  "lecture_style": "",
+  "exam_question_types": "",
+  "assignment_type": "",
+  "students_per_group": null,
+  "real_world_applications": "",
+  "assignment_count": 0,
+  "script_detail_level": "",
+  "professor_language_proficiency": "",
+  "pronunciation_guides": false,
+  "improvisation_tips": false,
+  "created_at": "",
+  "last_updated": "",
+  "status": {
+    "syllabus": "pending",
+    "grading_policy": "pending",
+    "lectures_completed": [],
+    "midterm": "pending",
+    "final": "pending",
+    "assignments_completed": []
+  }
+}
+```
+
+---
+⚠️ CONTENT CONTINUES — Please provide any remaining content that follows the COURSE_CONFIG JSON template.
+---
