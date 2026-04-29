@@ -72,9 +72,9 @@ while IFS= read -r -d '' folder; do
   CONFIG="$folder/config/course_config.json"
 
   if [[ -f "$CONFIG" ]]; then
-    # Read JSON fields with proper encoding (convert MSYS2 path to Windows path for Python)
-    CONFIG_WIN=$(python3 -c "import os; print(os.path.abspath(r'$CONFIG'))")
-    JSON_OUTPUT=$(python3 -c 'import json; d=json.load(open(r"'"$CONFIG_WIN"'", encoding="utf-8")); print("\n".join([d.get("course_name", "Unknown"), d.get("course_code", "Unknown"), d.get("delivery_language", "Unknown"), d.get("semester", "Unknown"), d.get("professor_name", "Unknown"), str(d.get("assignment_count", 0))]))' | tr -d '\r')
+    # Read JSON fields - convert MSYS2 path to absolute Windows path
+    CONFIG_ABS="$(cd "$(dirname "$CONFIG")" && pwd)/$(basename "$CONFIG")"
+    JSON_OUTPUT=$(python3 -c "import json; f=open('$CONFIG_ABS', encoding='utf-8'); d=json.load(f); f.close(); print('\\n'.join([d.get('course_name','Unknown'),d.get('course_code','Unknown'),d.get('delivery_language','Unknown'),d.get('semester','Unknown'),d.get('professor_name','Unknown'),str(d.get('assignment_count',0))]))" 2>/dev/null | tr -d '\r')
 
     COURSE_NAME=$(echo "$JSON_OUTPUT" | sed -n '1p')
     COURSE_CODE=$(echo "$JSON_OUTPUT" | sed -n '2p')
