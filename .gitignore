@@ -1,0 +1,11 @@
+.DS_Store
+*.pyc
+__pycache__/
+.env
+*.log
+node_modules/
+.vscode/
+*.tmp
+courses/*/textbook/*.pdf
+courses/*/textbook/*.PDF
+!courses/.gitkeep
