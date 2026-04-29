@@ -72,7 +72,7 @@ while IFS= read -r -d '' folder; do
   CONFIG="$folder/config/course_config.json"
 
   if [[ -f "$CONFIG" ]]; then
-    # Read JSON fields with proper encoding
+    # Read JSON fields with proper encoding (remove \r for Windows line endings)
     JSON_OUTPUT=$(python3 -c "
 import json
 try:
@@ -86,7 +86,7 @@ try:
     print(d.get('assignment_count', 0))
 except Exception as e:
   print('Unknown\nUnknown\nUnknown\nUnknown\nUnknown\n0')
-" 2>/dev/null)
+" 2>/dev/null | tr -d '\r')
 
     COURSE_NAME=$(echo "$JSON_OUTPUT" | sed -n '1p')
     COURSE_CODE=$(echo "$JSON_OUTPUT" | sed -n '2p')
