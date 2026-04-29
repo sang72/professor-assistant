@@ -72,15 +72,15 @@ while IFS= read -r -d '' folder; do
   CONFIG="$folder/config/course_config.json"
 
   if [[ -f "$CONFIG" ]]; then
-    # Read all JSON fields in one call with proper quoting
+    # Read all JSON fields in one call with proper encoding
     read COURSE_NAME COURSE_CODE LANG SEMESTER PROF ASSIGNMENT_COUNT < <(
       python3 -c "
 import json
 try:
-  with open('$CONFIG') as f:
+  with open('$CONFIG', encoding='utf-8') as f:
     d = json.load(f)
     print(d.get('course_name', 'Unknown'), d.get('course_code', 'Unknown'), d.get('delivery_language', 'Unknown'), d.get('semester', 'Unknown'), d.get('professor_name', 'Unknown'), d.get('assignment_count', 0))
-except:
+except Exception as e:
   print('Unknown Unknown Unknown Unknown Unknown 0')
 "
     )
