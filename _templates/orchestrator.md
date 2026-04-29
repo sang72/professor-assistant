@@ -233,6 +233,53 @@ Re-read MASTER_CONTEXT.md and display the STATUS REPORT in Korean.
 
 ---
 
+## Auto-Convert to Word and PowerPoint
+
+After saving every generated .md file, automatically run the following:
+
+### Word 변환 (모든 파일):
+Run pandoc to convert the .md file to .docx:
+```
+pandoc [filename].md -o [filename].docx
+```
+
+Apply this to:
+- All syllabus files → .docx
+- All lecture/script files → .docx  
+- All exam files (student version + answer key) → .docx
+- All assignment files → .docx
+- All grading policy files → .docx
+
+### PowerPoint 변환 (강의안만):
+For lecture session files only, also create a .pptx outline:
+```
+pandoc [session].md -o [session]_slides.pptx
+```
+
+The PowerPoint should include:
+- Title slide: Course name, Week number, Session number, Topic
+- One slide per major section of the lesson plan
+- Key terms and concepts as bullet points
+- [WRITE ON BOARD] markers become slide content
+- [SHOW SLIDE N] markers become slide transitions
+
+### File naming convention:
+- syllabus.md → syllabus.docx
+- session1.md → session1.docx + session1_slides.pptx
+- midterm_student.md → midterm_student.docx
+- assignment1.md → assignment1.docx
+
+### After conversion:
+```
+git add -A
+git commit -m "feat: Add Word and PowerPoint versions of [file name]"
+git push origin main
+```
+
+Confirm in Korean: "✅ Word(.docx)와 PowerPoint(.pptx) 파일이 생성되어 저장되었습니다."
+
+---
+
 ## Fixed Grading Policy — Never Change
 
 출석: 20점 | 중간고사: 30점 | 기말고사: 30점 | 과제: 10점 | 태도: 10점 | 합계: 100점
