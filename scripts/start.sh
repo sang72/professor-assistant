@@ -16,6 +16,77 @@ ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 
 cd "$ROOT_DIR"
 
+# ─────────────────────────────────────────
+# 종료 시 자동 저장 함수
+# ─────────────────────────────────────────
+auto_save_on_exit() {
+  echo ""
+  echo ""
+  echo -e "${CYAN}${BOLD}──────────────────────────────────────────────────────${NC}"
+  echo -e "${YELLOW}🔄 세션 종료 중... 자동 저장합니다.${NC}"
+  echo -e "${CYAN}${BOLD}──────────────────────────────────────────────────────${NC}"
+  echo ""
+
+  # 변경사항 확인
+  STATUS=$(git status --short)
+  if [[ -z "$STATUS" ]]; then
+    echo -e "${GREEN}✅ 변경사항이 없습니다.${NC}"
+  else
+    # 가장 최근 수정된 과목 폴더 감지
+    LAST_COURSE=$(echo "$STATUS" | grep "courses/" | head -1 | sed 's|.*courses/\([^/]*\)/.*|\1|')
+
+    echo -e "${YELLOW}💾 변경사항을 저장 중입니다...${NC}"
+
+    # MASTER_CONTEXT.md 업데이트
+    if [[ -n "$LAST_COURSE" && -d "courses/$LAST_COURSE" ]]; then
+      MASTER_CONTEXT="courses/$LAST_COURSE/config/MASTER_CONTEXT.md"
+      if [[ -f "$MASTER_CONTEXT" ]]; then
+        TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+        sed -i "s/last_updated: .*/last_updated: $TIMESTAMP/" "$MASTER_CONTEXT"
+      fi
+    fi
+
+    # 과목명 가져오기
+    COURSE_NAME="Unknown"
+    if [[ -n "$LAST_COURSE" ]]; then
+      CONFIG="courses/$LAST_COURSE/config/course_config.json"
+      if [[ -f "$CONFIG" ]]; then
+        COURSE_NAME=$(python3 -c "import json; f=open('$CONFIG', encoding='utf-8'); d=json.load(f); f.close(); print(d.get('course_name','Unknown'))" 2>/dev/null | tr -d '\r')
+      fi
+    fi
+
+    # Git 커밋 및 푸시
+    TIMESTAMP=$(date +"%Y-%m-%d %H:%M")
+    COMMIT_MSG="auto-save: $COURSE_NAME 작업 저장 $TIMESTAMP"
+
+    git add -A
+    git commit -m "$COMMIT_MSG" --quiet
+
+    if git push origin main 2>/dev/null; then
+      echo -e "${GREEN}✅ 저장 완료! GitHub에 업로드되었습니다.${NC}"
+    else
+      echo -e "${YELLOW}⚠️  온라인 저장 실패. 나중에 push하세요.${NC}"
+    fi
+  fi
+
+  # 백그라운드 자동 저장 프로세스 종료
+  PID_FILE="$ROOT_DIR/.auto_save.pid"
+  if [[ -f "$PID_FILE" ]]; then
+    AUTO_PID=$(cat "$PID_FILE")
+    if kill -0 "$AUTO_PID" 2>/dev/null; then
+      kill "$AUTO_PID" 2>/dev/null
+      rm "$PID_FILE"
+      echo -e "${GREEN}✅ 백그라운드 자동 저장이 종료되었습니다.${NC}"
+    fi
+  fi
+
+  echo ""
+  echo -e "${GREEN}${BOLD}작업 수고하셨습니다! 👋${NC}"
+  echo ""
+}
+
+trap 'auto_save_on_exit' EXIT
+
 clear
 echo -e "${CYAN}${BOLD}"
 echo "╔══════════════════════════════════════════════════════════╗"

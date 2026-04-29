@@ -15,6 +15,70 @@ ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 COURSES_DIR="$ROOT_DIR/courses"
 
 # ─────────────────────────────────────────
+# 자동 저장 및 커밋 함수
+# ─────────────────────────────────────────
+auto_save_and_commit() {
+  local COURSE_FOLDER="${1:-}"
+  cd "$ROOT_DIR"
+
+  # git status 확인
+  STATUS=$(git status --short)
+
+  if [[ -z "$STATUS" ]]; then
+    echo -e "${GREEN}✅ 변경사항이 없습니다. 안전하게 종료합니다.${NC}"
+    return 0
+  fi
+
+  # 변경사항이 있으면 저장
+  echo -e "${YELLOW}💾 변경사항을 저장 중입니다...${NC}"
+
+  # 과목 폴더가 지정되지 않으면 변경된 과목 감지
+  if [[ -z "$COURSE_FOLDER" ]]; then
+    COURSE_FOLDER=$(echo "$STATUS" | grep "courses/" | head -1 | sed 's|.*courses/\([^/]*\)/.*|\1|')
+  fi
+
+  # 과목명 가져오기
+  COURSE_NAME=""
+  if [[ -n "$COURSE_FOLDER" && -d "$COURSES_DIR/$COURSE_FOLDER" ]]; then
+    CONFIG="$COURSES_DIR/$COURSE_FOLDER/config/course_config.json"
+    if [[ -f "$CONFIG" ]]; then
+      CONFIG_REL="courses/$COURSE_FOLDER/config/course_config.json"
+      COURSE_NAME=$(python3 -c "import json; f=open('$CONFIG_REL', encoding='utf-8'); d=json.load(f); f.close(); print(d.get('course_name','Unknown'))" | tr -d '\r')
+    fi
+  fi
+
+  # MASTER_CONTEXT.md 업데이트
+  if [[ -n "$COURSE_FOLDER" && -d "$COURSES_DIR/$COURSE_FOLDER" ]]; then
+    MASTER_CONTEXT="$COURSES_DIR/$COURSE_FOLDER/config/MASTER_CONTEXT.md"
+    if [[ -f "$MASTER_CONTEXT" ]]; then
+      TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+      sed -i "s/last_updated: .*/last_updated: $TIMESTAMP/" "$MASTER_CONTEXT"
+    fi
+  fi
+
+  # Git 커밋 및 푸시
+  TIMESTAMP=$(date +"%Y-%m-%d %H:%M")
+  if [[ -n "$COURSE_NAME" && "$COURSE_NAME" != "Unknown" ]]; then
+    COMMIT_MSG="save: 작업 저장 $TIMESTAMP - $COURSE_NAME"
+  else
+    COMMIT_MSG="save: 작업 저장 $TIMESTAMP"
+  fi
+
+  git add -A
+  git commit -m "$COMMIT_MSG" --quiet
+
+  if git push origin main 2>/dev/null; then
+    if [[ -n "$COURSE_NAME" && "$COURSE_NAME" != "Unknown" ]]; then
+      echo -e "${GREEN}✅ $COURSE_NAME 저장 완료! GitHub에 업로드되었습니다.${NC}"
+    else
+      echo -e "${GREEN}✅ 저장 완료! GitHub에 업로드되었습니다.${NC}"
+    fi
+  else
+    echo -e "${YELLOW}⚠️  온라인 저장 실패. 나중에 수동으로 push하세요.${NC}"
+  fi
+}
+
+# ─────────────────────────────────────────
 # 시작 시 자동으로 GitHub에서 최신 파일 가져오기
 # ─────────────────────────────────────────
 auto_pull_on_start() {
@@ -151,7 +215,10 @@ if [[ "$CHOICE" == "0" ]]; then
 fi
 
 if [[ "$CHOICE" == "q" || "$CHOICE" == "Q" ]]; then
-  echo -e "${GREEN}종료합니다.${NC}"
+  echo ""
+  auto_save_and_commit
+  echo ""
+  echo -e "${GREEN}${BOLD}종료합니다. 👋${NC}"
   exit 0
 fi
 
