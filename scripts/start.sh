@@ -273,3 +273,20 @@ if [[ "$START_AUTO_SAVE" == "y" || "$START_AUTO_SAVE" == "Y" ]]; then
 fi
 
 echo ""
+echo -e "${CYAN}${BOLD}──────────────────────────────────────────────────────${NC}"
+echo -e "${GREEN}Claude Code에 위 명령어를 붙여넣어 작업을 시작하세요.${NC}"
+echo -e "${CYAN}작업이 끝나면 다음을 실행하세요: ${YELLOW}bash scripts/finish_session.sh${NC}"
+echo -e "${CYAN}${BOLD}──────────────────────────────────────────────────────${NC}"
+echo ""
+echo -e -n "${YELLOW}과목 선택 메뉴로 돌아갈까요? (y/n): ${NC}"
+read RETURN_MENU
+
+if [[ "$RETURN_MENU" == "y" || "$RETURN_MENU" == "Y" ]]; then
+  bash "$SCRIPT_DIR/select_course.sh"
+else
+  echo ""
+  echo -e "${GREEN}터미널을 열린 상태로 유지합니다.${NC}"
+  echo -e "${CYAN}작업을 마치려면 ${YELLOW}exit${NC} 또는 ${YELLOW}Ctrl+D${NC}를 입력하세요.${NC}"
+  echo ""
+  exec bash
+fi
