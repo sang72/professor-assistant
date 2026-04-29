@@ -14,6 +14,45 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 COURSES_DIR="$ROOT_DIR/courses"
 
+# ─────────────────────────────────────────
+# 시작 시 자동으로 GitHub에서 최신 파일 가져오기
+# ─────────────────────────────────────────
+auto_pull_on_start() {
+  cd "$ROOT_DIR"
+  echo -e "${YELLOW}📥 시작 중... 최신 작업을 불러오는 중입니다.${NC}"
+
+  # git pull 실행
+  PULL_RESULT=$(git pull origin main 2>&1)
+
+  if echo "$PULL_RESULT" | grep -q "Already up to date"; then
+    echo -e "${GREEN}✅ 최신 상태입니다.${NC}"
+  elif echo "$PULL_RESULT" | grep -q "error\|fatal"; then
+    echo -e "${YELLOW}⚠️  오프라인 상태입니다. 로컬 파일로 진행합니다.${NC}"
+  else
+    # 업데이트된 파일 목록 표시
+    UPDATED=$(echo "$PULL_RESULT" | grep "|" | awk '{print $1}')
+    if [[ -n "$UPDATED" ]]; then
+      echo -e "${GREEN}✅ 업데이트된 파일:${NC}"
+      echo "$UPDATED" | while read f; do
+        echo -e "   ${CYAN}• $f${NC}"
+      done
+    else
+      echo -e "${GREEN}✅ 최신 파일을 불러왔습니다.${NC}"
+    fi
+  fi
+
+  # 마지막 작업 과목 감지
+  LAST_COURSE=$(git log --oneline -1 2>/dev/null | grep -o "courses/[^/]*" | head -1 | sed 's|courses/||')
+  if [[ -n "$LAST_COURSE" ]]; then
+    echo -e "${CYAN}📌 마지막 작업 과목: ${BOLD}$LAST_COURSE${NC}"
+  fi
+
+  echo ""
+  sleep 1
+}
+
+auto_pull_on_start
+
 clear
 
 echo -e "${CYAN}${BOLD}"

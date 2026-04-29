@@ -62,6 +62,19 @@ fi
 
 echo ""
 
+# 백그라운드 자동 저장 프로세스 종료
+PID_FILE="$ROOT_DIR/.auto_save.pid"
+if [[ -f "$PID_FILE" ]]; then
+  AUTO_PID=$(cat "$PID_FILE")
+  if kill -0 "$AUTO_PID" 2>/dev/null; then
+    kill "$AUTO_PID"
+    rm "$PID_FILE"
+    echo -e "${GREEN}✅ 백그라운드 자동 저장이 종료되었습니다.${NC}"
+  fi
+fi
+
+echo ""
+
 # 4. 오늘 작업 요약 출력
 echo -e "${BOLD}📊 오늘 작업 요약:${NC}"
 echo -e "${CYAN}─────────────────────────────────────────────────────${NC}"
