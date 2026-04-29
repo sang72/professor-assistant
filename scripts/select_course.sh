@@ -72,25 +72,58 @@ while IFS= read -r -d '' folder; do
   CONFIG="$folder/config/course_config.json"
 
   if [[ -f "$CONFIG" ]]; then
-    COURSE_NAME=$(python3 -c "import json; d=json.load(open('$CONFIG')); print(d.get('course_name','Unknown'))" 2>/dev/null)
-    COURSE_CODE=$(python3 -c "import json; d=json.load(open('$CONFIG')); print(d.get('course_code','Unknown'))" 2>/dev/null)
-    LANG=$(python3 -c "import json; d=json.load(open('$CONFIG')); print(d.get('delivery_language','Unknown'))" 2>/dev/null)
-    SEMESTER=$(python3 -c "import json; d=json.load(open('$CONFIG')); print(d.get('semester','Unknown'))" 2>/dev/null)
-    PROF=$(python3 -c "import json; d=json.load(open('$CONFIG')); print(d.get('professor_name','Unknown'))" 2>/dev/null)
+    # Read all JSON fields in one call with proper quoting
+    read COURSE_NAME COURSE_CODE LANG SEMESTER PROF ASSIGNMENT_COUNT < <(
+      python3 << 'EOF'
+import json
+try:
+  with open('''$CONFIG''') as f:
+    d = json.load(f)
+    print(
+      d.get('course_name', 'Unknown'),
+      d.get('course_code', 'Unknown'),
+      d.get('delivery_language', 'Unknown'),
+      d.get('semester', 'Unknown'),
+      d.get('professor_name', 'Unknown'),
+      d.get('assignment_count', 0)
+    )
+except Exception as e:
+  print('Unknown Unknown Unknown Unknown Unknown 0')
+EOF
+    )
 
-    # 진행 상황 계산
-    SYLLABUS_STATUS=$(python3 -c "import json; d=json.load(open('$CONFIG')); print(d.get('status',{}).get('syllabus','pending'))" 2>/dev/null)
-    LECTURES_DONE=$(python3 -c "import json; d=json.load(open('$CONFIG')); print(len(d.get('status',{}).get('lectures_completed',[])))" 2>/dev/null)
-    MIDTERM_STATUS=$(python3 -c "import json; d=json.load(open('$CONFIG')); print(d.get('status',{}).get('midterm','pending'))" 2>/dev/null)
-    FINAL_STATUS=$(python3 -c "import json; d=json.load(open('$CONFIG')); print(d.get('status',{}).get('final','pending'))" 2>/dev/null)
+    # 진행 상황 계산 - 실제 파일 확인
+    SYLLABUS_FILE="$folder/syllabus/syllabus.md"
+    MIDTERM_FILE="$folder/exams/midterm_student.md"
+    FINAL_FILE="$folder/exams/final_student.md"
 
-    # 완성도 계산 (간단 버전)
+    [[ -f "$SYLLABUS_FILE" ]] && SYLLABUS_STATUS="done" || SYLLABUS_STATUS="pending"
+    [[ -f "$MIDTERM_FILE" ]] && MIDTERM_STATUS="done" || MIDTERM_STATUS="pending"
+    [[ -f "$FINAL_FILE" ]] && FINAL_STATUS="done" || FINAL_STATUS="pending"
+
+    # Count actual lecture sessions
+    LECTURES_DONE=0
+    for week in $(seq -w 1 15); do
+      WEEK_DIR="$folder/lectures/week$week"
+      if [[ -f "$WEEK_DIR/session1.md" && -f "$WEEK_DIR/session2.md" && -f "$WEEK_DIR/session3.md" ]]; then
+        ((LECTURES_DONE++))
+      fi
+    done
+
+    # Count actual assignment files
+    ASSIGNMENTS_DONE=0
+    if [[ -d "$folder/assignments" ]]; then
+      ASSIGNMENTS_DONE=$(find "$folder/assignments" -name "*.md" -o -name "*.txt" -o -name "*.pdf" | wc -l)
+    fi
+
+    # 완성도 계산 (총 5점: 강의계획서, 중간고사, 기말고사, 강의안, 과제)
     TOTAL=5
     DONE=0
     [[ "$SYLLABUS_STATUS" == "done" ]] && ((DONE++))
     [[ "$MIDTERM_STATUS" == "done" ]] && ((DONE++))
     [[ "$FINAL_STATUS" == "done" ]] && ((DONE++))
     [[ $LECTURES_DONE -gt 0 ]] && ((DONE++))
+    [[ $ASSIGNMENTS_DONE -gt 0 ]] && ((DONE++))
     PROGRESS=$((DONE * 100 / TOTAL))
 
     COURSE_FOLDERS+=("$FOLDER_NAME")
