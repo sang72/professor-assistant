@@ -59,6 +59,13 @@ Last Updated: 2026-04-29T01:00:00Z
 - Assignment: students choose their own topic — Korean brand OR global system analysis
 - Script style: beginner-level English, every sentence fully written, improvisation tips included
 
+## Textbook Status
+✅ **Textbook Chapters Extracted and Organized**
+- Location: `textbook/chapters/` (12 chapter files)
+- Format: Markdown for easy integration into lecture notes
+- Content: Complete chapters 0-11 from "Franchising: Pathway to Wealth Creation" (Spinelli, Rosenberg, Birley, 2004)
+- **Note for Lecture Generation**: When creating lecture notes, supplement with recent/contemporary case studies to complement textbook examples (as per professor preference)
+
 ## Next Session TODO
 1. Generate Syllabus (Option 1)
-2. Begin Week 01 Lectures (Option 2)
+2. Begin Week 01 Lectures (Option 2) — incorporate contemporary cases with textbook chapter material
