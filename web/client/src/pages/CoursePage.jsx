@@ -18,6 +18,8 @@ export function CoursePage({ folder, onNavigate }) {
   const [newLectureWeek, setNewLectureWeek] = useState(4);
   const [newLectureSession, setNewLectureSession] = useState(1);
   const [creatingLecture, setCreatingLecture] = useState(false);
+  const [lectureMaterials, setLectureMaterials] = useState({});
+  const [uploadingMaterial, setUploadingMaterial] = useState({});
 
   useEffect(() => {
     loadCourseData();
@@ -112,6 +114,28 @@ export function CoursePage({ folder, onNavigate }) {
       setTimeout(() => setUploadStatus(null), 5000);
     } finally {
       setCreatingLecture(false);
+    }
+  }
+
+  async function handleUploadMaterial(week, files) {
+    if (!files || files.length === 0) return;
+
+    for (const file of files) {
+      try {
+        setUploadingMaterial(prev => ({ ...prev, [`week${week}`]: true }));
+        await courseApi.uploadLectureMaterial(folder, week, file);
+        setUploadStatus({ type: 'material', success: true, message: `✅ Week ${week} 강의자료 "${file.name}" 업로드 완료!` });
+        setTimeout(() => setUploadStatus(null), 3000);
+
+        // Load materials for this week
+        const materials = await courseApi.getLectureMaterials(folder, week);
+        setLectureMaterials(prev => ({ ...prev, [week]: materials }));
+      } catch (err) {
+        setUploadStatus({ type: 'material', success: false, message: `❌ 업로드 실패: ${err.message}` });
+        setTimeout(() => setUploadStatus(null), 5000);
+      } finally {
+        setUploadingMaterial(prev => ({ ...prev, [`week${week}`]: false }));
+      }
     }
   }
 
@@ -866,29 +890,41 @@ export function CoursePage({ folder, onNavigate }) {
                 각 주차별로 강의안(MD), PPT, PDF 등을 업로드할 수 있습니다.
               </p>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '1rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem' }}>
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(week => (
-                  <div key={week} style={{ backgroundColor: '#f9fafb', padding: '1rem', borderRadius: '8px', border: '1px solid #e5e7eb', textAlign: 'center' }}>
-                    <p style={{ margin: '0 0 0.5rem 0', fontWeight: '600', fontSize: '14px' }}>Week {week}</p>
+                  <div key={week} style={{ backgroundColor: '#f9fafb', padding: '1rem', borderRadius: '8px', border: '1px solid #e5e7eb' }}>
+                    <p style={{ margin: '0 0 0.75rem 0', fontWeight: '600', fontSize: '14px' }}>📚 Week {week}</p>
                     <label style={{
-                      backgroundColor: '#2563eb',
+                      backgroundColor: uploadingMaterial[`week${week}`] ? '#d1d5db' : '#2563eb',
                       color: 'white',
                       padding: '6px 12px',
                       borderRadius: '6px',
-                      cursor: 'pointer',
+                      cursor: uploadingMaterial[`week${week}`] ? 'not-allowed' : 'pointer',
                       fontSize: '12px',
                       fontWeight: '500',
-                      display: 'inline-block'
+                      display: 'inline-block',
+                      opacity: uploadingMaterial[`week${week}`] ? 0.6 : 1,
                     }}>
-                      📤 파일 선택
+                      {uploadingMaterial[`week${week}`] ? '⏳ 업로드 중...' : '📤 파일 선택'}
                       <input
                         type="file"
                         multiple
                         accept=".md,.ppt,.pptx,.pdf"
                         style={{ display: 'none' }}
-                        onChange={(e) => alert(`Week ${week} 파일 업로드 기능 (구현 예정)`)}
+                        disabled={uploadingMaterial[`week${week}`]}
+                        onChange={(e) => handleUploadMaterial(week, e.target.files)}
                       />
                     </label>
+                    {lectureMaterials[week] && lectureMaterials[week].length > 0 && (
+                      <div style={{ marginTop: '0.75rem', paddingTop: '0.75rem', borderTop: '1px solid #e5e7eb' }}>
+                        <p style={{ margin: '0 0 0.5rem 0', fontSize: '11px', fontWeight: '600', color: '#666' }}>📁 파일 목록:</p>
+                        {lectureMaterials[week].map((file, idx) => (
+                          <div key={idx} style={{ fontSize: '11px', color: '#666', marginBottom: '0.25rem' }}>
+                            {file.icon} {file.filename}
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -898,7 +934,7 @@ export function CoursePage({ folder, onNavigate }) {
               <p style={{ margin: '0 0 0.5rem 0', fontWeight: '600', color: '#0c4a6e' }}>💡 팁</p>
               <p style={{ margin: '0', fontSize: '12px', color: '#0284c7' }}>
                 강의안은 Markdown(.md), PPT는 .pptx, 추가 자료는 PDF 형식으로 업로드하세요.
-                업로드된 파일은 자동으로 [파일 다운로드] 탭에 표시됩니다.
+                업로드된 파일은 lectures 폴더에 자동 저장됩니다.
               </p>
             </div>
           </div>

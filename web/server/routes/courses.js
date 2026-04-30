@@ -333,6 +333,73 @@ router.post('/:folder/chapters/:key', upload.single('file'), async (req, res) =>
   }
 });
 
+// POST /api/courses/:folder/lectures/:week/upload — Upload lecture materials
+router.post('/:folder/lectures/:week/upload', upload.single('file'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No file uploaded' });
+    }
+
+    const course = await courseService.getCourse(req.params.folder);
+    if (!course) {
+      return res.status(404).json({ error: 'Course not found' });
+    }
+
+    const weekStr = String(req.params.week).padStart(2, '0');
+    const lectureDir = path.join(course.folderPath, 'lectures', `week${weekStr}`);
+
+    if (!fs.existsSync(lectureDir)) {
+      fs.mkdirSync(lectureDir, { recursive: true });
+    }
+
+    const targetPath = path.join(lectureDir, req.file.originalname);
+    fs.copyFileSync(req.file.path, targetPath);
+    fs.unlinkSync(req.file.path);
+
+    res.json({
+      success: true,
+      filename: req.file.originalname,
+      path: targetPath,
+      size: req.file.size
+    });
+  } catch (err) {
+    console.error('Error uploading lecture material:', err);
+    res.status(500).json({ error: 'Failed to upload lecture material' });
+  }
+});
+
+// GET /api/courses/:folder/lectures/:week/files — List lecture material files
+router.get('/:folder/lectures/:week/files', async (req, res) => {
+  try {
+    const course = await courseService.getCourse(req.params.folder);
+    if (!course) {
+      return res.status(404).json({ error: 'Course not found' });
+    }
+
+    const weekStr = String(req.params.week).padStart(2, '0');
+    const lectureDir = path.join(course.folderPath, 'lectures', `week${weekStr}`);
+    const files = [];
+
+    if (fs.existsSync(lectureDir)) {
+      const dirFiles = fs.readdirSync(lectureDir);
+      dirFiles.forEach(file => {
+        const stat = fs.statSync(path.join(lectureDir, file));
+        files.push({
+          filename: file,
+          size: stat.size,
+          modified: stat.mtime,
+          icon: file.endsWith('.md') ? '📝' : file.endsWith('.pdf') ? '📕' : file.endsWith('.pptx') || file.endsWith('.ppt') ? '🎯' : '📄'
+        });
+      });
+    }
+
+    res.json(files);
+  } catch (err) {
+    console.error('Error listing lecture files:', err);
+    res.status(500).json({ error: 'Failed to list lecture files' });
+  }
+});
+
 // GET /api/courses/:folder/chapters — List chapter files
 router.get('/:folder/chapters', async (req, res) => {
   try {

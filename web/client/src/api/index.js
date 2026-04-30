@@ -77,6 +77,16 @@ export const courseApi = {
     request(`/courses/${folder}/assignments/${num}/init`, { method: 'POST' }),
   deleteCourse: (folder) =>
     request(`/courses/${folder}`, { method: 'DELETE' }),
+  uploadLectureMaterial: (folder, week, file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    return fetch(`${API_BASE}/courses/${folder}/lectures/${week}/upload`, {
+      method: 'POST',
+      body: formData,
+    }).then(r => r.json());
+  },
+  getLectureMaterials: (folder, week) =>
+    request(`/courses/${folder}/lectures/${week}/files`),
 };
 
 export const health = {
