@@ -143,9 +143,9 @@ export function CoursePage({ folder, onNavigate }) {
       </header>
 
       {/* Tabs */}
-      <nav style={{ backgroundColor: 'white', borderBottom: '1px solid #e5e7eb' }}>
+      <nav style={{ backgroundColor: 'white', borderBottom: '1px solid #e5e7eb', overflowX: 'auto' }}>
         <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 1rem', display: 'flex' }}>
-          {['overview', 'textbook', 'tasks', 'files'].map(tab => (
+          {['overview', 'textbook', 'tasks', 'exams', 'assignments', 'lectures', 'files'].map(tab => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -157,13 +157,17 @@ export function CoursePage({ folder, onNavigate }) {
                 borderBottom: activeTab === tab ? '3px solid #2563eb' : 'none',
                 fontSize: '14px',
                 fontWeight: activeTab === tab ? '500' : '400',
-                color: activeTab === tab ? '#1f2937' : '#666'
+                color: activeTab === tab ? '#1f2937' : '#666',
+                whiteSpace: 'nowrap'
               }}
             >
-              {tab === 'overview' && '개요'}
-              {tab === 'textbook' && '교재 관리'}
-              {tab === 'tasks' && '작업 목록'}
-              {tab === 'files' && '파일 다운로드'}
+              {tab === 'overview' && '📌 개요'}
+              {tab === 'textbook' && '📚 교재 관리'}
+              {tab === 'tasks' && '📋 작업 목록'}
+              {tab === 'exams' && '📝 시험 출제'}
+              {tab === 'assignments' && '✏️ 과제 관리'}
+              {tab === 'lectures' && '🎓 강의자료'}
+              {tab === 'files' && '📁 파일 다운로드'}
             </button>
           ))}
         </div>
@@ -271,6 +275,42 @@ export function CoursePage({ folder, onNavigate }) {
                   </pre>
                 </div>
               )}
+            </div>
+
+            {/* PDF 교재 업로드 */}
+            <div style={{ backgroundColor: 'white', padding: '1.5rem', borderRadius: '8px', marginBottom: '1.5rem' }}>
+              <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '1rem' }}>📕 교재 PDF 업로드</h3>
+              <p style={{ margin: '0 0 1rem 0', fontSize: '12px', color: '#666' }}>
+                교과서나 강의 교재를 PDF 파일로 업로드하세요. (예: textbook.pdf, lecture-notes.pdf)
+              </p>
+              <label style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '1.5rem',
+                border: '2px dashed #d1d5db',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                backgroundColor: '#f9fafb',
+                transition: 'all 0.2s'
+              }}>
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📄</div>
+                  <p style={{ margin: '0 0 0.25rem 0', fontWeight: '500' }}>PDF 파일을 여기에 드래그하세요</p>
+                  <p style={{ margin: '0', fontSize: '12px', color: '#666' }}>또는 클릭하여 파일 선택</p>
+                </div>
+                <input
+                  type="file"
+                  accept=".pdf"
+                  style={{ display: 'none' }}
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file && file.name.endsWith('.pdf')) {
+                      alert(`PDF 교재 업로드: ${file.name}\n(구현 예정 - 파일시스템에 저장됨)`);
+                    }
+                  }}
+                />
+              </label>
             </div>
 
             {/* Chapter Files */}
@@ -404,6 +444,272 @@ export function CoursePage({ folder, onNavigate }) {
                 외 {course.status.lectures.length - 5}개의 강의가 있습니다
               </p>
             )}
+          </div>
+        )}
+
+        {activeTab === 'exams' && (
+          <div>
+            <h2 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '1rem' }}>📝 시험 출제</h2>
+
+            {/* 중간고사 */}
+            <div style={{ backgroundColor: 'white', padding: '1.5rem', borderRadius: '8px', marginBottom: '1.5rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '16px', fontWeight: '600' }}>중간고사 (Midterm)</h3>
+                  <p style={{ margin: '0.5rem 0 0 0', fontSize: '12px', color: '#666' }}>
+                    범위: Week 1-7 | 형식: 객관식 25개 + 주관식 3개 | 시간: 90분
+                  </p>
+                </div>
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                  <button
+                    onClick={() => handlePromptCopy('midterm')}
+                    style={{
+                      backgroundColor: '#f59e0b',
+                      color: 'white',
+                      border: 'none',
+                      padding: '8px 16px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      fontWeight: '500'
+                    }}
+                  >
+                    {promptCopy === 'midterm' ? '✅ 복사됨' : '📋 프롬프트'}
+                  </button>
+                  <button
+                    onClick={() => courseApi.downloadDocx(folder, 'midterm-student')}
+                    style={{
+                      backgroundColor: '#059669',
+                      color: 'white',
+                      border: 'none',
+                      padding: '8px 16px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      fontWeight: '500'
+                    }}
+                  >
+                    📄 시험지
+                  </button>
+                  <button
+                    onClick={() => courseApi.downloadDocx(folder, 'midterm-answer')}
+                    style={{
+                      backgroundColor: '#7c3aed',
+                      color: 'white',
+                      border: 'none',
+                      padding: '8px 16px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      fontWeight: '500'
+                    }}
+                  >
+                    📄 답지
+                  </button>
+                </div>
+              </div>
+              <button
+                onClick={() => alert('시험 범위, 형식, 시간을 설정할 수 있는 마법사 (구현 예정)')}
+                style={{
+                  marginTop: '1rem',
+                  backgroundColor: '#e5e7eb',
+                  color: '#374151',
+                  border: 'none',
+                  padding: '8px 16px',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '12px'
+                }}
+              >
+                ⚙️ 설정 변경
+              </button>
+            </div>
+
+            {/* 기말고사 */}
+            <div style={{ backgroundColor: 'white', padding: '1.5rem', borderRadius: '8px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '16px', fontWeight: '600' }}>기말고사 (Final)</h3>
+                  <p style={{ margin: '0.5rem 0 0 0', fontSize: '12px', color: '#666' }}>
+                    범위: Week 8-15 | 형식: 객관식 30개 + 주관식 4개 | 시간: 120분
+                  </p>
+                </div>
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                  <button
+                    onClick={() => handlePromptCopy('final')}
+                    style={{
+                      backgroundColor: '#f59e0b',
+                      color: 'white',
+                      border: 'none',
+                      padding: '8px 16px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      fontWeight: '500'
+                    }}
+                  >
+                    {promptCopy === 'final' ? '✅ 복사됨' : '📋 프롬프트'}
+                  </button>
+                  <button
+                    onClick={() => courseApi.downloadDocx(folder, 'final-student')}
+                    style={{
+                      backgroundColor: '#059669',
+                      color: 'white',
+                      border: 'none',
+                      padding: '8px 16px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      fontWeight: '500'
+                    }}
+                  >
+                    📄 시험지
+                  </button>
+                  <button
+                    onClick={() => courseApi.downloadDocx(folder, 'final-answer')}
+                    style={{
+                      backgroundColor: '#7c3aed',
+                      color: 'white',
+                      border: 'none',
+                      padding: '8px 16px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      fontWeight: '500'
+                    }}
+                  >
+                    📄 답지
+                  </button>
+                </div>
+              </div>
+              <button
+                onClick={() => alert('시험 범위, 형식, 시간을 설정할 수 있는 마법사 (구현 예정)')}
+                style={{
+                  marginTop: '1rem',
+                  backgroundColor: '#e5e7eb',
+                  color: '#374151',
+                  border: 'none',
+                  padding: '8px 16px',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '12px'
+                }}
+              >
+                ⚙️ 설정 변경
+              </button>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'assignments' && (
+          <div>
+            <h2 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '1rem' }}>✏️ 과제 관리</h2>
+
+            <div style={{ backgroundColor: 'white', borderRadius: '8px', overflow: 'hidden' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <thead style={{ backgroundColor: '#f3f4f6' }}>
+                  <tr>
+                    <th style={{ padding: '1rem', textAlign: 'left', fontSize: '12px', fontWeight: '600', borderBottom: '1px solid #e5e7eb' }}>과제명</th>
+                    <th style={{ padding: '1rem', textAlign: 'center', fontSize: '12px', fontWeight: '600', borderBottom: '1px solid #e5e7eb' }}>상태</th>
+                    <th style={{ padding: '1rem', textAlign: 'center', fontSize: '12px', fontWeight: '600', borderBottom: '1px solid #e5e7eb' }}>작업</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {course.status?.assignments?.map((assignment, idx) => (
+                    <tr key={idx} style={{ borderBottom: '1px solid #e5e7eb' }}>
+                      <td style={{ padding: '1rem', fontSize: '14px', fontWeight: '500' }}>
+                        {assignment.label}
+                      </td>
+                      <td style={{ padding: '1rem', textAlign: 'center', fontSize: '12px' }}>
+                        <span style={{ padding: '4px 8px', borderRadius: '4px', backgroundColor: assignment.status === 'done' ? '#dcfce7' : '#fef3c7', color: assignment.status === 'done' ? '#166534' : '#92400e', fontWeight: '600' }}>
+                          {assignment.status === 'done' ? '✅ 완료' : '⏳ 대기'}
+                        </span>
+                      </td>
+                      <td style={{ padding: '1rem', textAlign: 'center', display: 'flex', gap: '0.5rem', justifyContent: 'center' }}>
+                        <button
+                          onClick={() => handlePromptCopy(`assignment${assignment.num}`)}
+                          style={{
+                            backgroundColor: '#f59e0b',
+                            color: 'white',
+                            border: 'none',
+                            padding: '6px 12px',
+                            borderRadius: '6px',
+                            cursor: 'pointer',
+                            fontSize: '12px',
+                            fontWeight: '500'
+                          }}
+                        >
+                          {promptCopy === `assignment${assignment.num}` ? '✅ 복사됨' : '📋 복사'}
+                        </button>
+                        <button
+                          onClick={() => courseApi.downloadDocx(folder, `assignment${assignment.num}`)}
+                          style={{
+                            backgroundColor: '#059669',
+                            color: 'white',
+                            border: 'none',
+                            padding: '6px 12px',
+                            borderRadius: '6px',
+                            cursor: 'pointer',
+                            fontSize: '12px',
+                            fontWeight: '500'
+                          }}
+                        >
+                          📄 다운로드
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'lectures' && (
+          <div>
+            <h2 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '1rem' }}>🎓 강의자료</h2>
+
+            <div style={{ backgroundColor: 'white', padding: '1.5rem', borderRadius: '8px', marginBottom: '1.5rem' }}>
+              <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '1rem' }}>주차별 강의자료 업로드</h3>
+              <p style={{ margin: '0 0 1rem 0', fontSize: '12px', color: '#666' }}>
+                각 주차별로 강의안(MD), PPT, PDF 등을 업로드할 수 있습니다.
+              </p>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '1rem' }}>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(week => (
+                  <div key={week} style={{ backgroundColor: '#f9fafb', padding: '1rem', borderRadius: '8px', border: '1px solid #e5e7eb', textAlign: 'center' }}>
+                    <p style={{ margin: '0 0 0.5rem 0', fontWeight: '600', fontSize: '14px' }}>Week {week}</p>
+                    <label style={{
+                      backgroundColor: '#2563eb',
+                      color: 'white',
+                      padding: '6px 12px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      fontWeight: '500',
+                      display: 'inline-block'
+                    }}>
+                      📤 파일 선택
+                      <input
+                        type="file"
+                        multiple
+                        accept=".md,.ppt,.pptx,.pdf"
+                        style={{ display: 'none' }}
+                        onChange={(e) => alert(`Week ${week} 파일 업로드 기능 (구현 예정)`)}
+                      />
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ backgroundColor: '#eff6ff', padding: '1.5rem', borderRadius: '8px', borderLeft: '4px solid #0284c7' }}>
+              <p style={{ margin: '0 0 0.5rem 0', fontWeight: '600', color: '#0c4a6e' }}>💡 팁</p>
+              <p style={{ margin: '0', fontSize: '12px', color: '#0284c7' }}>
+                강의안은 Markdown(.md), PPT는 .pptx, 추가 자료는 PDF 형식으로 업로드하세요.
+                업로드된 파일은 자동으로 [파일 다운로드] 탭에 표시됩니다.
+              </p>
+            </div>
           </div>
         )}
 

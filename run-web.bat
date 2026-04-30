@@ -2,7 +2,6 @@
 chcp 65001 >nul
 setlocal enabledelayedexpansion
 
-REM Get the directory where this batch file is located
 set SCRIPT_DIR=%~dp0
 cd /d "%SCRIPT_DIR%"
 
@@ -12,24 +11,16 @@ echo   Professor Assistant Web Server
 echo ===================================
 echo.
 
-REM Kill any existing process on port 3000
 echo [0/4] Cleaning up port 3000...
 
-REM Method 1: Try using netstat and taskkill
-for /f "tokens=5" %%a in ('netstat -aon 2^>nul ^| findstr ":3000 "') do (
-    taskkill /F /PID %%a >nul 2>&1
-)
-timeout /t 1 /nobreak >nul
-
-REM Method 2: Try PowerShell as backup
-powershell -NoProfile -Command "Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }" >nul 2>&1
-timeout /t 1 /nobreak >nul
-
-REM Method 3: Try killing node processes directly
+REM 모든 node.exe 프로세스 강제 종료
 taskkill /F /IM node.exe >nul 2>&1
-timeout /t 1 /nobreak >nul
 
-REM Check if server node_modules exists
+REM 포트 3000 프로세스 강제 종료
+for /f "tokens=5" %%a in ('netstat -aon 2^>nul ^| findstr ":3000"') do taskkill /F /PID %%a >nul 2>&1
+
+timeout /t 2 /nobreak >nul
+
 if not exist "%SCRIPT_DIR%web\server\node_modules" (
     echo [1/4] Installing backend dependencies...
     cd /d "%SCRIPT_DIR%web\server"
@@ -37,7 +28,6 @@ if not exist "%SCRIPT_DIR%web\server\node_modules" (
     cd /d "%SCRIPT_DIR%"
 )
 
-REM Check if client node_modules exists
 if not exist "%SCRIPT_DIR%web\client\node_modules" (
     echo [2/4] Installing frontend dependencies...
     cd /d "%SCRIPT_DIR%web\client"
@@ -45,7 +35,6 @@ if not exist "%SCRIPT_DIR%web\client\node_modules" (
     cd /d "%SCRIPT_DIR%"
 )
 
-REM Build client if dist doesn't exist
 if not exist "%SCRIPT_DIR%web\client\dist" (
     echo [3/4] Building frontend...
     cd /d "%SCRIPT_DIR%web\client"

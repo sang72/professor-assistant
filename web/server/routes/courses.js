@@ -464,7 +464,9 @@ router.get('/:folder/docx/:type', async (req, res) => {
     const filename = `${type}.docx`;
 
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"; filename*=UTF-8''${encodeURIComponent(filename)}`);
+    res.setHeader('Content-Length', docxBuffer.length);
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
     res.send(docxBuffer);
   } catch (err) {
     console.error('Error generating docx:', err);
