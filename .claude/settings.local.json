@@ -42,7 +42,10 @@
       "Bash(curl -s \"http://localhost:3000/api/courses/frm401_franchise_management_2026_fall/toc\")",
       "Bash(curl -s \"http://localhost:3000/api/courses/frm401_franchise_management_2026_fall\")",
       "Bash(grep -E \"^\\\\\\\\[|file changed\")",
-      "Bash(npm start *)"
+      "Bash(npm start *)",
+      "Bash(curl -s -X GET \"http://localhost:3000/api/courses/frm401_franchise_management_2026_fall/docx/script-week01-session1\" -H \"Accept: application/vnd.openxmlformats-officedocument.wordprocessingml.document\" -o /tmp/test.docx)",
+      "Bash(unzip -t /tmp/test.docx)",
+      "Bash(npm list *)"
     ]
   }
 }

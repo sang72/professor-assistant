@@ -439,3 +439,39 @@ By completing this assignment, you will be able to:
     throw err;
   }
 }
+
+export async function deleteCourse(folder) {
+  try {
+    const course = await getCourse(folder);
+    if (!course) {
+      throw new Error(`Course not found: ${folder}`);
+    }
+
+    const folderPath = course.folderPath;
+
+    if (!fs.existsSync(folderPath)) {
+      throw new Error(`Course folder not found: ${folderPath}`);
+    }
+
+    // Recursively delete folder
+    const rmSync = (dirPath) => {
+      if (fs.existsSync(dirPath)) {
+        fs.readdirSync(dirPath).forEach((file) => {
+          const curPath = path.join(dirPath, file);
+          if (fs.lstatSync(curPath).isDirectory()) {
+            rmSync(curPath);
+          } else {
+            fs.unlinkSync(curPath);
+          }
+        });
+        fs.rmdirSync(dirPath);
+      }
+    };
+
+    rmSync(folderPath);
+    return { success: true, message: 'Course deleted successfully' };
+  } catch (err) {
+    console.error(`Error deleting course ${folder}:`, err);
+    throw err;
+  }
+}

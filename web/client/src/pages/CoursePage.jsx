@@ -15,6 +15,9 @@ export function CoursePage({ folder, onNavigate }) {
   const [dragActive, setDragActive] = useState(false);
   const [promptCopy, setPromptCopy] = useState(null);
   const [showWizard, setShowWizard] = useState(false);
+  const [newLectureWeek, setNewLectureWeek] = useState(4);
+  const [newLectureSession, setNewLectureSession] = useState(1);
+  const [creatingLecture, setCreatingLecture] = useState(false);
 
   useEffect(() => {
     loadCourseData();
@@ -96,6 +99,22 @@ export function CoursePage({ folder, onNavigate }) {
     }
   }
 
+  async function handleCreateLecture() {
+    try {
+      setCreatingLecture(true);
+      await courseApi.initializeLecture(folder, newLectureWeek, newLectureSession);
+      setUploadStatus({ type: 'lecture', success: true, message: `✅ Week ${newLectureWeek} Session ${newLectureSession} 강의안이 생성되었습니다!` });
+      setTimeout(() => setUploadStatus(null), 3000);
+      // Reload course data
+      await loadCourseData();
+    } catch (err) {
+      setUploadStatus({ type: 'lecture', success: false, message: `❌ 생성 실패: ${err.message}` });
+      setTimeout(() => setUploadStatus(null), 5000);
+    } finally {
+      setCreatingLecture(false);
+    }
+  }
+
   if (loading) {
     return (
       <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f8f9fa' }}>
@@ -122,19 +141,46 @@ export function CoursePage({ folder, onNavigate }) {
       {/* Header */}
       <header style={{ backgroundColor: 'white', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
         <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '2rem 1rem' }}>
-          <button
-            onClick={() => onNavigate('home')}
-            style={{
-              backgroundColor: 'transparent',
-              border: 'none',
-              cursor: 'pointer',
-              color: '#2563eb',
-              marginBottom: '1rem',
-              fontSize: '14px'
-            }}
-          >
-            ← 돌아가기
-          </button>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+            <button
+              onClick={() => onNavigate('home')}
+              style={{
+                backgroundColor: 'transparent',
+                border: 'none',
+                cursor: 'pointer',
+                color: '#2563eb',
+                fontSize: '14px'
+              }}
+            >
+              ← 돌아가기
+            </button>
+            <button
+              onClick={() => {
+                if (window.confirm(`정말로 "${course.course_name}" 과목을 삭제하시겠습니까?\n이 작업은 되돌릴 수 없습니다.`)) {
+                  courseApi.deleteCourse(folder)
+                    .then(() => {
+                      alert('과목이 삭제되었습니다.');
+                      onNavigate('home');
+                    })
+                    .catch(err => alert(`삭제 실패: ${err.message}`));
+                }
+              }}
+              style={{
+                backgroundColor: '#ef4444',
+                color: 'white',
+                border: 'none',
+                padding: '6px 12px',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontSize: '12px',
+                fontWeight: '500'
+              }}
+              onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#dc2626'}
+              onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#ef4444'}
+            >
+              🗑️ 과목 삭제
+            </button>
+          </div>
           <h1 style={{ fontSize: '28px', fontWeight: 'bold', margin: '0 0 0.5rem 0' }}>
             {course.course_name}
           </h1>
@@ -396,6 +442,70 @@ export function CoursePage({ folder, onNavigate }) {
               </div>
             </div>
 
+            {/* Create New Lecture */}
+            <div style={{ backgroundColor: '#f0f9ff', padding: '1.5rem', borderRadius: '8px', marginTop: '1.5rem', marginBottom: '1.5rem', borderLeft: '4px solid #0284c7' }}>
+              <h3 style={{ fontSize: '16px', fontWeight: '600', margin: '0 0 1rem 0', color: '#0c4a6e' }}>➕ 새 강의안 추가</h3>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr auto', gap: '1rem', alignItems: 'end' }}>
+                <div>
+                  <label style={{ fontSize: '12px', fontWeight: '500', color: '#374151', display: 'block', marginBottom: '0.5rem' }}>주차</label>
+                  <select
+                    value={newLectureWeek}
+                    onChange={(e) => setNewLectureWeek(parseInt(e.target.value))}
+                    disabled={creatingLecture}
+                    style={{
+                      width: '100%',
+                      padding: '0.5rem',
+                      borderRadius: '6px',
+                      border: '1px solid #d1d5db',
+                      fontSize: '14px',
+                      cursor: creatingLecture ? 'not-allowed' : 'pointer',
+                    }}
+                  >
+                    {[...Array(15)].map((_, i) => (
+                      <option key={i + 1} value={i + 1}>Week {i + 1}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label style={{ fontSize: '12px', fontWeight: '500', color: '#374151', display: 'block', marginBottom: '0.5rem' }}>세션</label>
+                  <select
+                    value={newLectureSession}
+                    onChange={(e) => setNewLectureSession(parseInt(e.target.value))}
+                    disabled={creatingLecture}
+                    style={{
+                      width: '100%',
+                      padding: '0.5rem',
+                      borderRadius: '6px',
+                      border: '1px solid #d1d5db',
+                      fontSize: '14px',
+                      cursor: creatingLecture ? 'not-allowed' : 'pointer',
+                    }}
+                  >
+                    {[1, 2, 3].map((s) => (
+                      <option key={s} value={s}>Session {s}</option>
+                    ))}
+                  </select>
+                </div>
+                <button
+                  onClick={handleCreateLecture}
+                  disabled={creatingLecture}
+                  style={{
+                    backgroundColor: creatingLecture ? '#d1d5db' : '#0284c7',
+                    color: 'white',
+                    border: 'none',
+                    padding: '0.5rem 1rem',
+                    borderRadius: '6px',
+                    cursor: creatingLecture ? 'not-allowed' : 'pointer',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    opacity: creatingLecture ? 0.6 : 1,
+                  }}
+                >
+                  {creatingLecture ? '생성 중...' : '생성'}
+                </button>
+              </div>
+            </div>
+
             {/* Lectures */}
             <h3 style={{ fontSize: '16px', fontWeight: '600', marginTop: '1.5rem', marginBottom: '1rem' }}>강의안 (처음 5개)</h3>
             {course.status?.lectures?.slice(0, 5).map((lecture, idx) => (
@@ -436,6 +546,21 @@ export function CoursePage({ folder, onNavigate }) {
                     }}
                   >
                     📄 Word
+                  </button>
+                  <button
+                    onClick={() => courseApi.downloadPptx(folder, `script-week${String(lecture.week).padStart(2, '0')}-session${lecture.session}`)}
+                    style={{
+                      backgroundColor: '#d97706',
+                      color: 'white',
+                      border: 'none',
+                      padding: '6px 12px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      fontWeight: '500'
+                    }}
+                  >
+                    🎯 PPT
                   </button>
                 </div>
               </div>
@@ -494,6 +619,21 @@ export function CoursePage({ folder, onNavigate }) {
                     📄 시험지
                   </button>
                   <button
+                    onClick={() => courseApi.downloadPptx(folder, 'midterm-student')}
+                    style={{
+                      backgroundColor: '#d97706',
+                      color: 'white',
+                      border: 'none',
+                      padding: '8px 16px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      fontWeight: '500'
+                    }}
+                  >
+                    🎯 PPT
+                  </button>
+                  <button
                     onClick={() => courseApi.downloadDocx(folder, 'midterm-answer')}
                     style={{
                       backgroundColor: '#7c3aed',
@@ -507,6 +647,22 @@ export function CoursePage({ folder, onNavigate }) {
                     }}
                   >
                     📄 답지
+                  </button>
+                  <button
+                    onClick={() => courseApi.downloadPptx(folder, 'midterm-answer')}
+                    style={{
+                      backgroundColor: '#7c3aed',
+                      color: 'white',
+                      border: 'none',
+                      padding: '8px 16px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      fontWeight: '500',
+                      opacity: 0.7,
+                    }}
+                  >
+                    📊 PPT
                   </button>
                 </div>
               </div>
@@ -569,6 +725,21 @@ export function CoursePage({ folder, onNavigate }) {
                     📄 시험지
                   </button>
                   <button
+                    onClick={() => courseApi.downloadPptx(folder, 'final-student')}
+                    style={{
+                      backgroundColor: '#d97706',
+                      color: 'white',
+                      border: 'none',
+                      padding: '8px 16px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      fontWeight: '500'
+                    }}
+                  >
+                    🎯 PPT
+                  </button>
+                  <button
                     onClick={() => courseApi.downloadDocx(folder, 'final-answer')}
                     style={{
                       backgroundColor: '#7c3aed',
@@ -582,6 +753,22 @@ export function CoursePage({ folder, onNavigate }) {
                     }}
                   >
                     📄 답지
+                  </button>
+                  <button
+                    onClick={() => courseApi.downloadPptx(folder, 'final-answer')}
+                    style={{
+                      backgroundColor: '#7c3aed',
+                      color: 'white',
+                      border: 'none',
+                      padding: '8px 16px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      fontWeight: '500',
+                      opacity: 0.7,
+                    }}
+                  >
+                    📊 PPT
                   </button>
                 </div>
               </div>

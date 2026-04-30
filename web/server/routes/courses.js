@@ -6,6 +6,7 @@ import * as courseService from '../services/courseService.js';
 import * as statusService from '../services/statusService.js';
 import * as promptBuilder from '../services/promptBuilder.js';
 import * as docxService from '../services/docxService.js';
+import * as pptService from '../services/pptService.js';
 
 const router = express.Router();
 
@@ -439,7 +440,7 @@ router.get('/:folder/docx/:type', async (req, res) => {
       const match = type.match(/script-week(\d+)-session(\d+)/);
       if (match) {
         const [, week, session] = match;
-        mdPath = path.join(course.folderPath, 'lectures', `week${week}`, `session${session}.md`);
+        mdPath = path.join(course.folderPath, 'lectures', `week${String(week).padStart(2, '0')}`, `session${session}.md`);
       }
     }
     // {exam-type}_student, {exam-type}_answer
@@ -541,6 +542,77 @@ router.post('/:folder/assignments/:num/init', async (req, res) => {
   } catch (err) {
     console.error('Error initializing assignment file:', err);
     res.status(500).json({ error: 'Failed to initialize assignment file' });
+  }
+});
+
+// GET /api/courses/:folder/pptx/:type — Generate and download PowerPoint file
+router.get('/:folder/pptx/:type', async (req, res) => {
+  try {
+    const course = await courseService.getCourse(req.params.folder);
+    if (!course) {
+      return res.status(404).json({ error: 'Course not found' });
+    }
+
+    const { type } = req.params;
+    let mdPath = null;
+    let title = '';
+
+    // script-week{N}-session{S}
+    if (type.startsWith('script-week')) {
+      const match = type.match(/script-week(\d+)-session(\d+)/);
+      if (match) {
+        const [, week, session] = match;
+        mdPath = path.join(course.folderPath, 'lectures', `week${String(week).padStart(2, '0')}`, `session${session}.md`);
+        title = `Week ${week} Session ${session} - ${course.course_name}`;
+      }
+    }
+    // {exam-type}_student, {exam-type}_answer
+    else if (type.includes('-')) {
+      const [examType, variant] = type.split('-');
+      if (examType === 'midterm' || examType === 'final') {
+        const suffix = variant === 'answer' ? 'answer_key' : 'student';
+        mdPath = path.join(course.folderPath, 'exams', `${examType}_${suffix}.md`);
+        title = `${examType === 'midterm' ? 'Midterm' : 'Final'} ${variant === 'answer' ? 'Answer Key' : 'Exam'} - ${course.course_name}`;
+      }
+    }
+    // assignment{N}
+    else if (type.startsWith('assignment')) {
+      const num = type.replace('assignment', '');
+      mdPath = path.join(course.folderPath, 'assignments', `assignment${num}.md`);
+      title = `Assignment ${num} - ${course.course_name}`;
+    }
+
+    if (!mdPath || !fs.existsSync(mdPath)) {
+      return res.status(404).json({ error: 'File not found' });
+    }
+
+    const pptxBuffer = await pptService.mdFileToPptxStream(mdPath, title);
+    const filename = `${type}.pptx`;
+
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.presentationml.presentation');
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"; filename*=UTF-8''${encodeURIComponent(filename)}`);
+    res.setHeader('Content-Length', pptxBuffer.length);
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.send(pptxBuffer);
+  } catch (err) {
+    console.error('Error generating pptx:', err);
+    res.status(500).json({ error: 'Failed to generate PowerPoint file' });
+  }
+});
+
+// DELETE /api/courses/:folder — Delete course
+router.delete('/:folder', async (req, res) => {
+  try {
+    const course = await courseService.getCourse(req.params.folder);
+    if (!course) {
+      return res.status(404).json({ error: 'Course not found' });
+    }
+
+    const result = await courseService.deleteCourse(req.params.folder);
+    res.json(result);
+  } catch (err) {
+    console.error('Error deleting course:', err);
+    res.status(500).json({ error: 'Failed to delete course' });
   }
 });
 

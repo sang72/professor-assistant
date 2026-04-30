@@ -66,12 +66,17 @@ export const courseApi = {
   downloadDocx: (folder, type) => {
     window.open(`${API_BASE}/courses/${folder}/docx/${type}`, '_blank');
   },
+  downloadPptx: (folder, type) => {
+    window.open(`${API_BASE}/courses/${folder}/pptx/${type}`, '_blank');
+  },
   initializeLecture: (folder, week, session) =>
     request(`/courses/${folder}/lectures/${week}/${session}/init`, { method: 'POST' }),
   initializeExam: (folder, type) =>
     request(`/courses/${folder}/exams/${type}/init`, { method: 'POST' }),
   initializeAssignment: (folder, num) =>
     request(`/courses/${folder}/assignments/${num}/init`, { method: 'POST' }),
+  deleteCourse: (folder) =>
+    request(`/courses/${folder}`, { method: 'DELETE' }),
 };
 
 export const health = {
