@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { courseApi } from '../api/index.js';
+import { AutoGenerationWizard } from '../components/AutoGenerationWizard.jsx';
 
 export function CoursePage({ folder, onNavigate }) {
   const [course, setCourse] = useState(null);
@@ -13,6 +14,7 @@ export function CoursePage({ folder, onNavigate }) {
   const [tocContent, setTocContent] = useState('');
   const [dragActive, setDragActive] = useState(false);
   const [promptCopy, setPromptCopy] = useState(null);
+  const [showWizard, setShowWizard] = useState(false);
 
   useEffect(() => {
     loadCourseData();
@@ -509,19 +511,20 @@ export function CoursePage({ folder, onNavigate }) {
                 </div>
               </div>
               <button
-                onClick={() => alert('시험 범위, 형식, 시간을 설정할 수 있는 마법사 (구현 예정)')}
+                onClick={() => setShowWizard(true)}
                 style={{
                   marginTop: '1rem',
-                  backgroundColor: '#e5e7eb',
-                  color: '#374151',
+                  backgroundColor: '#2563eb',
+                  color: 'white',
                   border: 'none',
                   padding: '8px 16px',
                   borderRadius: '6px',
                   cursor: 'pointer',
-                  fontSize: '12px'
+                  fontSize: '12px',
+                  fontWeight: '500'
                 }}
               >
-                ⚙️ 설정 변경
+                🚀 자동 생성
               </button>
             </div>
 
@@ -583,19 +586,20 @@ export function CoursePage({ folder, onNavigate }) {
                 </div>
               </div>
               <button
-                onClick={() => alert('시험 범위, 형식, 시간을 설정할 수 있는 마법사 (구현 예정)')}
+                onClick={() => setShowWizard(true)}
                 style={{
                   marginTop: '1rem',
-                  backgroundColor: '#e5e7eb',
-                  color: '#374151',
+                  backgroundColor: '#2563eb',
+                  color: 'white',
                   border: 'none',
                   padding: '8px 16px',
                   borderRadius: '6px',
                   cursor: 'pointer',
-                  fontSize: '12px'
+                  fontSize: '12px',
+                  fontWeight: '500'
                 }}
               >
-                ⚙️ 설정 변경
+                🚀 자동 생성
               </button>
             </div>
           </div>
@@ -758,6 +762,14 @@ export function CoursePage({ folder, onNavigate }) {
           </div>
         )}
       </main>
+
+      {showWizard && (
+        <AutoGenerationWizard
+          course={course}
+          folder={folder}
+          onClose={() => setShowWizard(false)}
+        />
+      )}
     </div>
   );
 }
