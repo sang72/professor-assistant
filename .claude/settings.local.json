@@ -15,7 +15,25 @@
       "Bash(chmod +x scripts/select_course.sh)",
       "Bash(chmod +x *)",
       "Bash(dos2unix scripts/select_course.sh)",
-      "Bash(sed -i 's/\\\\r$//' scripts/select_course.sh)"
+      "Bash(sed -i 's/\\\\r$//' scripts/select_course.sh)",
+      "Bash(npm install *)",
+      "Bash(timeout 30 node server.js)",
+      "Bash(curl http://localhost:3000/health)",
+      "Bash(timeout 15 node server.js)",
+      "Bash(curl -s http://localhost:3000/health)",
+      "Bash(curl -s http://localhost:3000/api/courses)",
+      "Bash(pkill -f \"node server.js\")",
+      "Bash(node -e ' *)",
+      "Bash(node *)",
+      "Bash(pkill -9 -f \"node server.js\")",
+      "Bash(awk '{print $2}')",
+      "Bash(xargs kill *)",
+      "PowerShell(Get-Process *)",
+      "Bash(mkdir -p /c/Users/Sang/Desktop/professor-assistant/web/client)",
+      "Bash(npm create *)",
+      "Bash(npx tailwindcss *)",
+      "Bash(npm run *)",
+      "Bash(curl -s http://localhost:3000)"
     ]
   }
 }
