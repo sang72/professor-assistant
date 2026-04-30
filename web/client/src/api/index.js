@@ -37,6 +37,35 @@ export const courseApi = {
     }).then(r => r.json());
   },
   getPrompt: (folder, task) => request(`/courses/${folder}/prompt/${task}`),
+
+  // New endpoints for textbook and exam
+  uploadTOC: (folder, file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    return fetch(`${API_BASE}/courses/${folder}/upload-toc`, {
+      method: 'POST',
+      body: formData,
+    }).then(r => r.json());
+  },
+  getTOC: (folder) => request(`/courses/${folder}/toc`),
+  uploadChapter: (folder, key, file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    return fetch(`${API_BASE}/courses/${folder}/chapters/${key}`, {
+      method: 'POST',
+      body: formData,
+    }).then(r => r.json());
+  },
+  getChapters: (folder) => request(`/courses/${folder}/chapters`),
+  saveExamConfig: (folder, type, config) =>
+    request(`/courses/${folder}/exam-config`, {
+      method: 'POST',
+      body: JSON.stringify({ type, ...config })
+    }),
+  getExamConfig: (folder, type) => request(`/courses/${folder}/exam-config/${type}`),
+  downloadDocx: (folder, type) => {
+    window.open(`${API_BASE}/courses/${folder}/docx/${type}`, '_blank');
+  },
 };
 
 export const health = {
