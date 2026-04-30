@@ -474,4 +474,74 @@ router.get('/:folder/docx/:type', async (req, res) => {
   }
 });
 
+// POST /api/courses/:folder/lectures/:week/:session/init — Initialize new lecture file
+router.post('/:folder/lectures/:week/:session/init', async (req, res) => {
+  try {
+    const course = await courseService.getCourse(req.params.folder);
+    if (!course) {
+      return res.status(404).json({ error: 'Course not found' });
+    }
+
+    const result = await courseService.initializeLectureFile(
+      req.params.folder,
+      parseInt(req.params.week),
+      parseInt(req.params.session)
+    );
+
+    if (result.exists) {
+      return res.json({ exists: true, message: 'Lecture file already exists' });
+    }
+
+    res.json({ success: true, message: 'Lecture file created' });
+  } catch (err) {
+    console.error('Error initializing lecture file:', err);
+    res.status(500).json({ error: 'Failed to initialize lecture file' });
+  }
+});
+
+// POST /api/courses/:folder/exams/:type/init — Initialize exam file
+router.post('/:folder/exams/:type/init', async (req, res) => {
+  try {
+    const course = await courseService.getCourse(req.params.folder);
+    if (!course) {
+      return res.status(404).json({ error: 'Course not found' });
+    }
+
+    const result = await courseService.initializeExamFile(req.params.folder, req.params.type);
+
+    if (result.exists) {
+      return res.json({ exists: true, message: 'Exam file already exists' });
+    }
+
+    res.json({ success: true, message: 'Exam file created' });
+  } catch (err) {
+    console.error('Error initializing exam file:', err);
+    res.status(500).json({ error: 'Failed to initialize exam file' });
+  }
+});
+
+// POST /api/courses/:folder/assignments/:num/init — Initialize assignment file
+router.post('/:folder/assignments/:num/init', async (req, res) => {
+  try {
+    const course = await courseService.getCourse(req.params.folder);
+    if (!course) {
+      return res.status(404).json({ error: 'Course not found' });
+    }
+
+    const result = await courseService.initializeAssignmentFile(
+      req.params.folder,
+      parseInt(req.params.num)
+    );
+
+    if (result.exists) {
+      return res.json({ exists: true, message: 'Assignment file already exists' });
+    }
+
+    res.json({ success: true, message: 'Assignment file created' });
+  } catch (err) {
+    console.error('Error initializing assignment file:', err);
+    res.status(500).json({ error: 'Failed to initialize assignment file' });
+  }
+});
+
 export default router;

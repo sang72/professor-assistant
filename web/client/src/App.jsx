@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import { HomePage } from './pages/HomePage.jsx';
 import { CoursePage } from './pages/CoursePage.jsx';
+import { NewCoursePage } from './pages/NewCoursePage.jsx';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -18,6 +19,8 @@ function App() {
         return <HomePage onNavigate={navigate} />;
       case 'course':
         return <CoursePage folder={pageParams.folder} onNavigate={navigate} />;
+      case 'new':
+        return <NewCoursePage onNavigate={navigate} />;
       default:
         return <HomePage onNavigate={navigate} />;
     }

@@ -238,3 +238,204 @@ export async function updateCourseConfig(folder, updates) {
     throw err;
   }
 }
+
+export async function initializeLectureFile(folder, week, session) {
+  try {
+    const course = await getCourse(folder);
+    if (!course) {
+      throw new Error(`Course not found: ${folder}`);
+    }
+
+    const weekStr = String(week).padStart(2, '0');
+    const lecturePath = path.join(course.folderPath, 'lectures', `week${weekStr}`, `session${session}.md`);
+
+    if (fs.existsSync(lecturePath)) {
+      return { exists: true, message: 'File already exists' };
+    }
+
+    const template = `# Week ${week} · Session ${session}: [Title]
+## ${course.course_code} — ${course.course_name}
+
+---
+
+## SECTION 1: LESSON PLAN
+
+### Session Learning Objectives
+
+By the end of this session, students will be able to:
+1. [Objective 1]
+2. [Objective 2]
+3. [Objective 3]
+
+### Time Breakdown
+
+| Time | Duration | Activity | Method |
+|------|----------|----------|--------|
+| 0:00 | 5 min | Opening | Direct instruction |
+| 0:05 | 40 min | Main Content | Lecture + slides |
+| 0:45 | 5 min | Q&A | Interactive |
+
+---
+
+## SECTION 2: FULL LECTURE SCRIPT
+
+[Add your lecture script here]
+
+---
+
+## SECTION 3: KEY POINTS
+
+- [Key point 1]
+- [Key point 2]
+- [Key point 3]
+`;
+
+    fs.writeFileSync(lecturePath, template, 'utf-8');
+    return { success: true, message: 'Lecture file created', path: lecturePath };
+  } catch (err) {
+    console.error(`Error initializing lecture file:`, err);
+    throw err;
+  }
+}
+
+export async function initializeExamFile(folder, type) {
+  try {
+    const course = await getCourse(folder);
+    if (!course) {
+      throw new Error(`Course not found: ${folder}`);
+    }
+
+    const suffix = type === 'midterm' || type === 'final' ? 'student' : 'questions';
+    const examPath = path.join(course.folderPath, 'exams', `${type}_${suffix}.md`);
+
+    if (fs.existsSync(examPath)) {
+      return { exists: true, message: 'File already exists' };
+    }
+
+    const template = `# ${type === 'midterm' ? 'Midterm' : 'Final'} Exam — ${course.course_code}
+
+**Course:** ${course.course_name}
+**Professor:** ${course.professor_name}
+**Semester:** ${course.semester}
+
+---
+
+## Exam Information
+
+- **Duration:** ${type === 'midterm' ? '75 minutes' : '90 minutes'}
+- **Total Points:** 100
+- **Format:**
+  - Part A: Multiple Choice (45 points)
+  - Part B: Short Answer (40 points)
+  - Part C: Essay (15 points)
+
+---
+
+## Part A: Multiple Choice Questions
+
+[30 multiple choice questions, 1.5 points each]
+
+1. Question...
+   a) Option A
+   b) Option B
+   c) Option C
+   d) Option D
+
+---
+
+## Part B: Short Answer Questions
+
+[5 short answer questions, 8 points each]
+
+1. Question...
+
+---
+
+## Part C: Essay Question
+
+[1 essay question, 15 points]
+
+Write an essay answering the following question...
+`;
+
+    fs.writeFileSync(examPath, template, 'utf-8');
+    return { success: true, message: 'Exam file created', path: examPath };
+  } catch (err) {
+    console.error(`Error initializing exam file:`, err);
+    throw err;
+  }
+}
+
+export async function initializeAssignmentFile(folder, assignmentNum) {
+  try {
+    const course = await getCourse(folder);
+    if (!course) {
+      throw new Error(`Course not found: ${folder}`);
+    }
+
+    const assignmentPath = path.join(course.folderPath, 'assignments', `assignment${assignmentNum}.md`);
+
+    if (fs.existsSync(assignmentPath)) {
+      return { exists: true, message: 'File already exists' };
+    }
+
+    const template = `# Assignment ${assignmentNum} — ${course.course_name}
+
+**Course:** ${course.course_code}
+**Professor:** ${course.professor_name}
+**Semester:** ${course.semester}
+
+---
+
+## Assignment Objective
+
+By completing this assignment, you will be able to:
+- [Learning outcome 1]
+- [Learning outcome 2]
+- [Learning outcome 3]
+
+---
+
+## Instructions
+
+1. [Instruction 1]
+2. [Instruction 2]
+3. [Instruction 3]
+
+---
+
+## Submission Requirements
+
+- **Format:** [Specify format]
+- **Length:** [Specify length]
+- **Due Date:** [Specify date]
+- **Submission Method:** [Specify method]
+
+---
+
+## Grading Rubric
+
+| Criteria | Points | Description |
+|----------|--------|-------------|
+| Content | 40 | [Description] |
+| Analysis | 30 | [Description] |
+| Writing Quality | 20 | [Description] |
+| Formatting | 10 | [Description] |
+| **Total** | **100** | |
+
+---
+
+## Tips for Success
+
+- [Tip 1]
+- [Tip 2]
+- [Tip 3]
+`;
+
+    fs.writeFileSync(assignmentPath, template, 'utf-8');
+    return { success: true, message: 'Assignment file created', path: assignmentPath };
+  } catch (err) {
+    console.error(`Error initializing assignment file:`, err);
+    throw err;
+  }
+}

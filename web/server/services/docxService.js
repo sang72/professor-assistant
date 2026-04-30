@@ -18,6 +18,7 @@ export async function markdownToDocx(mdText, filename = 'document.docx') {
             text: line.substring(2),
             heading: HeadingLevel.HEADING_1,
             thematicBreak: false,
+            spacing: { before: 240, after: 120 },
           })
         );
       }
@@ -27,6 +28,7 @@ export async function markdownToDocx(mdText, filename = 'document.docx') {
           new Paragraph({
             text: line.substring(3),
             heading: HeadingLevel.HEADING_2,
+            spacing: { before: 200, after: 100 },
           })
         );
       }
@@ -36,6 +38,7 @@ export async function markdownToDocx(mdText, filename = 'document.docx') {
           new Paragraph({
             text: line.substring(4),
             heading: HeadingLevel.HEADING_3,
+            spacing: { before: 160, after: 80 },
           })
         );
       }
@@ -87,6 +90,7 @@ export async function markdownToDocx(mdText, filename = 'document.docx') {
           new Paragraph({
             text: line.substring(2),
             bullet: { level: 0 },
+            spacing: { line: 240 },
           })
         );
       }
@@ -96,6 +100,7 @@ export async function markdownToDocx(mdText, filename = 'document.docx') {
           new Paragraph({
             text: line.substring(4),
             bullet: { level: 1 },
+            spacing: { line: 240 },
           })
         );
       }
@@ -105,11 +110,12 @@ export async function markdownToDocx(mdText, filename = 'document.docx') {
         paragraphs.push(
           new Paragraph({
             text: text,
-            numbering: { level: 0, reference: 'default' },
+            bullet: { level: 0 },
+            spacing: { line: 240 },
           })
         );
       }
-      // 일반 텍스트
+      // 일반 텍스트 (공백이나 특수문자로만 이루어지지 않음)
       else if (line.length > 0) {
         paragraphs.push(
           new Paragraph({
@@ -118,13 +124,29 @@ export async function markdownToDocx(mdText, filename = 'document.docx') {
           })
         );
       }
-      // 빈 줄
-      else {
-        paragraphs.push(new Paragraph({ text: '' }));
+      // 빈 줄 (여러 빈 줄 방지)
+      else if (paragraphs.length > 0 && paragraphs[paragraphs.length - 1].text !== '') {
+        paragraphs.push(new Paragraph({ text: '', spacing: { line: 240 } }));
       }
     }
 
     const doc = new Document({
+      numbering: {
+        config: [
+          {
+            reference: 'default',
+            levels: [
+              {
+                level: 0,
+                format: 'decimal',
+                text: '%1.',
+                alignment: 'left',
+              },
+            ],
+          },
+        ],
+        abstractNums: [],
+      },
       sections: [
         {
           properties: {},
