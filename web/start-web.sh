@@ -1,40 +1,49 @@
 #!/bin/bash
 
-echo "🎓 Professor Assistant Web Server 시작..."
+# Get script directory
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd "$SCRIPT_DIR"
+
+echo ""
+echo "==================================="
+echo "  Professor Assistant Web Server"
+echo "==================================="
 echo ""
 
 # Check if node_modules exists for server
-if [ ! -d "web/server/node_modules" ]; then
-  echo "📦 백엔드 의존성 설치 중..."
-  cd web/server
+if [ ! -d "$SCRIPT_DIR/web/server/node_modules" ]; then
+  echo "[1/4] Installing backend dependencies..."
+  cd "$SCRIPT_DIR/web/server"
   npm install
-  cd ../..
+  cd "$SCRIPT_DIR"
 fi
 
 # Check if node_modules exists for client
-if [ ! -d "web/client/node_modules" ]; then
-  echo "📦 프론트엔드 의존성 설치 중..."
-  cd web/client
+if [ ! -d "$SCRIPT_DIR/web/client/node_modules" ]; then
+  echo "[2/4] Installing frontend dependencies..."
+  cd "$SCRIPT_DIR/web/client"
   npm install
-  cd ../..
+  cd "$SCRIPT_DIR"
 fi
 
 # Build client if dist doesn't exist
-if [ ! -d "web/client/dist" ]; then
-  echo "🏗️  프론트엔드 빌드 중..."
-  cd web/client
+if [ ! -d "$SCRIPT_DIR/web/client/dist" ]; then
+  echo "[3/4] Building frontend..."
+  cd "$SCRIPT_DIR/web/client"
   npm run build
-  cd ../..
+  cd "$SCRIPT_DIR"
 fi
 
 echo ""
-echo "✓ 준비 완료"
+echo "[4/4] Starting server..."
 echo ""
-echo "🚀 웹 서버 시작..."
-echo "   URL: http://localhost:3000"
+echo "==================================="
+echo "  Server is ready!"
+echo "  URL: http://localhost:3000"
+echo "==================================="
 echo ""
-echo "Ctrl+C로 중지할 수 있습니다"
+echo "Press Ctrl+C to stop"
 echo ""
 
-cd web/server
+cd "$SCRIPT_DIR/web/server"
 node server.js
