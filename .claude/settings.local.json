@@ -45,7 +45,13 @@
       "Bash(npm start *)",
       "Bash(curl -s -X GET \"http://localhost:3000/api/courses/frm401_franchise_management_2026_fall/docx/script-week01-session1\" -H \"Accept: application/vnd.openxmlformats-officedocument.wordprocessingml.document\" -o /tmp/test.docx)",
       "Bash(unzip -t /tmp/test.docx)",
-      "Bash(npm list *)"
+      "Bash(npm list *)",
+      "Bash(curl *)",
+      "Bash(tasklist)",
+      "Bash(taskkill /F /IM node.exe /T)",
+      "Bash(taskkill /F /IM node.exe)",
+      "Bash(pkill -f \"node.*server.js\")",
+      "Bash(lsof -ti:3000)"
     ]
   }
 }

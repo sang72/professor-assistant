@@ -247,11 +247,14 @@ export async function initializeLectureFile(folder, week, session) {
     }
 
     const weekStr = String(week).padStart(2, '0');
-    const lecturePath = path.join(course.folderPath, 'lectures', `week${weekStr}`, `session${session}.md`);
+    const weekDir = path.join(course.folderPath, 'lectures', `week${weekStr}`);
+    const lecturePath = path.join(weekDir, `session${session}.md`);
 
     if (fs.existsSync(lecturePath)) {
       return { exists: true, message: 'File already exists' };
     }
+
+    fs.mkdirSync(weekDir, { recursive: true });
 
     const template = `# Week ${week} · Session ${session}: [Title]
 ## ${course.course_code} — ${course.course_name}

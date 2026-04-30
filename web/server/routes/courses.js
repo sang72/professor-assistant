@@ -1,6 +1,7 @@
 import express from 'express';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import multer from 'multer';
 import * as courseService from '../services/courseService.js';
 import * as statusService from '../services/statusService.js';
@@ -8,12 +9,13 @@ import * as promptBuilder from '../services/promptBuilder.js';
 import * as docxService from '../services/docxService.js';
 import * as pptService from '../services/pptService.js';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const router = express.Router();
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const uploadDir = path.join(path.dirname(new URL(import.meta.url).pathname), '..', 'uploads');
+    const uploadDir = path.join(__dirname, '..', 'uploads');
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir, { recursive: true });
     }
