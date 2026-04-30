@@ -8,6 +8,11 @@ export function CoursePage({ folder, onNavigate }) {
   const [activeTab, setActiveTab] = useState('overview');
   const [chapters, setChapters] = useState([]);
   const [files, setFiles] = useState([]);
+  const [uploadingFiles, setUploadingFiles] = useState({});
+  const [uploadStatus, setUploadStatus] = useState(null);
+  const [tocContent, setTocContent] = useState('');
+  const [dragActive, setDragActive] = useState(false);
+  const [promptCopy, setPromptCopy] = useState(null);
 
   useEffect(() => {
     loadCourseData();
@@ -16,18 +21,30 @@ export function CoursePage({ folder, onNavigate }) {
   async function loadCourseData() {
     try {
       setLoading(true);
+      setError(null);
+
       const courseData = await courseApi.getCourse(folder);
       setCourse(courseData);
 
       // Load TOC and chapters
-      const tocData = await courseApi.getTOC(folder);
-      setChapters(tocData.chapters || []);
+      try {
+        const tocData = await courseApi.getTOC(folder);
+        setChapters(tocData.chapters || []);
+        setTocContent(tocData.content || '');
+      } catch (e) {
+        // TOC might not exist yet
+        setChapters([]);
+        setTocContent('');
+      }
 
       // Load files
-      const fileData = await courseApi.getFiles(folder);
-      setFiles(fileData);
+      try {
+        const fileData = await courseApi.getFiles(folder);
+        setFiles(fileData);
+      } catch (e) {
+        setFiles([]);
+      }
 
-      setError(null);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -35,12 +52,67 @@ export function CoursePage({ folder, onNavigate }) {
     }
   }
 
+  async function handleTOCUpload(file) {
+    try {
+      setUploadingFiles(prev => ({ ...prev, toc: true }));
+      await courseApi.uploadTOC(folder, file);
+      setUploadStatus({ type: 'toc', success: true, message: '✅ 목차 파일이 성공적으로 업로드되었습니다!' });
+      await loadCourseData();
+      setTimeout(() => setUploadStatus(null), 3000);
+    } catch (err) {
+      setUploadStatus({ type: 'toc', success: false, message: `❌ 업로드 실패: ${err.message}` });
+      setTimeout(() => setUploadStatus(null), 5000);
+    } finally {
+      setUploadingFiles(prev => ({ ...prev, toc: false }));
+    }
+  }
+
+  async function handleChapterUpload(chapterKey, file) {
+    try {
+      setUploadingFiles(prev => ({ ...prev, [chapterKey]: true }));
+      await courseApi.uploadChapter(folder, chapterKey, file);
+      setUploadStatus({ type: 'chapter', success: true, message: `✅ 챕터 파일이 성공적으로 업로드되었습니다!` });
+      await loadCourseData();
+      setTimeout(() => setUploadStatus(null), 3000);
+    } catch (err) {
+      setUploadStatus({ type: 'chapter', success: false, message: `❌ 업로드 실패: ${err.message}` });
+      setTimeout(() => setUploadStatus(null), 5000);
+    } finally {
+      setUploadingFiles(prev => ({ ...prev, [chapterKey]: false }));
+    }
+  }
+
+  async function handlePromptCopy(taskType) {
+    try {
+      const prompt = await courseApi.getPrompt(folder, taskType);
+      const text = prompt.prompt || JSON.stringify(prompt);
+      await navigator.clipboard.writeText(text);
+      setPromptCopy(taskType);
+      setTimeout(() => setPromptCopy(null), 2000);
+    } catch (err) {
+      alert(`프롬프트 복사 실패: ${err.message}`);
+    }
+  }
+
   if (loading) {
-    return <div style={{ padding: '2rem', textAlign: 'center', color: '#666' }}>과목 정보를 불러오는 중...</div>;
+    return (
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f8f9fa' }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⏳</div>
+          <p style={{ fontSize: '16px', color: '#666', margin: '0' }}>과목 정보를 불러오는 중...</p>
+        </div>
+      </div>
+    );
   }
 
   if (!course) {
-    return <div style={{ padding: '2rem', color: '#d00' }}>과목을 찾을 수 없습니다.</div>;
+    return (
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f8f9fa' }}>
+        <div style={{ textAlign: 'center', backgroundColor: 'white', padding: '2rem', borderRadius: '8px' }}>
+          <p style={{ fontSize: '16px', color: '#991b1b', margin: '0' }}>❌ 과목을 찾을 수 없습니다</p>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -132,69 +204,117 @@ export function CoursePage({ folder, onNavigate }) {
             <h2 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '1rem' }}>교재 관리</h2>
 
             {/* TOC Upload */}
-            <div style={{ backgroundColor: 'white', padding: '1.5rem', borderRadius: '8px', marginBottom: '1.5rem' }}>
+            <div style={{ backgroundColor: 'white', padding: '2rem', borderRadius: '8px', marginBottom: '1.5rem' }}>
               <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '1rem' }}>목차 파일 업로드</h3>
-              <input
-                type="file"
-                accept=".txt,.md"
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
-                  if (file) {
-                    const formData = new FormData();
-                    formData.append('file', file);
-                    courseApi.uploadTOC(folder, file).then(() => {
-                      loadCourseData();
-                    });
+
+              {/* Drag and drop area */}
+              <label
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  setDragActive(true);
+                }}
+                onDragLeave={() => setDragActive(false)}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  setDragActive(false);
+                  const file = e.dataTransfer.files?.[0];
+                  if (file && (file.name.endsWith('.txt') || file.name.endsWith('.md'))) {
+                    handleTOCUpload(file);
                   }
                 }}
                 style={{
-                  padding: '0.5rem',
-                  border: '1px solid #d1d5db',
-                  borderRadius: '6px',
-                  width: '100%',
-                  cursor: 'pointer'
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '2rem',
+                  border: dragActive ? '2px solid #2563eb' : '2px dashed #d1d5db',
+                  borderRadius: '8px',
+                  backgroundColor: dragActive ? '#eff6ff' : '#f9fafb',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s'
                 }}
-              />
-              <p style={{ fontSize: '12px', color: '#666', marginTop: '0.5rem' }}>
-                텍스트(.txt) 또는 마크다운(.md) 형식 지원
-              </p>
+              >
+                <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📄</div>
+                <p style={{ margin: '0 0 0.5rem 0', fontWeight: '500' }}>파일을 드래그하거나 클릭하세요</p>
+                <p style={{ margin: '0', fontSize: '12px', color: '#666' }}>TXT 또는 Markdown 파일 (.txt, .md)</p>
+                <input
+                  type="file"
+                  accept=".txt,.md"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) handleTOCUpload(file);
+                  }}
+                  style={{ display: 'none' }}
+                />
+              </label>
+
+              {uploadStatus?.type === 'toc' && (
+                <div style={{
+                  marginTop: '1rem',
+                  padding: '0.75rem',
+                  borderRadius: '6px',
+                  backgroundColor: uploadStatus.success ? '#ecfdf5' : '#fef2f2',
+                  borderLeft: `4px solid ${uploadStatus.success ? '#10b981' : '#ef4444'}`,
+                  color: uploadStatus.success ? '#065f46' : '#991b1b'
+                }}>
+                  {uploadStatus.message}
+                </div>
+              )}
+
+              {tocContent && (
+                <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: '#f0f9ff', borderRadius: '6px' }}>
+                  <p style={{ margin: '0 0 0.5rem 0', fontSize: '12px', fontWeight: '600', color: '#0284c7' }}>📋 업로드된 목차:</p>
+                  <pre style={{ margin: '0', fontSize: '12px', color: '#666', overflow: 'auto', maxHeight: '150px' }}>
+                    {tocContent.split('\n').slice(0, 10).join('\n')}
+                    {tocContent.split('\n').length > 10 && '\n... (더보기)'}
+                  </pre>
+                </div>
+              )}
             </div>
 
             {/* Chapter Files */}
-            {chapters.length > 0 && (
+            {chapters.length > 0 ? (
               <div style={{ backgroundColor: 'white', padding: '1.5rem', borderRadius: '8px' }}>
-                <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '1rem' }}>챕터별 파일 업로드</h3>
+                <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '1rem' }}>📚 챕터별 파일 업로드</h3>
                 {chapters.map((chapter) => (
-                  <div key={chapter.key} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.75rem', borderBottom: '1px solid #e5e7eb' }}>
-                    <div>
-                      <p style={{ margin: '0', fontWeight: '500' }}>Chapter {chapter.number}</p>
-                      <p style={{ margin: '0', fontSize: '12px', color: '#666' }}>{chapter.title}</p>
+                  <div key={chapter.key} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', borderBottom: '1px solid #e5e7eb', transition: 'background-color 0.2s' }}>
+                    <div style={{ flex: 1 }}>
+                      <p style={{ margin: '0', fontWeight: '500', fontSize: '14px' }}>Chapter {chapter.number}: {chapter.title}</p>
+                      {uploadingFiles[chapter.key] && (
+                        <p style={{ margin: '0.25rem 0 0 0', fontSize: '12px', color: '#2563eb' }}>⏳ 업로드 중...</p>
+                      )}
                     </div>
                     <label style={{
-                      backgroundColor: '#2563eb',
+                      backgroundColor: uploadingFiles[chapter.key] ? '#d1d5db' : '#2563eb',
                       color: 'white',
-                      padding: '6px 12px',
+                      padding: '8px 16px',
                       borderRadius: '6px',
-                      cursor: 'pointer',
+                      cursor: uploadingFiles[chapter.key] ? 'not-allowed' : 'pointer',
                       fontSize: '12px',
-                      fontWeight: '500'
+                      fontWeight: '500',
+                      marginLeft: '1rem',
+                      opacity: uploadingFiles[chapter.key] ? 0.6 : 1
                     }}>
-                      선택
+                      {uploadingFiles[chapter.key] ? '업로드 중...' : '선택'}
                       <input
                         type="file"
                         style={{ display: 'none' }}
+                        disabled={uploadingFiles[chapter.key]}
                         onChange={(e) => {
                           const file = e.target.files?.[0];
-                          if (file) {
-                            courseApi.uploadChapter(folder, chapter.key, file).then(() => {
-                              loadCourseData();
-                            });
-                          }
+                          if (file) handleChapterUpload(chapter.key, file);
                         }}
                       />
                     </label>
                   </div>
                 ))}
+              </div>
+            ) : (
+              <div style={{ backgroundColor: '#fef9e7', padding: '1.5rem', borderRadius: '8px', borderLeft: '4px solid #eab308' }}>
+                <p style={{ margin: '0', color: '#78350f' }}>
+                  💡 팁: 먼저 위에서 목차 파일을 업로드하면 챕터별 파일 업로드 영역이 나타납니다.
+                </p>
               </div>
             )}
           </div>
@@ -202,85 +322,21 @@ export function CoursePage({ folder, onNavigate }) {
 
         {activeTab === 'tasks' && (
           <div>
-            <h2 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '1rem' }}>작업 목록</h2>
-            <div style={{ backgroundColor: 'white', borderRadius: '8px', overflow: 'hidden' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <thead style={{ backgroundColor: '#f3f4f6' }}>
-                  <tr>
-                    <th style={{ padding: '1rem', textAlign: 'left', fontSize: '12px', fontWeight: '600', borderBottom: '1px solid #e5e7eb' }}>항목</th>
-                    <th style={{ padding: '1rem', textAlign: 'center', fontSize: '12px', fontWeight: '600', borderBottom: '1px solid #e5e7eb' }}>상태</th>
-                    <th style={{ padding: '1rem', textAlign: 'center', fontSize: '12px', fontWeight: '600', borderBottom: '1px solid #e5e7eb' }}>작업</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* Syllabus */}
-                  <tr style={{ borderBottom: '1px solid #e5e7eb' }}>
-                    <td style={{ padding: '1rem', fontSize: '14px' }}>강의계획서</td>
-                    <td style={{ padding: '1rem', textAlign: 'center', fontSize: '12px', color: course.status?.syllabus === 'done' ? '#059669' : '#666' }}>
-                      {course.status?.syllabus === 'done' ? '✅ 완료' : '⏳ 대기'}
-                    </td>
-                    <td style={{ padding: '1rem', textAlign: 'center' }}>
-                      <button
-                        onClick={() => alert('프롬프트 복사 기능 (구현 중)')}
-                        style={{
-                          backgroundColor: '#2563eb',
-                          color: 'white',
-                          border: 'none',
-                          padding: '6px 12px',
-                          borderRadius: '6px',
-                          cursor: 'pointer',
-                          fontSize: '12px'
-                        }}
-                      >
-                        프롬프트
-                      </button>
-                    </td>
-                  </tr>
+            <h2 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '1rem' }}>📋 작업 목록</h2>
 
-                  {/* Lectures */}
-                  {course.status?.lectures?.slice(0, 3).map((lecture, idx) => (
-                    <tr key={idx} style={{ borderBottom: '1px solid #e5e7eb' }}>
-                      <td style={{ padding: '1rem', fontSize: '14px' }}>{lecture.label}</td>
-                      <td style={{ padding: '1rem', textAlign: 'center', fontSize: '12px', color: lecture.status === 'done' ? '#059669' : '#666' }}>
-                        {lecture.status === 'done' ? '✅ 완료' : '⏳ 대기'}
-                      </td>
-                      <td style={{ padding: '1rem', textAlign: 'center' }}>
-                        <button
-                          onClick={() => courseApi.downloadDocx(folder, `script-week${String(lecture.week).padStart(2, '0')}-session${lecture.session}`)}
-                          style={{
-                            backgroundColor: '#059669',
-                            color: 'white',
-                            border: 'none',
-                            padding: '6px 12px',
-                            borderRadius: '6px',
-                            cursor: 'pointer',
-                            fontSize: '12px'
-                          }}
-                        >
-                          Word
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
-
-        {activeTab === 'files' && (
-          <div>
-            <h2 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '1rem' }}>생성된 파일</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem' }}>
-              {files.map((file, idx) => (
-                <div key={idx} style={{ backgroundColor: 'white', padding: '1rem', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                  <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{file.icon}</div>
-                  <p style={{ margin: '0', fontSize: '14px', fontWeight: '500', marginBottom: '0.5rem' }}>{file.name}</p>
-                  <p style={{ margin: '0', fontSize: '12px', color: '#666', marginBottom: '1rem' }}>
-                    {(file.size / 1024).toFixed(1)} KB
-                  </p>
+            {/* Syllabus */}
+            <div style={{ backgroundColor: 'white', padding: '1.5rem', borderRadius: '8px', marginBottom: '1rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '16px', fontWeight: '600' }}>강의계획서</h3>
+                  <p style={{ margin: '0', fontSize: '12px', color: '#666' }}>과목 개요, 학습성과, 평가 방법 등</p>
+                </div>
+                <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                  <span style={{ fontSize: '12px', padding: '4px 8px', borderRadius: '4px', backgroundColor: course.status?.syllabus === 'done' ? '#dcfce7' : '#fef3c7', color: course.status?.syllabus === 'done' ? '#166534' : '#92400e', fontWeight: '600' }}>
+                    {course.status?.syllabus === 'done' ? '✅ 완료' : '⏳ 대기'}
+                  </span>
                   <button
-                    onClick={() => courseApi.downloadFile(folder, file.path)}
+                    onClick={() => handlePromptCopy('syllabus')}
                     style={{
                       backgroundColor: '#2563eb',
                       color: 'white',
@@ -288,16 +344,110 @@ export function CoursePage({ folder, onNavigate }) {
                       padding: '6px 12px',
                       borderRadius: '6px',
                       cursor: 'pointer',
-                      fontSize: '12px'
+                      fontSize: '12px',
+                      fontWeight: '500'
                     }}
                   >
-                    다운로드
+                    {promptCopy === 'syllabus' ? '✅ 복사됨' : '📋 복사'}
                   </button>
                 </div>
-              ))}
+              </div>
             </div>
-            {files.length === 0 && (
-              <p style={{ textAlign: 'center', color: '#666' }}>생성된 파일이 없습니다.</p>
+
+            {/* Lectures */}
+            <h3 style={{ fontSize: '16px', fontWeight: '600', marginTop: '1.5rem', marginBottom: '1rem' }}>강의안 (처음 5개)</h3>
+            {course.status?.lectures?.slice(0, 5).map((lecture, idx) => (
+              <div key={idx} style={{ backgroundColor: 'white', padding: '1.5rem', borderRadius: '8px', marginBottom: '0.75rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ flex: 1 }}>
+                  <p style={{ margin: '0', fontWeight: '500', fontSize: '14px' }}>{lecture.label}</p>
+                </div>
+                <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                  <span style={{ fontSize: '12px', padding: '4px 8px', borderRadius: '4px', backgroundColor: lecture.status === 'done' ? '#dcfce7' : '#fef3c7', color: lecture.status === 'done' ? '#166534' : '#92400e', fontWeight: '600' }}>
+                    {lecture.status === 'done' ? '✅ 완료' : '⏳ 대기'}
+                  </span>
+                  <button
+                    onClick={() => handlePromptCopy(`week${String(lecture.week).padStart(2, '0')}_session${lecture.session}`)}
+                    style={{
+                      backgroundColor: '#f59e0b',
+                      color: 'white',
+                      border: 'none',
+                      padding: '6px 12px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      fontWeight: '500'
+                    }}
+                  >
+                    {promptCopy === `week${String(lecture.week).padStart(2, '0')}_session${lecture.session}` ? '✅ 복사됨' : '📋 복사'}
+                  </button>
+                  <button
+                    onClick={() => courseApi.downloadDocx(folder, `script-week${String(lecture.week).padStart(2, '0')}-session${lecture.session}`)}
+                    style={{
+                      backgroundColor: '#059669',
+                      color: 'white',
+                      border: 'none',
+                      padding: '6px 12px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      fontWeight: '500'
+                    }}
+                  >
+                    📄 Word
+                  </button>
+                </div>
+              </div>
+            ))}
+
+            {course.status?.lectures && course.status.lectures.length > 5 && (
+              <p style={{ textAlign: 'center', color: '#666', fontSize: '12px', marginTop: '1rem' }}>
+                외 {course.status.lectures.length - 5}개의 강의가 있습니다
+              </p>
+            )}
+          </div>
+        )}
+
+        {activeTab === 'files' && (
+          <div>
+            <h2 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '1rem' }}>📁 생성된 파일</h2>
+            {files.length > 0 ? (
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem' }}>
+                {files.map((file, idx) => (
+                  <div key={idx} style={{ backgroundColor: 'white', padding: '1.5rem', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+                    <div style={{ fontSize: '2.5rem', marginBottom: '0.75rem' }}>{file.icon}</div>
+                    <p style={{ margin: '0', fontSize: '14px', fontWeight: '500', marginBottom: '0.5rem' }}>{file.name}</p>
+                    <p style={{ margin: '0', fontSize: '12px', color: '#666', marginBottom: '1rem' }}>
+                      {(file.size / 1024).toFixed(1)} KB
+                    </p>
+                    <button
+                      onClick={() => courseApi.downloadFile(folder, file.path)}
+                      style={{
+                        backgroundColor: '#2563eb',
+                        color: 'white',
+                        border: 'none',
+                        padding: '8px 16px',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        fontSize: '12px',
+                        fontWeight: '500',
+                        width: '100%'
+                      }}
+                      onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#1d4ed8'}
+                      onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#2563eb'}
+                    >
+                      ⬇️ 다운로드
+                    </button>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div style={{ backgroundColor: '#f0f9ff', padding: '2rem', borderRadius: '8px', textAlign: 'center', borderLeft: '4px solid #0284c7' }}>
+                <p style={{ margin: '0 0 0.5rem 0', fontSize: '24px' }}>📭</p>
+                <p style={{ margin: '0 0 0.5rem 0', fontSize: '14px', fontWeight: '500', color: '#0c4a6e' }}>생성된 파일이 없습니다</p>
+                <p style={{ margin: '0', fontSize: '12px', color: '#0284c7' }}>
+                  작업 목록에서 프롬프트를 복사하여 Claude Code에서 콘텐츠를 생성하세요
+                </p>
+              </div>
             )}
           </div>
         )}

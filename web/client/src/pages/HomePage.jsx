@@ -67,25 +67,36 @@ export function HomePage({ onNavigate }) {
         )}
 
         {loading ? (
-          <div style={{ textAlign: 'center', color: '#4b5563' }}>
-            <p>교과목 목록을 불러오는 중...</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' }}>
+            {[...Array(3)].map((_, i) => (
+              <div key={i} style={{ backgroundColor: 'white', padding: '1.5rem', borderRadius: '8px', animation: 'pulse 2s infinite' }}>
+                <div style={{ height: '40px', backgroundColor: '#e5e7eb', borderRadius: '4px', marginBottom: '1rem' }}></div>
+                <div style={{ height: '20px', backgroundColor: '#e5e7eb', borderRadius: '4px', marginBottom: '1rem', width: '80%' }}></div>
+                <div style={{ height: '60px', backgroundColor: '#e5e7eb', borderRadius: '4px' }}></div>
+              </div>
+            ))}
           </div>
         ) : courses.length === 0 ? (
-          <div style={{ textAlign: 'center' }}>
-            <p style={{ color: '#4b5563', marginBottom: '1rem' }}>등록된 교과목이 없습니다.</p>
+          <div style={{ backgroundColor: 'white', padding: '3rem', borderRadius: '8px', textAlign: 'center', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+            <p style={{ fontSize: '3rem', margin: '0 0 1rem 0' }}>📚</p>
+            <h2 style={{ fontSize: '20px', fontWeight: '600', margin: '0 0 0.5rem 0', color: '#1f2937' }}>등록된 교과목이 없습니다</h2>
+            <p style={{ color: '#4b5563', marginBottom: '1.5rem', fontSize: '14px' }}>첫 교과목을 만들어 강의계획서, 강의안, 시험문제를 자동으로 생성해보세요!</p>
             <button
               onClick={() => onNavigate('new')}
               style={{
                 backgroundColor: '#2563eb',
                 color: 'white',
                 border: 'none',
-                padding: '8px 16px',
+                padding: '12px 24px',
                 borderRadius: '6px',
                 cursor: 'pointer',
-                fontWeight: '500'
+                fontWeight: '500',
+                fontSize: '14px'
               }}
+              onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#1d4ed8'}
+              onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#2563eb'}
             >
-              첫 교과목 만들기
+              ✨ 첫 교과목 만들기
             </button>
           </div>
         ) : (

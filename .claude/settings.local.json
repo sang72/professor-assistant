@@ -33,7 +33,14 @@
       "Bash(npm create *)",
       "Bash(npx tailwindcss *)",
       "Bash(npm run *)",
-      "Bash(curl -s http://localhost:3000)"
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(netstat -ano)",
+      "PowerShell(Stop-Process *)",
+      "Bash(taskkill /F /PID 45208)",
+      "Bash(timeout 15 npm --prefix web/server start)",
+      "Bash(curl -s http://localhost:3000/)",
+      "Bash(curl -s \"http://localhost:3000/api/courses/frm401_franchise_management_2026_fall/toc\")",
+      "Bash(curl -s \"http://localhost:3000/api/courses/frm401_franchise_management_2026_fall\")"
     ]
   }
 }

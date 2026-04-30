@@ -12,12 +12,10 @@ echo   Professor Assistant Web Server
 echo ===================================
 echo.
 
-REM Kill any existing process on port 3000
+REM Kill any existing process on port 3000 using PowerShell (more reliable)
 echo [0/4] Cleaning up port 3000...
-for /f "tokens=5" %%a in ('netstat -aon ^| find "3000" ^| find "LISTENING"') do (
-    taskkill /F /PID %%a >nul 2>&1
-)
-timeout /t 1 /nobreak >nul
+powershell -NoProfile -Command "Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }" >nul 2>&1
+timeout /t 2 /nobreak >nul
 
 REM Check if server node_modules exists
 if not exist "%SCRIPT_DIR%web\server\node_modules" (
