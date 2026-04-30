@@ -41,7 +41,8 @@
       "Bash(curl -s http://localhost:3000/)",
       "Bash(curl -s \"http://localhost:3000/api/courses/frm401_franchise_management_2026_fall/toc\")",
       "Bash(curl -s \"http://localhost:3000/api/courses/frm401_franchise_management_2026_fall\")",
-      "Bash(grep -E \"^\\\\\\\\[|file changed\")"
+      "Bash(grep -E \"^\\\\\\\\[|file changed\")",
+      "Bash(npm start *)"
     ]
   }
 }
