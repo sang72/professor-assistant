@@ -9,3 +9,4 @@ node_modules/
 courses/*/textbook/*.pdf
 courses/*/textbook/*.PDF
 !courses/.gitkeep
+.claude/settings.local.json
