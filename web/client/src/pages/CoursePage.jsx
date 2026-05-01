@@ -608,7 +608,8 @@ export function CoursePage({ folder, onNavigate }) {
                   >
                     🎯 PPT
                   </button>
-                  </div>
+                </div>
+              </div>
                 ))}
               </div>
             ) : (
