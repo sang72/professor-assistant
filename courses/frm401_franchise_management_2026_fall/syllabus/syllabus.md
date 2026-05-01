@@ -90,27 +90,23 @@ By the end of this course, students will be able to:
 
 ## 15-Week Course Schedule
 
-| Week | Topic | Sub-Topics | Chapter(s) | In-Class Activity | Assessment Due |
+| Week | Topic | Sub-Topics | Chapter(s) | In-Class Activity & Cases | Assessment Due |
 |------|-------|-----------|-----------|------------------|-----------------|
-| **1** | Course Introduction & Overview | Syllabus review; franchising landscape; course expectations | Intro / Ch. 0 | Welcome discussion; course framework | — |
-| **2** | Franchising as Entrepreneurship | What is franchising; entrepreneurial mindset; small and big business franchise models | Ch. 1 | Case analysis: Krispy Kreme, Snip-Its | — |
-| **3** | Franchise Relationship Model (FRM) | Franchisor-franchisee dynamics; value creation; partnership alignment | Ch. 2 | Case study: Pizza Hut vs. Domino's | Reading reflection |
-| **4** | Wealth-Creating Power | Financial success in franchising; performance metrics; scalability | Ch. 3 | Case analysis: Boston Chicken; feasibility workshop | — |
-| **5** | Service Delivery System (SDS) & Real Estate | Resource deployment; location strategy; consistency | Ch. 4 | Case studies: Kinko's, Wendy's, Pizza Hut | Draft assignment outline |
-| **6** | Selecting & Monitoring Franchisees | Partner selection criteria; performance management; oversight mechanisms | Ch. 5 | Case analysis: Jiffy Lube, Dunkin' Donuts | **Assignment #1 Due** |
-| **7** | **MIDTERM REVIEW WEEK** | Session 1: Comprehensive Review (Part 1) | Ch. 1–3 | Review Q&A session | — |
-| | | Session 2: Comprehensive Review (Part 2) | Ch. 4–5 | Practice exam discussion | — |
-| | | Session 3: **MIDTERM EXAM** | Ch. 0–5 | Written exam (75 minutes) | **Midterm Exam** |
-| **8** | Service Delivery System & Marketing | Brand consistency; customer experience; marketing across franchise network | Ch. 6 | Case studies: Ford/Firestone, Krispy Kreme | — |
-| **9** | Transaction Analysis | Task assignment frameworks; responsibility matrices; franchisor-franchisee obligations | Ch. 7 | Case study: Bagelz; mapping exercise | — |
-| **10** | Financial Analysis of Franchises | Unit economics; profitability analysis; investment returns | Ch. 8 | Case analysis: Panera Bread, PR Restaurants | — |
-| **11** | Dynamics of Franchisee-Franchisor Relationship | Conflict resolution; adaptation; relationship evolution | Ch. 9 | Case study: Quick Lube; group discussion | — |
-| **12** | U.S. Franchise Laws & Korean Comparison | FTC Rule; UFOC; state regulations; Korean franchise law comparison | Ch. 10 | Comparative legal analysis workshop | — |
-| **13** | International Franchising (Part 1) | Global expansion strategy; adaptation across markets | Ch. 11 | Case study: 7-Eleven; international strategy analysis | — |
-| **14** | International Franchising (Part 2) | Market entry; regulatory compliance; cultural considerations | Ch. 11 | Strategic planning exercise; peer review | — |
-| **15** | **FINAL REVIEW WEEK** | Session 1: Comprehensive Review (Part 1) | Ch. 6–8 | Review Q&A session | — |
-| | | Session 2: Comprehensive Review (Part 2) | Ch. 9–11 | Practice exam discussion | — |
-| | | Session 3: **FINAL EXAM** | Ch. 6–14 (20% cumulative from Ch. 1–5) | Written exam (90 minutes) | **Final Exam** |
+| **1** | Course Introduction & Overview | Syllabus review; global franchising landscape (2024-2026); course expectations | Intro / Ch. 0 | Welcome discussion; franchising megatrends; McDonald's vs. CU expansion models | — |
+| **2** | Franchising as Entrepreneurship | What is franchising; entrepreneurial mindset; small and big business models | Ch. 1 | Case analysis: Krispy Kreme (US) vs. Nene Chicken, BBQ (Korea); startup vs. scale-up | — |
+| **3** | Franchise Relationship Model (FRM) | Franchisor-franchisee dynamics; value creation; partnership alignment | Ch. 2 | Case study: Pizza Hut vs. Domino's (US) vs. CU vs. GS25 (Korea) — convenience store wars | Reading reflection |
+| **4** | Wealth-Creating Power | Financial success mechanisms; performance metrics; scalability; capital growth | Ch. 3 | Case analysis: Dunkin' Donuts (capital growth), Subway (rapid expansion challenges 2024-2026) | — |
+| **5** | Service Delivery System (SDS) & Real Estate | Resource deployment; location strategy; consistency; Korean franchise real estate model | Ch. 4 | Case studies: Starbucks (global SDS), Hollow Tree Café (Korean franchise), convenience store logistics | Draft assignment outline |
+| **6** | Selecting & Monitoring Franchisees | Partner selection criteria; performance management; oversight mechanisms; Korean market challenges | Ch. 5 | Case analysis: Dunkin' Donuts franchisee evaluation; Korean coffee franchise selection issues (2025-2026) | **Assignment #1 Due** |
+| **7** | Service Delivery System (Part 1) | SDS foundation; brand consistency; customer experience standards | Ch. 6 | Case studies: Starbucks SDS excellence, CU standardization, consistency across Korean franchise network | — |
+| **8** | Service Delivery System & Marketing + **MIDTERM EXAM** | Brand consistency; customer experience; marketing across franchise network | Ch. 6 | Session 1: SDS & Marketing lecture; Session 2: Midterm Review (Ch. 1–6); Session 3: **MIDTERM EXAM** (75 min) | **Midterm Exam** |
+| **9** | Transaction Analysis | Task assignment frameworks; responsibility matrices; franchisor-franchisee obligations | Ch. 7 | Case study: Bagelz; mapping exercise; Korean franchise contract analysis | — |
+| **10** | Financial Analysis of Franchises | Unit economics; profitability analysis; investment returns; Korean franchisee profitability crisis | Ch. 8 | Case analysis: Panera Bread, Korean chicken franchise profitability challenges (2024-2026) | — |
+| **11** | Dynamics of Franchisee-Franchisor Relationship | Conflict resolution; adaptation; relationship evolution; Korean disputes (2024-2026) | Ch. 9 | Case study: Quick Lube; Korean franchise conflict examples; mediation strategies | — |
+| **12** | **U.S. & Korean Franchise Laws Comparison** ⭐ | FTC Rule; UFOC; state regulations; Korean Franchise Business Act (가맹사업거래 공정화법) | Ch. 10 | **Comparative legal workshop:** US disclosure requirements vs. Korean protective measures; recent 2024-2026 law changes | — |
+| **13** | International Franchising (Part 1) | Global expansion strategy; market adaptation; Korean brands going global | Ch. 11 | Case study: 7-Eleven Japan vs. Korea; CU international expansion; strategic analysis | — |
+| **14** | International Franchising (Part 2) | Market entry; regulatory compliance; cultural considerations; Korean franchise export | Ch. 11 | Strategic planning: Korean chicken franchise international expansion (BBQ, Nene Chicken); peer review | — |
+| **15** | International Franchising Recap + **FINAL EXAM** | Global expansion summary; market adaptation review; future of franchising | Ch. 11 | Session 1: Final lecture on international franchising; Session 2: Final Review (Ch. 7–14); Session 3: **FINAL EXAM** (90 min) | **Final Exam** |
 
 ---
 
@@ -121,26 +117,41 @@ By the end of this course, students will be able to:
 
 Students will choose ONE of the following options:
 
-**Option A: Korean Franchise Brand Case Study**
-Analyze a Korean franchise brand of your choice (e.g., Bagelz, Gongcha, Lotteria, etc.). Prepare a comprehensive analysis covering:
-- Brand history and franchise model structure
-- Franchisor-franchisee relationship dynamics
-- Service delivery system and operational excellence
-- Comparison with relevant U.S. franchise competitor
+**Option A: Korean Franchise Brand Case Study (2024-2026 Focus)**
+Analyze a Korean franchise brand of your choice. Recent active brands include:
+- **Convenience Stores:** CU, GS25, Emart24 (competition & profitability challenges)
+- **Quick Service:** Nene Chicken, BBQ Chicken, Pelicana (chicken franchise wars)
+- **Café:** Café Bene, Hollys Coffee, Starbucks Korea (market saturation & adaptation)
+- **Other:** Lotteria, Gongbach, Bagelz, Paris Croissant
+
+**Your analysis must cover:**
+- Brand history, current franchise model structure (as of 2024-2026)
+- Franchisor-franchisee relationship dynamics and recent conflicts (if any)
+- Service delivery system and operational excellence in Korean context
+- Comparison with relevant U.S. or global franchise competitor
+- Compliance with Korean Franchise Business Act (가맹사업거래의 공정화에 관한 법률)
+- Recent legal disputes or regulatory changes affecting the brand
 - Strategic recommendations for growth and sustainability
-- Alignment with Korean franchise law requirements
+- Financial analysis: franchisee profitability concerns and solutions
 
-**Option B: Global Franchise System Analysis**
-Analyze a global franchise system operating across multiple continents. Prepare a comprehensive analysis covering:
+**Option B: Global Franchise System Analysis (2024-2026 Focus)**
+Analyze a global franchise system operating across multiple continents. Examples include:
+- **Global Giants Expanding in Korea:** Starbucks, McDonald's, Dunkin', Subway
+- **Korean Brands Going Global:** CU International, Nene Chicken, BBQ Chicken
+- **Emerging Global Players:** Brands experiencing rapid international growth (2024-2026)
+
+**Your analysis must cover:**
 - Franchise system architecture and core value proposition
-- Adaptation strategies across different markets and cultures
-- Service delivery system modifications by region
-- Legal and regulatory navigation (focus on 2-3 key markets)
+- Adaptation strategies across different markets and cultures (specifically Korea if applicable)
+- Service delivery system modifications by region and market type
+- Legal and regulatory navigation (US FTC Rule vs. Korean law vs. local regulations in other markets)
+- Recent legal and regulatory changes (2024-2026) affecting franchise operations
+- Franchisee profitability analysis across different markets
 - Risk assessment and mitigation strategies
-- Strategic recommendations for further international expansion
+- Strategic recommendations for further international expansion or Korean market entry
 
-**Format:** 3,000–4,000 words; written in English; includes references to course materials and external sources
-**Grading:** See detailed rubric provided in Week 5
+**Format:** 3,000–4,000 words; written in English; APA citations required; includes case data from 2024-2026
+**Grading:** See detailed rubric provided in Week 5 (evaluates: analysis depth, legal understanding, Korean context awareness, strategic thinking)
 
 ---
 
@@ -192,7 +203,7 @@ Students with documented disabilities or learning needs who require academic acc
 | **9** | Chapter 7: Transaction Analysis (pages 107–132) |
 | **10** | Chapter 8: Financial Analysis (pages 133–153) |
 | **11** | Chapter 9: Dynamics of the Franchisee-Franchisor Relationship (pages 155–169) |
-| **12** | Chapter 10: U.S. Franchise Laws + Korean Law Comparison (pages 171–192); Korean Franchise Business Act (provided) |
+| **12** | Chapter 10: U.S. Franchise Laws (pages 171–192); **Korean Franchise Business Act (가맹사업거래의 공정화에 관한 법률)** — English & Korean versions; 2024-2026 recent amendments; FTC Franchise Rule latest updates |
 | **13** | Chapter 11: International Franchising (Part 1, pages 193–207) |
 | **14** | Chapter 11: International Franchising (Part 2, continued); Additional case studies (distributed) |
 | **15** | Comprehensive Review and Final Exam (Weeks 8–14 + 20% from Weeks 1–6) |
