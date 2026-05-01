@@ -8,6 +8,7 @@ import * as statusService from '../services/statusService.js';
 import * as promptBuilder from '../services/promptBuilder.js';
 import * as docxService from '../services/docxService.js';
 import * as pptService from '../services/pptService.js';
+import * as lectureGenerationService from '../services/lectureGenerationService.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const router = express.Router();
@@ -544,7 +545,7 @@ router.get('/:folder/docx/:type', async (req, res) => {
   }
 });
 
-// POST /api/courses/:folder/lectures/:week/:session/init — Initialize new lecture file
+// POST /api/courses/:folder/lectures/:week/:session/init — Initialize and generate lecture
 router.post('/:folder/lectures/:week/:session/init', async (req, res) => {
   try {
     const course = await courseService.getCourse(req.params.folder);
@@ -552,27 +553,42 @@ router.post('/:folder/lectures/:week/:session/init', async (req, res) => {
       return res.status(404).json({ error: 'Course not found' });
     }
 
+    const week = parseInt(req.params.week);
+    const session = parseInt(req.params.session);
     const force = req.body?.force === true || req.query?.force === 'true';
 
-    const result = await courseService.initializeLectureFile(
-      req.params.folder,
-      parseInt(req.params.week),
-      parseInt(req.params.session),
-      force
-    );
+    // Check if file exists
+    const weekStr = String(week).padStart(2, '0');
+    const weekDir = path.join(course.folderPath, 'lectures', `week${weekStr}`);
+    const lecturePath = path.join(weekDir, `session${session}.md`);
 
-    if (result.exists && !force) {
+    if (fs.existsSync(lecturePath) && !force) {
       return res.json({ exists: true, message: 'Lecture file already exists' });
     }
 
-    res.json({
+    // Generate lecture using Claude
+    res.setHeader('Content-Type', 'application/json');
+    res.write(JSON.stringify({ status: 'generating', message: `Week ${week} Session ${session} 강의안 생성 중...` }) + '\n');
+
+    const lectureContent = await lectureGenerationService.generateLectureScript(course, week, session);
+
+    // Save to file
+    fs.mkdirSync(weekDir, { recursive: true });
+    fs.writeFileSync(lecturePath, lectureContent, 'utf-8');
+
+    res.write(JSON.stringify({
       success: true,
-      message: force && result.regenerated ? 'Lecture file regenerated' : 'Lecture file created',
-      regenerated: result.regenerated
-    });
+      message: force ? 'Lecture file regenerated' : 'Lecture file created',
+      regenerated: force
+    }) + '\n');
+
+    res.end();
   } catch (err) {
-    console.error('Error initializing lecture file:', err);
-    res.status(500).json({ error: 'Failed to initialize lecture file' });
+    console.error('Error generating lecture:', err);
+    res.status(500).json({
+      error: 'Failed to generate lecture',
+      message: err.message
+    });
   }
 });
 
