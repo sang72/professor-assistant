@@ -529,7 +529,7 @@ export function CoursePage({ folder, onNavigate }) {
                   </select>
                 </div>
                 <button
-                  onClick={handleCreateLecture}
+                  onClick={() => handleCreateLecture()}
                   disabled={creatingLecture}
                   style={{
                     backgroundColor: creatingLecture ? '#d1d5db' : '#0284c7',
