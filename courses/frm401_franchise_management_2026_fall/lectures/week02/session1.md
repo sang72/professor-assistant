@@ -62,6 +62,10 @@ Here's the definition that appears in most franchise law textbooks and regulatio
 
 Now let me unpack each of these elements because they're all essential. If you remove any one of them, you no longer have a franchise.
 
+This definition matters legally, financially, and strategically. In the United States, the Federal Trade Commission (FTC) uses a specific test to determine whether a business relationship is a franchise. Similar definitions exist in Korea through the Franchise Business Act. When a government agency or court determines whether something is a "franchise," that determination carries real consequences: franchise disclosure laws apply, franchisee protections apply, tax treatment changes.
+
+Understanding this definition precisely isn't just academic—it's practical. If you're buying a franchise, you need to know exactly what you're purchasing. If you're building a franchise system, you need to understand what makes it legally a franchise vs. some other business model.
+
 **Element One: The Franchisor and Trademark**
 
 The franchisor is the party that owns the brand. McDonald's is the franchisor. Starbucks is the franchisor. In Korea, Nene Chicken is the franchisor. CU is the franchisor. The franchisor owns the trademark. You see this trademark every time you interact with the brand. The McDonald's golden arches. The Starbucks siren. The Nene Chicken logo.
