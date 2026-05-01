@@ -1,0 +1,49 @@
+Git에 커밋하기 (선택사항)
+
+  # 강의안 추가 확인
+  git status
+
+  # 모든 강의안 스테이징
+  git add courses/frm401_franchise_management_2026_fall/lectures/
+
+  # 커밋
+  git commit -m "Add complete FRM401 lecture notes (Week 1-15, 45 sessions) with Korean translation and latest 2024-2026
+   cases"
+
+  # 푸시
+  git push origin main
+
+  3️⃣ 백업 (권장)
+
+  # 강의안 폴더 백업
+  cp -r courses/frm401_franchise_management_2026_fall/lectures/ \
+        ~/backups/frm401_lectures_2026_05_01/
+
+  ---
+  🔄 다시 시작할 때 워크플로우
+
+  시나리오 1: 특정 주/세션만 수정
+
+  예) Week 5 Session 1을 수정하고 싶을 때:
+
+  # 파일 열기
+  claude-code edit courses/frm401_franchise_management_2026_fall/lectures/week05/session1.md
+
+  # 또는 Claude Code에서:
+  # /edit 파일명 → 수정 → 저장
+
+  시나리오 2: 특정 강의안만 재생성
+
+  예) Week 12 (법률) Session을 더 자세히 하고 싶을 때:
+
+  Claude Code에서:
+  "Week 12 Session 1 (U.S. Franchise Law)을 다시 생성해줘.
+  더 자세한 FTC 규정과 2024-2026 최신 판례 추가"
+
+  시나리오 3: 모든 강의안 검토
+
+  # 모든 강의안 목록 확인
+  ls -la courses/frm401_franchise_management_2026_fall/lectures/week*/
+
+  # 특정 주 강의안 확인
+  cat courses/frm401_franchise_management_2026_fall/lectures/week01/session1.md
