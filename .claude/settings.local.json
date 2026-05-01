@@ -51,7 +51,8 @@
       "Bash(taskkill /F /IM node.exe /T)",
       "Bash(taskkill /F /IM node.exe)",
       "Bash(pkill -f \"node.*server.js\")",
-      "Bash(lsof -ti:3000)"
+      "Bash(lsof -ti:3000)",
+      "Bash(unzip -l /tmp/midterm.pptx)"
     ]
   }
 }
