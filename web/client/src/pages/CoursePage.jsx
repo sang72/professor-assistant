@@ -549,8 +549,11 @@ export function CoursePage({ folder, onNavigate }) {
             </div>
 
             {/* Lectures */}
-            <h3 style={{ fontSize: '16px', fontWeight: '600', marginTop: '1.5rem', marginBottom: '1rem' }}>강의안 (처음 5개)</h3>
-            {course.status?.lectures?.slice(0, 5).map((lecture, idx) => (
+            <h3 style={{ fontSize: '16px', fontWeight: '600', marginTop: '1.5rem', marginBottom: '1rem' }}>
+              🎓 생성된 강의안 ({course.status?.lectures?.length || 0}개)
+            </h3>
+            {course.status?.lectures && course.status.lectures.length > 0 ? (
+              course.status.lectures.map((lecture, idx) => (
               <div key={idx} style={{ backgroundColor: 'white', padding: '1.5rem', borderRadius: '8px', marginBottom: '0.75rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div style={{ flex: 1 }}>
                   <p style={{ margin: '0', fontWeight: '500', fontSize: '14px' }}>{lecture.label}</p>
@@ -608,10 +611,11 @@ export function CoursePage({ folder, onNavigate }) {
               </div>
             ))}
 
-            {course.status?.lectures && course.status.lectures.length > 5 && (
-              <p style={{ textAlign: 'center', color: '#666', fontSize: '12px', marginTop: '1rem' }}>
-                외 {course.status.lectures.length - 5}개의 강의가 있습니다
-              </p>
+              ))
+            ) : (
+              <div style={{ backgroundColor: '#f0f9ff', padding: '1.5rem', borderRadius: '8px', borderLeft: '4px solid #0284c7', color: '#0c4a6e' }}>
+                <p style={{ margin: '0', fontSize: '14px' }}>📭 생성된 강의안이 없습니다. 위의 "새 강의안 추가" 버튼을 이용하거나 프롬프트를 복사해서 Claude에서 생성하세요.</p>
+              </div>
             )}
           </div>
         )}
