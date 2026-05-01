@@ -4,145 +4,170 @@ import fs from 'fs';
 export async function markdownToPptx(mdText, title = 'Presentation') {
   try {
     const prs = new PptxGenJS();
-    prs.defineLayout({ name: 'LAYOUT1', master: 'MASTER1' });
 
-    // Set slide defaults
-    prs.defineLayout({ name: 'LAYOUT1', master: 'MASTER1' });
-
+    const slides = [];
     const lines = mdText.split('\n');
-    let currentSlideContent = [];
-    let slideTitle = '';
-    let slideIndex = 0;
+    let currentSlide = { title: '', content: [], isFirstSlide: false };
 
-    function createSlide() {
-      if (slideIndex === 0 && !slideTitle) {
+    // Parse markdown into slides
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+
+      if (line.startsWith('# ')) {
+        // Main heading - new slide
+        if (currentSlide.content.length > 0 || currentSlide.title) {
+          slides.push({ ...currentSlide });
+        }
+        currentSlide = { title: line.substring(2).trim(), content: [], isFirstSlide: slides.length === 0 };
+      } else if (line.startsWith('---')) {
+        // Slide break
+        if (currentSlide.title || currentSlide.content.length > 0) {
+          slides.push({ ...currentSlide });
+          currentSlide = { title: '', content: [], isFirstSlide: false };
+        }
+      } else if (line.trim().length > 0) {
+        currentSlide.content.push(line);
+      }
+    }
+
+    // Add last slide
+    if (currentSlide.title || currentSlide.content.length > 0) {
+      slides.push(currentSlide);
+    }
+
+    // If no slides, create title slide only
+    if (slides.length === 0) {
+      slides.push({ title: '', content: [], isFirstSlide: true });
+    }
+
+    // Create PPT slides
+    slides.forEach((slideData, idx) => {
+      const slide = prs.addSlide();
+
+      if (slideData.isFirstSlide && !slideData.title) {
         // Title slide
-        const slide = prs.addSlide();
         slide.background = { color: '2563eb' };
         slide.addText(title, {
           x: 0.5,
-          y: 2.5,
+          y: 2,
           w: 9,
           h: 1.5,
           fontSize: 44,
           bold: true,
           color: 'ffffff',
           align: 'center',
+          fontFace: 'Arial'
         });
         slide.addText(new Date().toLocaleDateString('ko-KR'), {
           x: 0.5,
-          y: 4.2,
+          y: 3.8,
           w: 9,
           h: 0.5,
-          fontSize: 18,
+          fontSize: 16,
           color: 'ffffff',
           align: 'center',
+          fontFace: 'Arial'
         });
       } else {
         // Content slide
-        const slide = prs.addSlide();
+        slide.background = { color: 'ffffff' };
         let yPos = 0.5;
 
-        // Title
-        if (slideTitle) {
-          slide.addText(slideTitle, {
+        // Add title if present
+        if (slideData.title) {
+          slide.addText(slideData.title, {
             x: 0.5,
             y: yPos,
             w: 9,
             h: 0.6,
-            fontSize: 32,
+            fontSize: 36,
             bold: true,
             color: '1f2937',
+            fontFace: 'Arial'
           });
           yPos += 0.8;
         }
 
-        // Content
-        currentSlideContent.forEach((line) => {
-          if (line.trim().length === 0) return;
+        // Add content
+        for (const line of slideData.content) {
+          const trimmed = line.trim();
+          if (!trimmed) continue;
 
-          if (line.startsWith('##')) {
-            slide.addText(line.substring(2).trim(), {
-              x: 1,
+          if (trimmed.startsWith('## ')) {
+            // Sub heading
+            slide.addText(trimmed.substring(3), {
+              x: 0.5,
               y: yPos,
-              w: 8.5,
+              w: 9,
               h: 0.4,
-              fontSize: 20,
+              fontSize: 24,
               bold: true,
               color: '374151',
+              fontFace: 'Arial'
             });
             yPos += 0.5;
-          } else if (line.startsWith('- ') || line.startsWith('* ')) {
-            slide.addText(line.substring(2).trim(), {
-              x: 1.2,
+          } else if (trimmed.startsWith('### ')) {
+            // Smaller heading
+            slide.addText(trimmed.substring(4), {
+              x: 0.7,
               y: yPos,
-              w: 8.3,
+              w: 8.8,
               h: 0.35,
-              fontSize: 14,
+              fontSize: 18,
+              bold: true,
               color: '#4b5563',
-              bullet: true,
+              fontFace: 'Arial'
             });
             yPos += 0.4;
-          } else if (line.trim().length > 0) {
-            slide.addText(line.trim(), {
-              x: 1,
+          } else if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
+            // Bullet point
+            slide.addText(trimmed.substring(2), {
+              x: 0.9,
               y: yPos,
-              w: 8.5,
+              w: 8.6,
               h: 0.35,
-              fontSize: 12,
-              color: '#666',
-              wrap: true,
+              fontSize: 14,
+              color: '374151',
+              bullet: { type: 'bullet', char: '•' },
+              fontFace: 'Arial',
+              wrap: true
+            });
+            yPos += 0.4;
+          } else if (/^\d+\.\s/.test(trimmed)) {
+            // Numbered list
+            const text = trimmed.replace(/^\d+\.\s/, '');
+            slide.addText(text, {
+              x: 0.9,
+              y: yPos,
+              w: 8.6,
+              h: 0.35,
+              fontSize: 14,
+              color: '374151',
+              bullet: { type: 'bullet', char: '◦' },
+              fontFace: 'Arial',
+              wrap: true
+            });
+            yPos += 0.4;
+          } else {
+            // Regular text
+            slide.addText(trimmed, {
+              x: 0.7,
+              y: yPos,
+              w: 8.8,
+              h: 0.4,
+              fontSize: 13,
+              color: '4b5563',
+              fontFace: 'Arial',
+              wrap: true
             });
             yPos += 0.4;
           }
 
-          if (yPos > 6.5) return; // Prevent overflow
-        });
-      }
-
-      slideIndex++;
-      currentSlideContent = [];
-      slideTitle = '';
-    }
-
-    // Parse markdown
-    for (const line of lines) {
-      if (line.startsWith('# ')) {
-        // New slide with title
-        if (slideIndex > 0 || currentSlideContent.length > 0) {
-          createSlide();
+          // Prevent overflow
+          if (yPos > 6.8) break;
         }
-        slideTitle = line.substring(2).trim();
-      } else if (line.startsWith('---')) {
-        // Slide break
-        if (slideTitle || currentSlideContent.length > 0) {
-          createSlide();
-        }
-      } else {
-        currentSlideContent.push(line);
       }
-    }
-
-    // Create last slide
-    if (slideTitle || currentSlideContent.length > 0) {
-      createSlide();
-    }
-
-    // If no slides were created, create title slide
-    if (slideIndex === 0) {
-      const slide = prs.addSlide();
-      slide.background = { color: '2563eb' };
-      slide.addText(title, {
-        x: 0.5,
-        y: 2.5,
-        w: 9,
-        h: 1.5,
-        fontSize: 44,
-        bold: true,
-        color: 'ffffff',
-        align: 'center',
-      });
-    }
+    });
 
     // Generate buffer
     const buffer = await prs.write({ outputType: 'arraybuffer' });

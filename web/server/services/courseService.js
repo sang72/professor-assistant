@@ -239,7 +239,7 @@ export async function updateCourseConfig(folder, updates) {
   }
 }
 
-export async function initializeLectureFile(folder, week, session) {
+export async function initializeLectureFile(folder, week, session, force = false) {
   try {
     const course = await getCourse(folder);
     if (!course) {
@@ -250,7 +250,7 @@ export async function initializeLectureFile(folder, week, session) {
     const weekDir = path.join(course.folderPath, 'lectures', `week${weekStr}`);
     const lecturePath = path.join(weekDir, `session${session}.md`);
 
-    if (fs.existsSync(lecturePath)) {
+    if (fs.existsSync(lecturePath) && !force) {
       return { exists: true, message: 'File already exists' };
     }
 
@@ -294,14 +294,14 @@ By the end of this session, students will be able to:
 `;
 
     fs.writeFileSync(lecturePath, template, 'utf-8');
-    return { success: true, message: 'Lecture file created', path: lecturePath };
+    return { success: true, message: 'Lecture file created', path: lecturePath, regenerated: force };
   } catch (err) {
     console.error(`Error initializing lecture file:`, err);
     throw err;
   }
 }
 
-export async function initializeExamFile(folder, type) {
+export async function initializeExamFile(folder, type, force = false) {
   try {
     const course = await getCourse(folder);
     if (!course) {
@@ -311,7 +311,7 @@ export async function initializeExamFile(folder, type) {
     const suffix = type === 'midterm' || type === 'final' ? 'student' : 'questions';
     const examPath = path.join(course.folderPath, 'exams', `${type}_${suffix}.md`);
 
-    if (fs.existsSync(examPath)) {
+    if (fs.existsSync(examPath) && !force) {
       return { exists: true, message: 'File already exists' };
     }
 
@@ -362,14 +362,14 @@ Write an essay answering the following question...
 `;
 
     fs.writeFileSync(examPath, template, 'utf-8');
-    return { success: true, message: 'Exam file created', path: examPath };
+    return { success: true, message: 'Exam file created', path: examPath, regenerated: force };
   } catch (err) {
     console.error(`Error initializing exam file:`, err);
     throw err;
   }
 }
 
-export async function initializeAssignmentFile(folder, assignmentNum) {
+export async function initializeAssignmentFile(folder, assignmentNum, force = false) {
   try {
     const course = await getCourse(folder);
     if (!course) {
@@ -378,7 +378,7 @@ export async function initializeAssignmentFile(folder, assignmentNum) {
 
     const assignmentPath = path.join(course.folderPath, 'assignments', `assignment${assignmentNum}.md`);
 
-    if (fs.existsSync(assignmentPath)) {
+    if (fs.existsSync(assignmentPath) && !force) {
       return { exists: true, message: 'File already exists' };
     }
 
@@ -436,7 +436,7 @@ By completing this assignment, you will be able to:
 `;
 
     fs.writeFileSync(assignmentPath, template, 'utf-8');
-    return { success: true, message: 'Assignment file created', path: assignmentPath };
+    return { success: true, message: 'Assignment file created', path: assignmentPath, regenerated: force };
   } catch (err) {
     console.error(`Error initializing assignment file:`, err);
     throw err;

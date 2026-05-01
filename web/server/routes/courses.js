@@ -552,17 +552,24 @@ router.post('/:folder/lectures/:week/:session/init', async (req, res) => {
       return res.status(404).json({ error: 'Course not found' });
     }
 
+    const force = req.body?.force === true || req.query?.force === 'true';
+
     const result = await courseService.initializeLectureFile(
       req.params.folder,
       parseInt(req.params.week),
-      parseInt(req.params.session)
+      parseInt(req.params.session),
+      force
     );
 
-    if (result.exists) {
+    if (result.exists && !force) {
       return res.json({ exists: true, message: 'Lecture file already exists' });
     }
 
-    res.json({ success: true, message: 'Lecture file created' });
+    res.json({
+      success: true,
+      message: force && result.regenerated ? 'Lecture file regenerated' : 'Lecture file created',
+      regenerated: result.regenerated
+    });
   } catch (err) {
     console.error('Error initializing lecture file:', err);
     res.status(500).json({ error: 'Failed to initialize lecture file' });
@@ -577,13 +584,18 @@ router.post('/:folder/exams/:type/init', async (req, res) => {
       return res.status(404).json({ error: 'Course not found' });
     }
 
-    const result = await courseService.initializeExamFile(req.params.folder, req.params.type);
+    const force = req.body?.force === true || req.query?.force === 'true';
+    const result = await courseService.initializeExamFile(req.params.folder, req.params.type, force);
 
-    if (result.exists) {
+    if (result.exists && !force) {
       return res.json({ exists: true, message: 'Exam file already exists' });
     }
 
-    res.json({ success: true, message: 'Exam file created' });
+    res.json({
+      success: true,
+      message: force && result.regenerated ? 'Exam file regenerated' : 'Exam file created',
+      regenerated: result.regenerated
+    });
   } catch (err) {
     console.error('Error initializing exam file:', err);
     res.status(500).json({ error: 'Failed to initialize exam file' });
@@ -598,16 +610,22 @@ router.post('/:folder/assignments/:num/init', async (req, res) => {
       return res.status(404).json({ error: 'Course not found' });
     }
 
+    const force = req.body?.force === true || req.query?.force === 'true';
     const result = await courseService.initializeAssignmentFile(
       req.params.folder,
-      parseInt(req.params.num)
+      parseInt(req.params.num),
+      force
     );
 
-    if (result.exists) {
+    if (result.exists && !force) {
       return res.json({ exists: true, message: 'Assignment file already exists' });
     }
 
-    res.json({ success: true, message: 'Assignment file created' });
+    res.json({
+      success: true,
+      message: force && result.regenerated ? 'Assignment file regenerated' : 'Assignment file created',
+      regenerated: result.regenerated
+    });
   } catch (err) {
     console.error('Error initializing assignment file:', err);
     res.status(500).json({ error: 'Failed to initialize assignment file' });

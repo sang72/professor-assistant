@@ -69,12 +69,12 @@ export const courseApi = {
   downloadPptx: (folder, type) => {
     window.open(`${API_BASE}/courses/${folder}/pptx/${type}`, '_blank');
   },
-  initializeLecture: (folder, week, session) =>
-    request(`/courses/${folder}/lectures/${week}/${session}/init`, { method: 'POST' }),
-  initializeExam: (folder, type) =>
-    request(`/courses/${folder}/exams/${type}/init`, { method: 'POST' }),
-  initializeAssignment: (folder, num) =>
-    request(`/courses/${folder}/assignments/${num}/init`, { method: 'POST' }),
+  initializeLecture: (folder, week, session, force = false) =>
+    request(`/courses/${folder}/lectures/${week}/${session}/init`, { method: 'POST', body: JSON.stringify({ force }) }),
+  initializeExam: (folder, type, force = false) =>
+    request(`/courses/${folder}/exams/${type}/init`, { method: 'POST', body: JSON.stringify({ force }) }),
+  initializeAssignment: (folder, num, force = false) =>
+    request(`/courses/${folder}/assignments/${num}/init`, { method: 'POST', body: JSON.stringify({ force }) }),
   deleteCourse: (folder) =>
     request(`/courses/${folder}`, { method: 'DELETE' }),
   uploadLectureMaterial: (folder, week, file) => {

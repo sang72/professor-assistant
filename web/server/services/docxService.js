@@ -3,10 +3,29 @@ import fs from 'fs';
 import path from 'path';
 
 // 마크다운을 docx 문서로 변환
-export async function markdownToDocx(mdText, filename = 'document.docx') {
+export async function markdownToDocx(mdText, filename = 'document.docx', addKorean = true) {
   try {
     const lines = mdText.split('\n');
     const paragraphs = [];
+
+    // 한글 문자 감지 함수
+    const hasKorean = (text) => /[가-힯ᄀ-ᇿ㄰-㆏]/.test(text);
+    const hasEnglish = (text) => /[a-zA-Z]/.test(text);
+    const contentHasKorean = hasKorean(mdText);
+    const contentHasEnglish = hasEnglish(mdText);
+
+    // 혼합 언어일 경우 상단에 언어 정보 추가
+    if (addKorean && contentHasEnglish && !contentHasKorean) {
+      paragraphs.push(
+        new Paragraph({
+          text: '📌 이 문서는 영어로 작성되었습니다. 한국어 번역이 필요한 경우 각 섹션별 제목을 참고하세요.',
+          spacing: { before: 120, after: 120 },
+          italics: true,
+          color: '666666'
+        })
+      );
+      paragraphs.push(new Paragraph({ text: '', spacing: { line: 240 } }));
+    }
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i].trim();
