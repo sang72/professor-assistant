@@ -566,27 +566,32 @@ router.post('/:folder/lectures/:week/:session/init', async (req, res) => {
       return res.json({ exists: true, message: 'Lecture file already exists' });
     }
 
-    // Generate lecture using Claude
-    res.setHeader('Content-Type', 'application/json');
-    res.write(JSON.stringify({ status: 'generating', message: `Week ${week} Session ${session} 강의안 생성 중...` }) + '\n');
+    try {
+      // Generate lecture using Claude
+      console.log(`[Lecture Generation] Week ${week} Session ${session} 생성 시작...`);
+      const lectureContent = await lectureGenerationService.generateLectureScript(course, week, session);
 
-    const lectureContent = await lectureGenerationService.generateLectureScript(course, week, session);
+      // Save to file
+      fs.mkdirSync(weekDir, { recursive: true });
+      fs.writeFileSync(lecturePath, lectureContent, 'utf-8');
 
-    // Save to file
-    fs.mkdirSync(weekDir, { recursive: true });
-    fs.writeFileSync(lecturePath, lectureContent, 'utf-8');
-
-    res.write(JSON.stringify({
-      success: true,
-      message: force ? 'Lecture file regenerated' : 'Lecture file created',
-      regenerated: force
-    }) + '\n');
-
-    res.end();
+      console.log(`[Lecture Generation] Week ${week} Session ${session} 생성 완료!`);
+      return res.json({
+        success: true,
+        message: force ? 'Lecture file regenerated' : 'Lecture file created',
+        regenerated: force
+      });
+    } catch (genErr) {
+      console.error('강의안 생성 실패:', genErr.message);
+      return res.status(500).json({
+        error: 'Failed to generate lecture',
+        message: genErr.message
+      });
+    }
   } catch (err) {
-    console.error('Error generating lecture:', err);
-    res.status(500).json({
-      error: 'Failed to generate lecture',
+    console.error('Error initializing lecture:', err);
+    return res.status(500).json({
+      error: 'Failed to initialize lecture',
       message: err.message
     });
   }
