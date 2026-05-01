@@ -13,10 +13,8 @@ echo.
 
 echo [0/4] Cleaning up port 3000...
 
-REM 모든 node.exe 프로세스 강제 종료
 taskkill /F /IM node.exe >nul 2>&1
 
-REM 포트 3000 프로세스 강제 종료
 for /f "tokens=5" %%a in ('netstat -aon 2^>nul ^| findstr ":3000"') do taskkill /F /PID %%a >nul 2>&1
 
 timeout /t 2 /nobreak >nul
