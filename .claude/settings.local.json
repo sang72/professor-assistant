@@ -54,7 +54,9 @@
       "Bash(lsof -ti:3000)",
       "Bash(unzip -l /tmp/midterm.pptx)",
       "Bash(export ANTHROPIC_API_KEY=\"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\")",
-      "Bash(xargs -I {} basename {})"
+      "Bash(xargs -I {} basename {})",
+      "Bash(cat)",
+      "Read(//tmp/**)"
     ]
   }
 }
