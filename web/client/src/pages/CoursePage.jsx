@@ -106,25 +106,27 @@ export function CoursePage({ folder, onNavigate }) {
       setCreatingLecture(true);
       const result = await courseApi.initializeLecture(folder, newLectureWeek, newLectureSession, force);
 
+      // 파일이 이미 존재하고 force가 false일 때
       if (result.exists && !force) {
+        setCreatingLecture(false);
         const shouldRegenerate = window.confirm(
           `Week ${newLectureWeek} Session ${newLectureSession} 강의안이 이미 존재합니다.\n재생성하시겠습니까?\n\n(기존 내용이 새 템플릿으로 덮어씌워집니다)`
         );
         if (shouldRegenerate) {
-          // Call again with force=true
           await handleCreateLecture(true);
         }
-      } else {
-        const isRegenerated = result.regenerated || force;
-        setUploadStatus({
-          type: 'lecture',
-          success: true,
-          message: `✅ Week ${newLectureWeek} Session ${newLectureSession} 강의안이 ${isRegenerated ? '재생성' : '생성'}되었습니다!`
-        });
-        setTimeout(() => setUploadStatus(null), 3000);
-        // Reload course data
-        await loadCourseData();
+        return;
       }
+
+      // 파일이 생성되었을 때
+      const isRegenerated = result.regenerated || force;
+      setUploadStatus({
+        type: 'lecture',
+        success: true,
+        message: `✅ Week ${newLectureWeek} Session ${newLectureSession} 강의안이 ${isRegenerated ? '재생성' : '생성'}되었습니다!`
+      });
+      setTimeout(() => setUploadStatus(null), 3000);
+      await loadCourseData();
     } catch (err) {
       setUploadStatus({ type: 'lecture', success: false, message: `❌ 생성 실패: ${err.message}` });
       setTimeout(() => setUploadStatus(null), 5000);
