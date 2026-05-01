@@ -486,7 +486,10 @@ export function CoursePage({ folder, onNavigate }) {
 
             {/* Create New Lecture */}
             <div style={{ backgroundColor: '#f0f9ff', padding: '1.5rem', borderRadius: '8px', marginTop: '1.5rem', marginBottom: '1.5rem', borderLeft: '4px solid #0284c7' }}>
-              <h3 style={{ fontSize: '16px', fontWeight: '600', margin: '0 0 1rem 0', color: '#0c4a6e' }}>➕ 새 강의안 추가</h3>
+              <h3 style={{ fontSize: '16px', fontWeight: '600', margin: '0 0 0.5rem 0', color: '#0c4a6e' }}>➕ 새 강의안 추가</h3>
+              <p style={{ fontSize: '12px', color: '#0c4a6e', margin: '0 0 1rem 0' }}>
+                1️⃣ 주차와 세션 선택 → 2️⃣ 📋 프롬프트 복사 → 3️⃣ Claude Code에서 붙여넣고 실행
+              </p>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr auto', gap: '1rem', alignItems: 'end' }}>
                 <div>
                   <label style={{ fontSize: '12px', fontWeight: '500', color: '#374151', display: 'block', marginBottom: '0.5rem' }}>주차</label>
@@ -529,21 +532,19 @@ export function CoursePage({ folder, onNavigate }) {
                   </select>
                 </div>
                 <button
-                  onClick={() => handleCreateLecture()}
-                  disabled={creatingLecture}
+                  onClick={() => handlePromptCopy(`lecture-${newLectureWeek}-${newLectureSession}`)}
                   style={{
-                    backgroundColor: creatingLecture ? '#d1d5db' : '#0284c7',
+                    backgroundColor: promptCopy === `lecture-${newLectureWeek}-${newLectureSession}` ? '#10b981' : '#f59e0b',
                     color: 'white',
                     border: 'none',
                     padding: '0.5rem 1rem',
                     borderRadius: '6px',
-                    cursor: creatingLecture ? 'not-allowed' : 'pointer',
+                    cursor: 'pointer',
                     fontSize: '14px',
                     fontWeight: '500',
-                    opacity: creatingLecture ? 0.6 : 1,
                   }}
                 >
-                  {creatingLecture ? '생성 중...' : '생성'}
+                  {promptCopy === `lecture-${newLectureWeek}-${newLectureSession}` ? '✅ 복사됨' : '📋 프롬프트 복사'}
                 </button>
               </div>
             </div>
