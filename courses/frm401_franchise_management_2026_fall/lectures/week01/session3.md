@@ -46,135 +46,334 @@ By the end of this session, students will be able to:
 
 ## SECTION 2: FULL LECTURE SCRIPT
 
-Welcome to the final session of Week 1. Over two sessions, we have covered the course structure and the global landscape of franchising. Today, I want to establish some expectations about how we work together, and I want to introduce your first major assignment.
+### Opening (5 minutes)
 
-Let me start by reviewing. Session 1, we covered grading — attendance, exams, assignments, participation. Session 2, we explored the franchising landscape globally. What was the key point from Session 2?
+Welcome to the final session of Week 1! Over two sessions, we've covered the course structure and the global landscape of franchising. Today, I want to accomplish two things: First, establish some clear expectations about how we'll work together in this classroom. Second, introduce your first major assignment.
 
-[ASK STUDENTS: Can someone summarize why franchising is so prevalent globally?]
+But before we move forward, let me do a quick review. In Session 1, we covered the fundamentals: What is franchising, why it exists, and who participates. In Session 2, we explored the landscape: How big is franchising? Where does it thrive? What are the success factors?
 
-[PAUSE — wait for student responses]
+Let me ask you: What was the key insight from Session 2?
 
-Right. It works. Franchises allow rapid growth. Brands become standardized. Franchisees and franchisors both benefit. Good. Hold that concept as we move forward.
+[ASK STUDENTS: "Can someone summarize why franchising has become so dominant globally?"]
 
-[TIME: ~5 min]
+[PAUSE — wait for responses]
 
----
+Exactly. Franchising works because it solves a real business problem: How can a company grow rapidly without infinite capital and infinite management capacity? The answer: transfer capital investment and operational responsibility to entrepreneurs who want to own a business. When done right, both the franchisor AND the franchisee win.
+
+Hold that idea as we move forward, because it's the foundation for everything we'll study this semester.
+
+### Main Content (35 minutes)
+
+#### Segment 1: Classroom Expectations & Norms (8 minutes)
+
+Now, let me talk about how we'll work together in this classroom. I have three core expectations for you.
 
 [SHOW SLIDE 1: Classroom Norms & Expectations]
 
-Now, let me talk about how we work together in this classroom. I have three main expectations. First, come prepared. Read the assigned chapters before class. Take notes. Write down questions. If you come to class unprepared, you will struggle to understand the lectures. Second, participate actively. Raise your hand. Answer questions. Contribute to discussions. This is not a lecture hall where you sit passively. This is a seminar where we think together. Third, treat everyone with respect — me, your classmates, guest speakers, everyone. We are building a learning community.
+[WRITE ON BOARD: Preparation | Participation | Respect]
 
-[WRITE ON BOARD: Prepare | Participate | Respect]
+**Expectation #1: Come Prepared**
 
-Being prepared means reading the textbook. It means reviewing lecture slides before class. It means asking yourself: what did I learn last time? What questions do I have? When you come prepared, you engage better. You ask better questions. You learn more.
+Read the assigned textbook chapters before class. Take notes. Write down questions. Review lecture slides from previous sessions. This prepares your brain to receive new information.
 
-Participating actively means speaking up. It means asking questions when confused. It means sharing ideas in discussion. Some of you may be shy. I understand. But even a shy person can raise their hand once per class session. That is my expectation. Not every class, but regularly.
+If you come to class unprepared, you'll struggle. The lectures build on each other. If you miss the context, the details won't make sense. But if you read the chapter before I explain it, you have a framework. You ask better questions. You learn more.
 
-Respecting everyone means arriving on time, putting your phone away during class, listening when others speak, treating different viewpoints as opportunities to learn, not as threats.
+Preparation takes about 1-2 hours per week — reading the textbook chapters (20-30 pages). That's a reasonable investment for learning.
 
-[TIME: ~10 min]
+**Expectation #2: Participate Actively**
+
+This isn't a passive lecture hall where you sit, listen, and take notes. This is a seminar. We think together. I'll ask you questions. You'll ask me questions. We'll discuss cases and concepts.
+
+I expect you to raise your hand and speak at least once per class. Maybe you're shy — I understand. But even shy people can offer one comment or question per 50-minute session. That's my expectation.
+
+Why? Because when you speak, you clarify your own thinking. You hear different perspectives from classmates. You engage more deeply. The research on learning is clear: active participation improves retention and critical thinking.
+
+**Expectation #3: Treat Everyone with Respect**
+
+This includes me, your classmates, guest speakers, and anyone who contributes to this learning community.
+
+What does respect look like?
+- Arrive on time (arriving late is disruptive)
+- Put your phone away during class (no texting, no checking social media)
+- Listen when others speak (don't interrupt, don't talk over people)
+- Value different viewpoints (you don't have to agree, but treat disagreement as an opportunity to learn, not as something to shut down)
+- Take the work seriously (do the reading, do the assignments thoughtfully)
+
+When we have these three things — preparation, participation, respect — we create an environment where everyone learns better.
 
 ---
+
+#### Segment 2: Assignment #1 Overview (15 minutes)
+
+Now, let's talk about your first major assignment. This is a significant piece of work, so let me explain it carefully.
 
 [SHOW SLIDE 2: Assignment #1 Overview]
 
-Now, let us talk about Assignment Number 1. This is your major assignment for the first half of the semester. It is due at the end of Week 6. That gives you six weeks to research, write, and refine your work. You have flexibility in what you choose to study.
+**What is Assignment #1?**
 
-[WRITE ON BOARD: Assignment #1 Due: End of Week 6]
+Assignment #1 is a franchise case study or analysis. It's your major assignment for the first half of the semester. It's due at the end of Week 6. That gives you six weeks to research, write, refine, and polish your work.
 
-You have two options. Let me explain both carefully.
+[WRITE ON BOARD: Assignment #1 Due: End of Week 6 (approximately 3 weeks from now)]
+
+**You have TWO options. Choose the one that excites you more.**
+
+---
 
 [SHOW SLIDE 3: Option A — Korean Franchise Brand Case Study]
 
-Option A: Analyze a Korean franchise brand. You choose any Korean franchise brand that interests you. Maybe you like Bagelz. Maybe you have eaten at Gongcha. Maybe you have stayed at a Korean hotel chain. Or maybe there is a Korean brand you know about but have never tried. Your job is to research that brand deeply and prepare a comprehensive case study.
+**Option A: Deep Dive into a Korean Franchise Brand**
 
-What should your case study include? First, the brand history. How did this company start? When did they begin franchising? Second, the franchise system structure. How many locations do they have? Are they domestic or international? Third, the franchisor-franchisee relationship. What support does the franchisor provide? What is expected of franchisees? Fourth, the Service Delivery System. How does this brand ensure consistency across locations? Fifth, a comparison with a relevant international competitor. If you are studying a Korean casual dining brand, compare it with a similar international brand. What are the differences? What can we learn?
+You choose any Korean franchise brand that interests you. Maybe you love Bagelz. Maybe you've eaten at Gongcha multiple times. Maybe you've used CU convenience stores. Maybe you've stayed at a Korean hotel chain. Or maybe there's a Korean franchise you know about but haven't tried personally.
 
-Finally, strategic recommendations. Based on what you have learned, what recommendations would you make to this company for growth or improvement?
+Your assignment: Research that brand deeply and write a comprehensive case study.
 
-[PAUSE 3s]
+**What should you include?**
+
+1. **Brand History & Origins** (Approximately 500 words)
+   - When was the company founded? By whom?
+   - What was the original business model?
+   - When did they start franchising? Why did they make that decision?
+   - How did they grow from one location to their current network?
+   - What were key turning points in their expansion?
+
+2. **Current Franchise System Structure** (Approximately 500 words)
+   - How many franchise locations do they currently operate?
+   - Geographic distribution: Are they concentrated in Korea or globally dispersed?
+   - Timeline of expansion: How fast did they grow?
+   - Types of franchises: Do they offer single-unit franchises, master franchises, or both?
+   - Franchisor ownership: Do they own any locations directly, or is it entirely franchised?
+
+3. **The Franchisor-Franchisee Relationship** (Approximately 600 words)
+   - What support does the franchisor provide to franchisees?
+   - What fees do franchisees pay (initial fee, royalties, marketing contributions)?
+   - What are franchisees' responsibilities and obligations?
+   - How does the franchisor train and onboard new franchisees?
+   - What kind of ongoing support do franchisees receive?
+   - How does the franchisor handle quality control and enforcement?
+
+4. **Service Delivery System (SDS)** (Approximately 500 words)
+   - How does this brand ensure consistency across all locations?
+   - What operational standards must every location maintain?
+   - How is the supply chain structured?
+   - What technology/POS systems do locations use?
+   - How is training delivered and updated?
+
+5. **Competitive Comparison** (Approximately 600 words)
+   - Choose a relevant international competitor in the same category
+   - If studying a Korean casual dining brand, compare with a similar international brand
+   - If studying a Korean coffee franchise, compare with Starbucks or a similar global brand
+   - Compare: Menu, pricing strategy, store design, service model, expansion speed, technology use
+   - What does the Korean brand do well that the international competitor doesn't?
+   - What does the international competitor do well that the Korean brand could learn?
+   - What are the cultural differences that explain the differences between them?
+
+6. **Strategic Recommendations** (Approximately 300 words)
+   - Based on your research, what are this company's key strengths?
+   - What are potential challenges to future growth?
+   - If you were advising this company's leadership, what would you recommend for the next 3-5 years?
+   - Should they expand internationally? If so, which markets and why?
+   - Should they accelerate domestic expansion or consolidate?
+   - What internal improvements would help franchisees be more profitable?
+
+---
 
 [SHOW SLIDE 4: Option B — Global Franchise System Analysis]
 
-Option B: Analyze a global franchise system. You choose any major franchise that operates across multiple countries. McDonald's, Starbucks, 7-Eleven, Marriott — any large, successful franchise. Your job is to analyze how this system operates globally.
+**Option B: Global Franchise System Analysis**
 
-What should you include? First, the company history and franchise model. How did they grow? What is their core business model? Second, adaptation strategies. How do they adapt their Service Delivery System for different countries? Does a McDonald's in Japan serve different menu items than a McDonald's in the US? Why or why not? Third, the legal and regulatory landscape. What franchise laws and regulations do they navigate? Do some countries have stricter rules than others? Fourth, financial analysis. How profitable are franchisees in different markets? Fifth, risk assessment. What are the major challenges to operating franchises globally?
+Alternatively, choose a major franchise that operates across multiple countries: McDonald's, Starbucks, 7-Eleven, Marriott, Subway, Dunkin', or any other large, successful franchise system.
 
-Again, conclude with strategic recommendations for further expansion or improvement.
+Your assignment: Analyze how this franchise operates globally and manages the complexity of international expansion.
 
-[TIME: ~20 min]
+**What should you include?**
+
+1. **Company History & Franchise Model** (Approximately 600 words)
+   - When was the company founded? How did it start?
+   - What was the original business model?
+   - When did they begin franchising?
+   - How did they grow to their current size?
+   - What percentage of their locations are franchised vs. company-owned?
+   - How have they adjusted their model over time?
+
+2. **Service Delivery System & Standardization** (Approximately 500 words)
+   - What is the core SDS that every location must follow?
+   - How detailed are the standards (menu, layout, equipment, service)?
+   - How are franchisees trained to execute the system?
+   - What happens if a franchisee deviates from standards?
+
+3. **Global Adaptation Strategies** (Approximately 700 words)
+   - How do they adapt their system for different countries/cultures?
+   - Do they modify the menu? The store design? The service model?
+   - Give specific examples of adaptations (e.g., McDonald's in Japan has different menu items than in the U.S.)
+   - Why do they make these adaptations?
+   - Is the core system maintained while content is localized?
+   - How do they decide what to standardize globally vs. what to adapt locally?
+
+4. **Legal & Regulatory Landscape** (Approximately 500 words)
+   - What franchise laws exist in different countries?
+   - Are some countries stricter about franchisee protections?
+   - How does the company navigate different legal frameworks?
+   - What regulatory challenges do they face?
+   - How do franchising regulations in the U.S., Korea, and Europe differ?
+
+5. **Financial Performance Across Markets** (Approximately 500 words)
+   - How profitable are franchisees in different markets?
+   - Are franchisees more profitable in wealthy countries or developing markets?
+   - What are typical startup costs for franchisees?
+   - What is the typical franchisee ROI and payback period?
+   - How do different market maturity levels affect franchisee economics?
+
+6. **Risk Assessment & Challenges** (Approximately 500 words)
+   - What are the major challenges to operating franchises globally?
+   - How do cultural differences affect franchise success?
+   - What political/economic risks exist in different markets?
+   - How do they handle franchisees who don't maintain standards?
+   - What went wrong in any markets where they struggled or exited?
+
+7. **Strategic Recommendations** (Approximately 300 words)
+   - Based on your analysis, what are this company's key strengths in global franchising?
+   - What are potential weaknesses or vulnerabilities?
+   - Where should they expand next? Which markets and why?
+   - What improvements would make their franchisees more successful?
 
 ---
+
+#### Segment 3: Choosing Your Option & Timeline (8 minutes)
 
 [SHOW SLIDE 5: Choosing Your Option]
 
-How do you choose between Options A and B? Ask yourself: which interests me more? Do I want to research a brand I know well and explore how it operates? That is Option A. Or do I want to take a global perspective and study how a large franchise adapts across cultures? That is Option B. There is no right answer. Both options are equally rigorous. Both will be graded to the same standards.
+**How should you choose between Option A and Option B?**
 
-But choose by the end of Week 4. That gives you two weeks to research before the assignment is due in Week 6.
+Ask yourself: What interests me more?
 
-[ASK STUDENTS: Does anyone have an initial preference? Option A or Option B?]
+- Do I want to research a brand I know well and explore how it operates locally? That's Option A.
+- Do I want to take a global perspective and study how a large franchise adapts across cultures? That's Option B.
 
-[PAUSE — wait for student responses]
+There's no right answer. Both options are equally rigorous. Both require research, analysis, and critical thinking. Both will be graded to the same standards.
 
-Good. You do not need to decide today. But start thinking about which brand or company interests you most.
+Choose based on what excites you. If you're passionate about a specific Korean brand, Option A will be more engaging. If you're interested in international business and how global companies manage complexity, Option B will excite you more.
 
-[TIME: ~25 min]
+**Timeline:**
+- **By end of Week 4:** Choose your option and identify your brand/company
+- **Week 4-5:** Conduct primary research
+- **Week 5-6:** Write and revise
+- **End of Week 6:** Submit your final assignment
+
+This gives you a realistic timeline. You have time to do thorough research without rushing.
+
+[ASK STUDENTS: "Does anyone have an initial preference? Thinking about choosing Option A or Option B?"]
+
+[PAUSE — wait for responses]
+
+You don't need to decide today. But start thinking about which brand or company interests you most. Talk to classmates. Do some initial research. Make an informed choice by the end of Week 4.
 
 ---
+
+#### Segment 4: Format, Submission, & Grading (10 minutes)
 
 [SHOW SLIDE 6: Format & Submission Requirements]
 
-Now, the mechanics. Your assignment should be 3,000 to 4,000 words. Written in English. Double-spaced. Include a title page, table of contents, and references. Use APA format for citations. If you are not sure how to cite, visit the Writing Center. They are experts at this.
+**Length & Format:**
+- 3,000 to 4,000 words (approximately 12-16 pages double-spaced)
+- Double-spaced, 12-point font, standard margins
+- Include: Title page, table of contents, body, references
+- Use **APA format for citations**
+- Professional writing: clear, organized, grammatically correct
 
 [WRITE ON BOARD: 3,000-4,000 words | APA format | Due: End of Week 6 | Submit on LMS]
 
-Submit your work on the course learning management system. Do not email it to me. The LMS has a submission folder for Assignment #1. Click submit, and the system will record the date and time. If you submit at 11:59 p.m. on the due date, that is on time. If you submit at 12:00 a.m. the next day, that is one minute late and subject to penalties. So be careful about deadlines.
+**Submission:**
+- Submit on the course learning management system (LMS)
+- Do NOT email it to me
+- The LMS has a submission folder for Assignment #1
+- Click "submit" and the system records the exact date and time
+- If you submit at 11:59 p.m. on the due date, you're on time
+- If you submit at 12:01 a.m. the next day, you're late
 
-[PAUSE 3s]
-
-Late submission: remember, 10 percent penalty per day. So a 90-point assignment loses 9 points if it is one day late. 18 points if it is two days late. After three days, it is zero points. Plan accordingly.
-
-[TIME: ~30 min]
-
----
+**Late Submission Policy:**
+- 10% penalty per day late
+- Not accepted after 3 days
+- So plan accordingly and submit early if possible
 
 [SHOW SLIDE 7: Grading Rubric Overview]
 
-How will I grade your assignment? I will look at several dimensions. First, research quality. Did you use credible sources? Did you cite them properly? Second, organization. Is your paper well-structured? Does it flow logically? Third, analysis depth. Did you go beyond summarizing? Did you analyze? Did you think critically? Fourth, connection to course concepts. Did you link your case study back to concepts we are learning in class? If we learn about the Service Delivery System in Week 4, and your assignment is due in Week 6, can you apply that concept to your case? That is what I am looking for.
+**How will I grade your assignment?**
 
-Finally, writing quality. Grammar, spelling, clarity. Your writing does not need to be perfect, but it should be clear and professional.
+I'll evaluate your work on five dimensions:
 
-[PAUSE 3s]
+1. **Research Quality** (20%)
+   - Did you use credible sources? (Books, peer-reviewed articles, company reports, reputable news sources)
+   - Did you cite your sources properly in APA format?
+   - Is your research current and accurate?
 
-More detailed rubric will be posted on the LMS in Week 5. You will have time to review it before you finish writing.
+2. **Organization & Structure** (15%)
+   - Does your paper follow a logical flow?
+   - Is there a clear introduction, body, and conclusion?
+   - Do sections connect smoothly to each other?
+   - Is the paper easy to follow?
 
-[TIME: ~35 min]
+3. **Analysis Depth** (30%)
+   - Did you go beyond summarizing? Did you analyze?
+   - Did you think critically?
+   - Did you make original connections or observations?
+   - Did you answer "why" questions, not just "what" questions?
+
+4. **Connection to Course Concepts** (20%)
+   - Did you link your case back to what we're learning in class?
+   - When you describe the franchisor-franchisee relationship in your case, do you connect it to concepts we studied?
+   - Do you apply the SDS framework (from Week 4) to your analysis?
+   - Do you demonstrate that you understand course concepts and can apply them?
+
+5. **Writing Quality** (15%)
+   - Grammar and spelling: professional standard, minimal errors
+   - Clarity: Ideas are expressed clearly and concisely
+   - Tone: appropriate for academic work
+
+A more detailed rubric with point values will be posted on the LMS in Week 5. You'll have time to review it before you finish writing.
+
+**Tips for Success:**
+- Start early. Don't procrastinate.
+- After your first draft, leave it alone for a day, then reread it with fresh eyes.
+- Ask a classmate to read it and give feedback.
+- Visit the Writing Center if you want help with organization or clarity.
+- Cite as you write, not after. It's easier.
+- Use proper APA format from the beginning.
 
 ---
 
-[SHOW SLIDE 8: Q&A on Assignment]
+### Wrap-Up & Preview (4 minutes)
 
-Let me answer questions. What questions do you have about Assignment #1?
+[SHOW SLIDE 8: Key Takeaways]
 
-[PAUSE — wait for student responses]
+Let me summarize what we've covered today:
 
-[Answer any student questions with clarification]
+1. **Classroom Expectations:** Come prepared, participate actively, treat everyone with respect.
+2. **Assignment #1:** Choose between Option A (Korean brand) or Option B (Global brand). Both are rigorous and equally valued.
+3. **Timeline:** Choose your topic by end of Week 4, complete research and writing Weeks 4-6, submit by end of Week 6.
+4. **Assessment:** Graded on research quality, organization, analysis depth, connection to course concepts, and writing quality.
 
-Excellent. I think you all have a clear picture now of what Assignment #1 entails and what is expected.
+**Looking Ahead to Week 2:**
 
-[TIME: ~42 min]
+Next week, we shift into deeper content. We'll study Chapter 1 of the textbook: "Franchising as Entrepreneurship." We'll ask fundamental questions:
+- What exactly is franchising, legally and contractually?
+- How is it different from licensing, wholesaling, or employment?
+- What does it mean to be entrepreneurial in franchising?
 
----
+Before next session, please read **Chapter 1, pages 1-16**. Write down any terms you don't understand. Jot down questions. Come ready to think deeply and discuss real examples.
 
-[SHOW SLIDE 9: Looking Ahead to Week 2]
+**Final Thoughts:**
 
-Next week, we shift into deeper content. We will study Chapter 1 of the textbook: "Franchising as Entrepreneurship." We will ask fundamental questions: What exactly is franchising? How is it different from other business models? What does it mean to be entrepreneurial in franchising? Be prepared to discuss real examples and case studies.
+You've now completed Week 1. You understand the course structure. You've seen the global landscape of franchising. You know what Assignment #1 requires. You're ready for Week 2.
 
-Before next week, please read Chapter 1, pages 1 to 16. Write down any terms you don't understand. Jot down questions. Bring your curiosity.
+This course is going to be challenging but rewarding. We're studying something that affects billions of people daily and shapes the modern economy. Franchising is at the intersection of business, law, economics, and human relationships. It's fascinating.
 
-Thank you all for three great sessions in Week 1. You have learned the course structure, you have seen the global landscape of franchising, and you know what Assignment #1 requires. You are ready for Week 2. See you next session.
+I'm excited to explore this material with you. Are there any last questions before we wrap up?
 
-[TIME: ~50 min]
+[PAUSE for questions]
+
+Thank you for three great sessions in Week 1. I'll see you next week!
+
+[TIME: 50 min]
 
 ---
 
