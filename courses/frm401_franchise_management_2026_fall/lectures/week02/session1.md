@@ -134,87 +134,170 @@ Let me walk through each of the six core elements with real examples from the Un
 
 The franchisor owns the intellectual property. This includes not just the brand name, but logos, symbols, slogans, trade dress (the distinctive appearance of the business), and sometimes even operational methods that are proprietary.
 
-Example: McDonald's owns the "McDonald's" name, the golden arches, the "I'm Lovin' It" slogan, the distinctive red-and-yellow color scheme, and the specific layout of their counter and kitchen.
+Why is trademark so critical? Because the trademark is what customers recognize. The trademark is what creates trust. When you see a Starbucks sign, you know exactly what to expect—the quality, the style, the experience. If a franchisee could change the logo or the appearance, that trust evaporates.
 
-Example: In Korea, CU owns the "CU" brand, their distinctive store design, their logo. Franchisees cannot change these. They cannot paint the store a different color. They cannot redesign the logo. The trademark is sacred.
+Example: McDonald's owns the "McDonald's" name, the golden arches, the "I'm Lovin' It" slogan, the distinctive red-and-yellow color scheme, and the specific layout of their counter and kitchen. Every McDonald's looks the same because the franchisor protects the trademark rigorously. A franchisee cannot paint their McDonald's green. They cannot change the signage. They cannot alter the iconic arches. This consistency is what makes McDonald's a global $200+ billion enterprise.
+
+Example: In Korea, CU owns the "CU" brand, their distinctive store design, their logo. Franchisees cannot change these. They cannot paint the store a different color. They cannot redesign the logo. The trademark is sacred. This is why, when you walk into any CU across Korea—whether in Seoul, Busan, or a rural town—you see the same design, the same logo, the same layout. CU's 13,000+ franchises generate consistency through trademark protection.
+
+The franchisor's responsibility is to *defend* the trademark. This means:
+- Preventing unauthorized use (other companies cannot call themselves "CU")
+- Maintaining brand standards (franchisees cannot degrade the trademark)
+- Updating the trademark as needed (refreshing logos, designs without losing recognition)
+- Registering the trademark legally (in the U.S., with the USPTO; in Korea, with KIPRIS)
 
 **Pillar 2: Documented System & Operations Manual**
 
-Every serious franchise has an operations manual. This might be a thousand-page document or a digital system. It specifies how to do everything.
+Every serious franchise has an operations manual. This might be a thousand-page document or a digital system. It specifies how to do everything. This is the *intellectual capital* that makes franchising valuable.
+
+Why? Because without a documented system, franchising wouldn't work. Imagine buying a Subway franchise without knowing how to bake bread, construct sandwiches, or manage inventory. You'd fail in weeks. The operations manual is what makes success replicable.
 
 Example: The Subway franchise operations manual specifies:
-- Exactly how bread is baked (temperature, timing, ingredients)
-- How sandwiches are constructed (which ingredients go on first, how much of each)
-- How the store is cleaned (when, how often, by whom)
-- How the register is operated
-- How staff uniforms are worn
-- How customers are greeted
-- How inventory is tracked
+- Exactly how bread is baked (temperature, timing, ingredients, fermentation time)
+- How sandwiches are constructed (which ingredients go on first, how much of each, customer customization rules)
+- How the store is cleaned (daily checklist, weekly deep cleaning schedule, by whom)
+- How the register is operated (payment processing, discount entry, reporting)
+- How staff uniforms are worn (shirt color, name tag position, shoes)
+- How customers are greeted (within 30 seconds of entry)
+- How inventory is tracked (daily counts, reorder points, supplier management)
 - Everything
 
-Example: Nene Chicken's franchise system includes:
-- Exact chicken recipes and portions
-- Precise cooking temperatures and times
-- Store layout and design specifications
-- Pricing guidelines
-- Customer service protocols
-- Supply chain procedures
+The manual is so detailed that a franchisee with zero restaurant experience could theoretically succeed by following it precisely. That's the power of documentation.
 
-This system is what the franchisee buys access to. Without it, the franchisee would have to figure everything out from scratch.
+Example: Nene Chicken's franchise system includes:
+- Exact chicken recipes and portions (how many grams of seasoning per batch)
+- Precise cooking temperatures and times (165°F internal temperature, rest time, cooling procedures)
+- Store layout and design specifications (counter dimensions, fryer placement, seating configuration)
+- Pricing guidelines (base prices, regional adjustments, promotional rules)
+- Customer service protocols (order accuracy standards, complaint resolution procedures)
+- Supply chain procedures (approved suppliers, quality checks, delivery frequencies)
+
+Why is Nene Chicken so successful in Korea (2,000+ locations by 2025)? Because the system is teachable. A new franchisee doesn't need culinary training. They learn the system.
+
+The system also protects the franchisor. If every Nene Chicken follows the same recipe, every location produces consistent quality. If one location cuts corners (cheaper chicken, shorter cooking times), the franchisee will lose customers and fail. The system self-enforces through customer satisfaction.
+
+This system is what the franchisee buys access to. Without it, the franchisee would have to figure everything out from scratch—and would probably fail like 90% of independent restaurants do.
 
 **Pillar 3: Initial Franchise Fee**
 
 This is the upfront cost. In the United States, franchisors must disclose their franchise fee in a Franchise Disclosure Document (FDD) that we'll discuss later.
 
-Let me give you real-world examples:
+The franchise fee is what the franchisor charges for the right to use the brand, receive initial training, and access the system. It's a one-time, upfront payment. Think of it as the price of admission to the franchise system.
 
-- **Starbucks:** Approximately $315,000 to $700,000 for a licensed store
+Let me give you real-world examples (2025-2026 data):
+
+- **Starbucks Licensed Store:** Approximately $315,000 to $700,000 for a licensed store
 - **Subway:** Approximately $150,000 to $325,000
 - **McDonald's:** Approximately $945,000 to $2.7 million
+- **Dunkin' Donuts:** Approximately $450,000 to $950,000
 - **In Korea, CU:** Approximately 50-80 million won (roughly $40,000-$65,000 USD)
-- **In Korea, GS25:** Approximately 60-90 million won
+- **In Korea, GS25:** Approximately 60-90 million won ($48,000-$72,000)
+- **In Korea, Nene Chicken:** Approximately 80-150 million won ($64,000-$120,000)
 
-What's interesting is that Korean franchise fees are often lower than American ones, but royalties might be higher or include more mandated purchases.
+What's interesting? Korean franchise fees are often *lower* than American ones, but the *total investment* is often similar because of real estate costs, equipment, and working capital. Also, Korean franchisors often include equipment or furniture in the fee, while American franchisors may not.
 
-[ASK STUDENTS: Why do you think some franchises charge higher fees than others? What would justify a $2 million fee vs. a $300,000 fee?]
+Why do fees vary so dramatically?
+
+First, **brand power**. McDonald's charges $945,000+ because every location is expected to be highly profitable. Starbucks charges $315,000+ because the Starbucks brand is globally recognized and profitable. Subway charges less because there are more Subways and the competition is more intense.
+
+Second, **location quality**. A Starbucks in a premium location (airport, shopping mall) costs more than one in a standard location. A CU in Seoul costs more than one in a rural area.
+
+Third, **expected revenue**. The franchisor analyzes: How much will this location generate? They set the fee accordingly. If a location is projected to generate $500,000 annually, the franchisor might charge a higher fee.
+
+Fourth, **franchisor's capital needs**. Some franchisors need upfront capital (equipment, training, support systems). They charge higher fees. Others have lower upfront costs and rely more on royalties.
+
+[ASK STUDENTS: If you were buying a franchise, would you prefer a low fee with high royalties, or a high fee with low royalties? What are the trade-offs?]
 
 [PAUSE for student responses]
 
-The answer relates to brand power, expected profitability, and the franchisor's business model. A premium brand like McDonald's can charge more. A franchise in a high-traffic location can support higher fees. Franchisors who depend on franchise fees (vs. royalties) charge more upfront.
+Great thinking. Low fee, high royalty means lower upfront risk but ongoing percentage costs. High fee, low royalty means higher upfront cost but lower ongoing burden. Both can work depending on your cash position and risk tolerance.
 
 **Pillar 4: Ongoing Royalties**
 
-This is the percentage of revenue that franchisees pay to the franchisor. Typically 5-7%, but it varies:
+This is the percentage of revenue that franchisees pay to the franchisor, every month, as long as they operate. Typically 5-7%, but it varies significantly.
 
-- **McDonald's:** Approximately 5.9% of revenue, plus rent
+This is the most important financial metric because it directly impacts franchisee profitability. A high royalty rate can make franchising unprofitable. A low rate might undervalue the franchisor's contribution.
+
+Real examples (2025-2026 data):
+
+- **McDonald's:** Approximately 5.9% of revenue, plus rent (which is often paid directly by franchisee to the landlord, with McDonald's taking a percentage)
 - **Subway:** Approximately 6% of revenue
 - **Starbucks:** Approximately 7% of sales
-- **In Korea:** Royalties range from 4% to 10% depending on the franchise
+- **Dunkin' Donuts:** Approximately 5.9% of sales
+- **In Korea, CU:** Approximately 2-3% plus mandatory purchases from suppliers (which effectively increases the total cost)
+- **In Korea, GS25:** Approximately 3-4% plus supplier costs
+- **In Korea, Nene Chicken:** Approximately 4-5% of sales plus supplier agreements
 
-In addition to royalties, franchisees often pay:
-- Marketing contribution fees (1-2% for national marketing)
-- Technology fees (for point-of-sale systems, ordering systems)
-- Training fees for additional staff training
-- Sometimes purchasing requirements (goods must be bought from approved suppliers)
+Notice Korean royalties appear lower (2-4%) versus U.S. royalties (5-7%). But this is misleading. In Korea, franchisors often control supply chains strictly, requiring franchisees to buy from approved suppliers at set prices. This means:
+- Royalty rate: 3%
+- But forced supplier purchases: another 2-3% markup
+- Effective rate: 5-6%
+
+In addition to royalties, franchisees almost always pay:
+- Marketing contribution fees (1-2% for national marketing and advertising)
+- Technology fees (for point-of-sale systems, online ordering, delivery platforms)
+- Training fees for additional staff training beyond opening
+- Sometimes purchasing requirements (goods must be bought from approved suppliers at set prices)
 
 [WRITE ON BOARD: Total Monthly Cost for Franchisee = Royalties + Marketing Fees + Tech Fees + Supplies]
 
-This is why franchisees need to do careful financial analysis. The 5% royalty is just the starting point.
+Let me make this concrete with a real financial example:
+
+**Starbucks Licensed Cafe, 2025:**
+
+Monthly Revenue: $50,000
+
+Monthly Costs:
+- Royalties (7%): $3,500
+- Marketing fee (1%): $500
+- Technology (POS, app): $300
+- Supplies (coffee, food): $20,000
+- Labor: $16,000
+- Rent: $4,000
+- Utilities, insurance: $2,000
+- **Total Expenses: $46,300**
+- **Monthly Profit: $3,700 (7.4% net margin)**
+
+Annual Profit: ~$44,400 on a $500,000 investment = 8.9% return
+
+This is why franchisees need to do careful financial analysis. The 7% royalty is just the starting point. You must account for all costs, and you must be realistic about revenue projections.
+
+[ASK STUDENTS: If you had $500,000 to invest, would an 8.9% return justify the risk? How does this compare to stock market returns (historically 10%) or real estate (historically 5-8%)?]
+
+[PAUSE for discussion]
 
 **Pillar 5: Franchisee Selection & Support**
 
-The franchisor's responsibility is to select franchisees carefully and support them continuously.
+The franchisor's responsibility is to select franchisees carefully and support them continuously. This is critical because franchisees represent the brand in the market.
 
-Selection: The franchisor evaluates potential franchisees. Do they have capital? Do they have the right mindset? Do they understand the business? Will they follow the system? Do they have local market knowledge? Can they hire and manage staff?
+**Selection Process:**
 
-Support: After opening, the franchisor provides:
-- Ongoing training (for the franchisee and their staff)
-- Technology and POS systems
-- Marketing support and national brand advertising
-- Supplier relationships and purchasing power
-- Research and development
-- Operational guidance and problem-solving
-- Regular inspections and feedback
+The franchisor evaluates potential franchisees on multiple criteria:
+- Do they have adequate capital? (Can they fund the location without going bankrupt?)
+- Do they have the right mindset? (Will they follow the system or try to innovate?)
+- Do they understand the business model? (Have they researched and talked to existing franchisees?)
+- Will they follow the system? (Are they coachable, or stubborn?)
+- Do they have local market knowledge? (Do they understand the demographics, competition, foot traffic?)
+- Can they hire and manage staff? (Do they have HR experience?)
+- Do they have time and energy? (Franchises require operational focus, not passive investment)
+
+Good franchisors reject 80-90% of applicants. They know that a bad franchisee can damage the brand in their market.
+
+**Support After Opening:**
+
+After opening, the franchisor provides:
+- Ongoing training (for the franchisee and their staff, quarterly updates)
+- Technology and POS systems (maintaining the infrastructure)
+- Marketing support and national brand advertising (the franchisee benefits from corporate campaigns)
+- Supplier relationships and purchasing power (economies of scale for ingredients, equipment)
+- Research and development (new products, menu updates, business model improvements)
+- Operational guidance and problem-solving (field managers, hotline support)
+- Regular inspections and feedback (maintaining standards)
+
+In Korea, this support is evolving. Historically, Korean franchisors provided less support, charging lower fees and expecting franchisees to figure things out. But as competition intensifies, franchisors like CU and Nene Chicken are increasing support:
+- CU launched a franchisee academy with advanced training
+- Nene Chicken expanded field support staff (now 500+ managers)
+- GS25 launched a digital coaching app for franchisees
 
 **Pillar 6: Control & Enforcement of Standards**
 
@@ -225,6 +308,19 @@ This is non-negotiable. If a franchisee operates a location in a way that damage
 Example: A Starbucks franchisee serves cold coffee by default. Customers complain. The quality of the Starbucks brand in that location deteriorates. Starbucks can require the franchisee to fix this or lose the franchise.
 
 Example: A Korean CU franchisee doesn't maintain clean facilities. Regulators cite the store. CU can enforce cleaning standards or terminate the agreement.
+
+However, enforcement is a delicate balance. Too strict, and franchisees feel controlled. Too lenient, and the brand deteriorates. In Korea (2024-2026), there's increasing tension:
+- Franchisee associations argue franchisors are too controlling
+- CU faces lawsuits from franchisees over unreasonable demands
+- Franchisees argue they need more autonomy to adapt to local markets
+
+The franchise relationship requires trust. Standards must be enforced, but fairly and transparently.
+
+**The Six Elements Summary:**
+
+All six elements work together. You need trademark to create brand recognition. You need a documented system so franchisees can execute. You need an initial fee to fund training and support. You need ongoing royalties to sustain the franchisor. You need careful franchisee selection so you're working with the right people. And you need clear control mechanisms to maintain standards.
+
+Remove any one element, and the system breaks down.
 
 ---
 
@@ -360,23 +456,81 @@ These risks are why franchisees must be careful. A franchise is not a risk-free 
 
 ---
 
+### Segment 4: Franchising Reality in Korea (8 minutes)
+
+[SHOW SLIDE: "Franchising in Korea: 2024-2026 Challenges"]
+
+Let me give you real context about franchising in Korea right now (2025-2026). Korea has the world's most developed franchising ecosystem. By market penetration, Korea is ahead of the U.S. The franchise industry includes 30,000+ locations and generates ~20 trillion won annually.
+
+But the sector faces serious challenges that illustrate the six elements we've discussed.
+
+**Challenge 1: Trademark Saturation**
+
+There are too many franchises competing for the same customers. In convenience stores alone, there are over 40,000 locations (CU, GS25, Emart convenience, Lotteria convenience, etc.) serving 50 million people. That's one convenience store per 1,250 people. In Seoul, it's one per 400 people.
+
+Result: Each franchisee's revenue is declining. Many convenience store franchisees (2024-2026) generate only 15-20 million won monthly—down from 30 million won five years ago.
+
+**Challenge 2: System Limitations**
+
+Many Korean franchisors have weak operations manuals. They provide training but expect franchisees to "figure out" local adaptation. Unlike Subway (which has a 10,000-page manual), many Korean franchisors hand franchisees a 100-page manual and say "good luck."
+
+Result: Franchisees struggle. There's no standardization. Quality varies dramatically by location.
+
+**Challenge 3: Fee Extraction, Not Support**
+
+Some Korean franchisors charge high fees and provide minimal support. They're extracting money from franchisees rather than enabling them to succeed.
+
+Example: A ramen franchise (2025) charged 80 million won upfront, 5% royalties, plus mandatory supplier purchases at 20% markup. But provided almost no field support. After one year, 40% of franchisees failed.
+
+**Challenge 4: Labor Cost Crisis**
+
+Korean minimum wage has increased 76% since 2015. Many franchisees cannot sustain profitability with doubled labor costs. The financial model that worked in 2015 is broken in 2026.
+
+CU franchisees (2024-2026) report that labor costs consume 40-50% of revenue (up from 25% in 2015). This makes profitability impossible for locations with lower foot traffic.
+
+**Challenge 5: Franchisee Rights**
+
+Korean franchisees are increasingly organized. Franchisee associations are demanding:
+- More transparency in fee structures
+- Lower royalty rates
+- More franchisor support
+- Protection against competitive cannibalization (franchisor opening nearby locations)
+
+In 2024, the Korean government proposed stronger protections for franchisees—potentially limiting franchisors' ability to enforce strict control.
+
+**What This Means for You**
+
+Understanding these six elements is not academic. If you're considering buying a franchise in Korea (convenience store, cafe, restaurant), you must:
+1. Verify the trademark is strong (not saturated)
+2. Review the operations manual and understand the system
+3. Understand all fees (not just the headline royalty rate)
+4. Evaluate the support you'll receive
+5. Ensure the franchisor will enforce standards fairly
+6. Do realistic financial projections (not the franchisor's optimistic estimates)
+
+Many Korean franchisees have lost substantial capital because they didn't understand these six elements.
+
+---
+
 ### Summary & Q&A (4 minutes)
 
 Let me summarize what we've covered today.
 
 A franchise is a specific type of business relationship with six essential elements:
-1. Trademark rights (franchisor owns the brand)
-2. Documented system (proven, teachable operational methods)
-3. Initial franchise fee (upfront payment)
-4. Ongoing royalties (percentage of revenue)
-5. Support and training (franchisor's ongoing assistance)
-6. Control and standards (franchisor's right to enforce quality)
+1. **Trademark rights** (franchisor owns and defends the brand)
+2. **Documented system** (proven, teachable operational methods)
+3. **Initial franchise fee** (upfront payment, justified by brand and training)
+4. **Ongoing royalties** (percentage of revenue, funding franchisor support)
+5. **Support and training** (franchisor's ongoing operational assistance)
+6. **Control and standards** (franchisor's right to enforce quality consistently)
 
-Franchising is different from licensing, wholesaling, joint ventures, and employment. Each of these relationships has different legal status, protections, and implications.
+Franchising is different from licensing (whole system vs. just intellectual property), wholesaling (business relationship vs. transaction), joint ventures (independent operators vs. shared ownership), and employment (entrepreneurs vs. salaried workers).
 
-Franchisees are entrepreneurs. They invest capital, assume risk, and build their own businesses. But they operate within the franchisor's system, which limits their autonomy and protects the franchise brand.
+Franchisees are entrepreneurs. They invest capital, assume risk, and build their own businesses. But they operate within the franchisor's system, which limits their autonomy and protects the franchise brand. This tension—control vs. autonomy—is at the heart of franchising.
 
 Understanding these definitions and distinctions is critical. They determine legal rights, tax status, dispute resolution methods, and the entire nature of the relationship.
+
+In Korea, franchising faces real challenges (market saturation, labor costs, franchisee tensions). But for those who understand the business model deeply, opportunities still exist.
 
 Are there any questions about these definitions? What still needs clarification?
 
@@ -384,7 +538,7 @@ Are there any questions about these definitions? What still needs clarification?
 
 Excellent. Next session, we'll move from definitions to the actual relationship between franchisor and franchisee. We'll ask: What are the mutual obligations? What can go wrong? How do we create value for both parties? We'll explore the Franchise Relationship Model.
 
-Before next session, read Chapter 1, pages 1-25, and pay special attention to how your textbook defines franchising. Compare it with what we discussed today.
+Before next session, read Chapter 1, pages 1-25, and pay special attention to how your textbook defines franchising. Compare it with what we discussed today. Also, if possible, visit a CU or GS25 and observe: Can you see the trademark protection? Can you see how they've standardized the layout? Think about what happens if a franchisee decides to operate differently.
 
 Thank you.
 
