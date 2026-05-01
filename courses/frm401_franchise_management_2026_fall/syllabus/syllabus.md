@@ -90,23 +90,23 @@ By the end of this course, students will be able to:
 
 ## 15-Week Course Schedule
 
-| Week | Topic | Sub-Topics | Chapter(s) | In-Class Activity & Cases | Assessment Due |
-|------|-------|-----------|-----------|------------------|-----------------|
-| **1** | Course Introduction & Overview | Syllabus review; global franchising landscape (2024-2026); course expectations | Intro / Ch. 0 | Welcome discussion; franchising megatrends; McDonald's vs. CU expansion models | — |
-| **2** | Franchising as Entrepreneurship | What is franchising; entrepreneurial mindset; small and big business models | Ch. 1 | Case analysis: Krispy Kreme (US) vs. Nene Chicken, BBQ (Korea); startup vs. scale-up | — |
-| **3** | Franchise Relationship Model (FRM) | Franchisor-franchisee dynamics; value creation; partnership alignment | Ch. 2 | Case study: Pizza Hut vs. Domino's (US) vs. CU vs. GS25 (Korea) — convenience store wars | Reading reflection |
-| **4** | Wealth-Creating Power | Financial success mechanisms; performance metrics; scalability; capital growth | Ch. 3 | Case analysis: Dunkin' Donuts (capital growth), Subway (rapid expansion challenges 2024-2026) | — |
-| **5** | Service Delivery System (SDS) & Real Estate | Resource deployment; location strategy; consistency; Korean franchise real estate model | Ch. 4 | Case studies: Starbucks (global SDS), Hollow Tree Café (Korean franchise), convenience store logistics | Draft assignment outline |
-| **6** | Selecting & Monitoring Franchisees | Partner selection criteria; performance management; oversight mechanisms; Korean market challenges | Ch. 5 | Case analysis: Dunkin' Donuts franchisee evaluation; Korean coffee franchise selection issues (2025-2026) | **Assignment #1 Due** |
-| **7** | Service Delivery System & Marketing | SDS fundamentals; brand consistency; customer experience; marketing across franchise network | Ch. 6 | Case studies: Starbucks (global SDS), CU (Korean standardization), brand localization strategies, marketing across network | — |
-| **8** | **MIDTERM EXAM WEEK** | Comprehensive review of Weeks 1-7; exam preparation | Ch. 1-7 | **Midterm Exam** (75 minutes) — No regular lecture | **Midterm Exam** |
-| **9** | Transaction Analysis | Task assignment frameworks; responsibility matrices; franchisor-franchisee obligations | Ch. 7 | Case study: Bagelz; mapping exercise; Korean franchise contract analysis | — |
-| **10** | Financial Analysis of Franchises | Unit economics; profitability analysis; investment returns; Korean franchisee profitability crisis | Ch. 8 | Case analysis: Panera Bread, Korean chicken franchise profitability challenges (2024-2026) | — |
-| **11** | Dynamics of Franchisee-Franchisor Relationship | Conflict resolution; adaptation; relationship evolution; Korean disputes (2024-2026) | Ch. 9 | Case study: Quick Lube; Korean franchise conflict examples; mediation strategies | — |
-| **12** | **U.S. & Korean Franchise Laws Comparison** ⭐ | FTC Rule; UFOC; state regulations; Korean Franchise Business Act (가맹사업거래 공정화법) | Ch. 10 | **Comparative legal workshop:** US disclosure requirements vs. Korean protective measures; recent 2024-2026 law changes | — |
-| **13** | International Franchising (Part 1) | Global expansion strategy; market adaptation; Korean brands going global | Ch. 11 | Case study: 7-Eleven Japan vs. Korea; CU international expansion; strategic analysis | — |
-| **14** | International Franchising (Part 2) | Market entry; regulatory compliance; cultural considerations; Korean franchise export | Ch. 11 | Strategic planning: Korean chicken franchise international expansion (BBQ, Nene Chicken); peer review | — |
-| **15** | **FINAL EXAM WEEK** | Comprehensive review of Weeks 8-14 + cumulative (20% from Weeks 1-7); exam preparation | Ch. 1-14 | **Final Exam** (90 minutes) — No regular lecture | **Final Exam** |
+| Week | Topic | Sub-Topics | Chapter(s) | In-Class Activity & Cases | Sessions | Assessment Due |
+|------|-------|-----------|-----------|------------------|----------|-----------------|
+| **1** | **Course Orientation** | Syllabus review; course logistics; professor introduction; expectations; assessment overview | Intro | Syllabus walkthrough; Q&A; course platform orientation | **1 session** (Orientation only) | — |
+| **2** | Franchising as Entrepreneurship | What is franchising; entrepreneurial mindset; small and big business models | Ch. 1 | Case analysis: Krispy Kreme (US) vs. Nene Chicken, BBQ (Korea); startup vs. scale-up | 3 sessions | — |
+| **3** | Franchise Relationship Model (FRM) | Franchisor-franchisee dynamics; value creation; partnership alignment | Ch. 2 | Case study: Pizza Hut vs. Domino's (US) vs. CU vs. GS25 (Korea) — convenience store wars | 3 sessions | Reading reflection |
+| **4** | Wealth-Creating Power | Financial success mechanisms; performance metrics; scalability; capital growth | Ch. 3 | Case analysis: Dunkin' Donuts (capital growth), Subway (rapid expansion challenges 2024-2026) | 3 sessions | — |
+| **5** | Service Delivery System (SDS) & Real Estate | Resource deployment; location strategy; consistency; Korean franchise real estate model | Ch. 4 | Case studies: Starbucks (global SDS), Hollow Tree Café (Korean franchise), convenience store logistics | 3 sessions | Draft assignment outline |
+| **6** | Selecting & Monitoring Franchisees | Partner selection criteria; performance management; oversight mechanisms; Korean market challenges | Ch. 5 | Case analysis: Dunkin' Donuts franchisee evaluation; Korean coffee franchise selection issues (2025-2026) | 3 sessions | **Assignment #1 Due** |
+| **7** | Service Delivery System & Marketing | SDS fundamentals; brand consistency; customer experience; marketing across franchise network | Ch. 6 | Case studies: Starbucks (global SDS), CU (Korean standardization), brand localization strategies, marketing across network | 3 sessions | — |
+| **8** | **MIDTERM EXAM WEEK** | Comprehensive review of Weeks 2-7; exam preparation | Ch. 1-7 | **Midterm Exam** (75 minutes) — Exam only, no regular lecture | **1 session** (Exam) | **Midterm Exam** |
+| **9** | Transaction Analysis | Task assignment frameworks; responsibility matrices; franchisor-franchisee obligations | Ch. 7 | Case study: Bagelz; mapping exercise; Korean franchise contract analysis | 3 sessions | — |
+| **10** | Financial Analysis of Franchises | Unit economics; profitability analysis; investment returns; Korean franchisee profitability crisis | Ch. 8 | Case analysis: Panera Bread, Korean chicken franchise profitability challenges (2024-2026) | 3 sessions | — |
+| **11** | Dynamics of Franchisee-Franchisor Relationship | Conflict resolution; adaptation; relationship evolution; Korean disputes (2024-2026) | Ch. 9 | Case study: Quick Lube; Korean franchise conflict examples; mediation strategies | 3 sessions | — |
+| **12** | **U.S. & Korean Franchise Laws Comparison** ⭐ | FTC Rule; UFOC; state regulations; Korean Franchise Business Act (가맹사업거래 공정화법) | Ch. 10 | **Comparative legal workshop:** US disclosure requirements vs. Korean protective measures; recent 2024-2026 law changes | 3 sessions | — |
+| **13** | International Franchising (Part 1) | Global expansion strategy; market adaptation; Korean brands going global | Ch. 11 | Case study: 7-Eleven Japan vs. Korea; CU international expansion; strategic analysis | 3 sessions | — |
+| **14** | International Franchising (Part 2) | Market entry; regulatory compliance; cultural considerations; Korean franchise export | Ch. 11 | Strategic planning: Korean chicken franchise international expansion (BBQ, Nene Chicken); peer review | 3 sessions | — |
+| **15** | **FINAL EXAM WEEK** | Comprehensive review of Weeks 9-14 + cumulative (20% from Weeks 2-7); exam preparation | Ch. 1-14 | **Final Exam** (90 minutes) — Exam only, no regular lecture | **1 session** (Exam) | **Final Exam** |
 
 ---
 
@@ -192,7 +192,7 @@ Students with documented disabilities or learning needs who require academic acc
 
 | Week | Readings / Chapters |
 |------|-------------------|
-| **1** | Introduction & Course Overview; Textbook Introduction (pages xv–xvii) |
+| **1** | **Orientation Week** — No reading assignment. Attend orientation session to review syllabus and course expectations. |
 | **2** | Chapter 1: Franchising as Entrepreneurship (pages 1–16) |
 | **3** | Chapter 2: The Franchise Relationship Model (pages 17–32) |
 | **4** | Chapter 3: The Wealth-Creating Power of Franchising (pages 33–50) |
