@@ -553,8 +553,9 @@ export function CoursePage({ folder, onNavigate }) {
               🎓 생성된 강의안 ({course.status?.lectures?.length || 0}개)
             </h3>
             {course.status?.lectures && course.status.lectures.length > 0 ? (
-              course.status.lectures.map((lecture, idx) => (
-              <div key={idx} style={{ backgroundColor: 'white', padding: '1.5rem', borderRadius: '8px', marginBottom: '0.75rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ display: 'grid', gap: '0.75rem' }}>
+                {course.status.lectures.map((lecture, idx) => (
+                  <div key={idx} style={{ backgroundColor: 'white', padding: '1.5rem', borderRadius: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div style={{ flex: 1 }}>
                   <p style={{ margin: '0', fontWeight: '500', fontSize: '14px' }}>{lecture.label}</p>
                 </div>
@@ -607,11 +608,9 @@ export function CoursePage({ folder, onNavigate }) {
                   >
                     🎯 PPT
                   </button>
-                </div>
+                  </div>
+                ))}
               </div>
-            ))}
-
-              ))
             ) : (
               <div style={{ backgroundColor: '#f0f9ff', padding: '1.5rem', borderRadius: '8px', borderLeft: '4px solid #0284c7', color: '#0c4a6e' }}>
                 <p style={{ margin: '0', fontSize: '14px' }}>📭 생성된 강의안이 없습니다. 위의 "새 강의안 추가" 버튼을 이용하거나 프롬프트를 복사해서 Claude에서 생성하세요.</p>
